@@ -1,3 +1,7 @@
+## Guidelines 
+
+`src` has a folder called components. Individual layouts of the app will be here. The sub-components of these layouts should be put into a sub-folder in components folder. For example, the sub-components of `Critical` component can be kept in a folder calles `critical-comp`.
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 ## Available Scripts
