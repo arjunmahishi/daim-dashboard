@@ -2,7 +2,7 @@
 <html>
     <head>
         <!--Import Google Icon Font-->
-        <link rel="stylesheet" type="text/css" href="styles/style.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -13,11 +13,7 @@
 
     <body>
         <!--Import jQuery before materialize.js-->
-        <script>
-            $(document).ready(function(){
-                $('.collapsible').collapsible();
-            });
-        </script>
+
         <nav>
             <div class="nav-wrapper">
                 <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
@@ -35,22 +31,14 @@
         </div>
         <div class="container">
             <div class="col s12 m6">
-                <div class="card hoverable" style="cursor: pointer;">
+                <div class="card hoverable">
                     <div class="card-content black-text">
                         <span class="card-title" style="text-align: center;">Transmission:</span>
-                        <div class="container">
+                        <div class="card-container">
                             <ul class="collapsible popout" data-collapsible="accordion">
-                                <li>
+                                <li id="list-item">
                                     <div class="collapsible-header red lighten-1"><i class="material-icons">settings</i>Supplier name:<br/>Part No:</div>
-                                    <div class="collapsible-body" style="text-align: center;"><span>Name:<br/>Open stock:<br/>Qty expected:<br/>ETA:</span></div>
-                                </li>
-                                <li>
-                                    <div class="collapsible-header blue lighten-1"><i class="material-icons">settings</i>Supplier name:<br/>Part No:</div>
-                                    <div class="collapsible-body" style="text-align: center;"><span>Name:<br/>Open stock:<br/>Qty expected:<br/>ETA:</span></div>
-                                </li>
-                                <li>
-                                    <div class="collapsible-header yellow lighten-1"><i class="material-icons">settings</i>Supplier name:<br/>Part No:</div>
-                                    <div class="collapsible-body" style="text-align: center;"><span>Name:<br/>Open stock:<br/>Qty expected:<br/>ETA:</span></div>
+                                    <div class="collapsible-body" style="text-align: center;"><span></span></div>
                                 </li>
                             </ul>
 
@@ -72,8 +60,13 @@
 
 
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="js/parts.js"></script>
+        <script type="text/javascript" src="vendors/jquery/jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('.collapsible').collapsible();
+            });
+        </script>
+        <script src="parts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     </body>
 </html>
