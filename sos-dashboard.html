@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link rel="stylesheet" type="text/css" href="styles/style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        <!--Import jQuery before materialize.js-->
+        <nav>
+            <div class="nav-wrapper">
+                <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
+            </div>
+        </nav>
+        <div style="text-align: center"><h3><b>SOS dashboard:</b></h3></div>
+        <div class="container">
+            <div class="card red lighten-5 hoverable" style="margin: auto; margin-top: 20px; cursor: pointer;">
+                <form id="login-form" method="post" action="">
+                    <div class="row">
+                        <div class="col s3" style="padding: 6px;">
+                            <div class="container">
+                                <img class="responsive-img" src="images/cool_pic.jpg" style="margin-left: 6px;">
+                            </div>
+                        </div>
+                        <div class="col s9" style="padding: 5px;">
+                            <b>Description:</b><br/>
+                            <p style="margin-bottom: 10px; margin-right: 10px;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec diam egestas, venenatis augue quis, rutrum lacus. Curabitur ultricies neque ornare laoreet vulputate. Sed ut odio pharetra, auctor nunc id, sodales purus. Nunc lobortis consequat sodales. Vestibulum cursus dolor quis nulla efficitur, in dictum nisl ullamcorper.
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="container">
+            <div class="card red lighten-5 hoverable" style="margin: auto; margin-top: 20px; cursor: pointer;">
+                <form id="login-form" method="post" action="">
+                    <div class="row">
+                        <div class="col s3" style="padding: 6px;">
+                            <div class="container">
+                                <img class="responsive-img" src="images/images.jpg" style="margin-left: 6px;">
+                            </div>
+                        </div>
+                        <div class="col s9" style="padding: 5px;">
+                            <b>Description:</b><br/>
+                            <p style="margin-bottom: 10px; margin-right: 10px;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec diam egestas, venenatis augue quis, rutrum lacus. Curabitur ultricies neque ornare laoreet vulputate. Sed ut odio pharetra, auctor nunc id, sodales purus. Nunc lobortis consequat sodales. Vestibulum cursus dolor quis nulla efficitur, in dictum nisl ullamcorper.
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer class="page-footer"  style="margin-top: 20px;">
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2014 Copyright Text
+                    <a class="grey-text text-lighten-4 right" href="https://www.daimler.com/en/">Daimler website</a>
+                </div>
+            </div>
+        </footer>
+
+
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script> function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah')
+                            .attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }</script>
+        <script src="js/parts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </body>
+</html>
