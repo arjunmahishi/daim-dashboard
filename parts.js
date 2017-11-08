@@ -42,6 +42,8 @@ function updateDisplay(json){
 var container = document.querySelector('div.container');
 var children = container.children;
 var i=0;
+
+//for every key in the root object
 for(var k in json){
   var obj = json[k];
   var dates = Object.keys(obj);
