@@ -28,8 +28,8 @@ $(function(){
                             response.json().then(function(json){
                                  sessionStorage.tokenid=token;
                                  console.log(sessionStorage.tokenid);
-                                 console.log(json);
-                                 window.location.replace("http://localhost:3000/critical-list");
+
+                                 window.location.replace("https://daimler-frontend.netlify.com/select.html");
                             });
                         }
                     });

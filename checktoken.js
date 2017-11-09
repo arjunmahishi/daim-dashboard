@@ -1,1 +1,3 @@
-//if(sessionStorage.tokrnid==undefined) window.location.replace("http://localhost:3000");
+
+if(sessionStorage.tokenid==undefined) window.location.replace("https://daimler-frontend.netlify.com/");
+
