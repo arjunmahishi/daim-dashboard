@@ -29,7 +29,7 @@ $(function(){
                                  sessionStorage.tokenid=token;
                                  console.log(sessionStorage.tokenid);
                                  console.log(json);
-                                 window.location.replace("http://localhost:3000/critical-list-detail");
+                                 window.location.replace("http://localhost:3000/critical-list");
                             });
                         }
                     });

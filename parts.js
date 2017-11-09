@@ -1,10 +1,13 @@
 var url = "https://daimler-backend.herokuapp.com/critical_list/";
-var token = sessionStorage.tokenid;
+var token = sessionStorage.tokenid || "99f2d9e404f270fb5ec6033b0e5fbaa5d8c09f35";
 console.log(token);
-if(token==undefined) window.location="http://localhost:3000";
+
+var selection = sessionStorage.selection;
+selection = selection.replace(/ /g,'%20');
+//if(token==undefined) window.location="http://localhost:3000";
 var partList = [];
 $(function(){
-fetch(url, {
+fetch(url + selection, {
 	 method: "get",
                 headers: {
                     'Content-Type' : 'application/x-www-form-urlencoded',
@@ -14,21 +17,24 @@ fetch(url, {
             	if(response.ok){
             		response.json().then(function(json){
 					          console.log(json);
-                    addCards(json);
+                    //addCards(json);
 
-                    var i = 0;
-                    for(var k in json){
-                        var value = json[k];
-                        console.log(value);
-                        var dates = Object.keys(value);
-                        partList = json[k][dates[0]]['parts'];
+
+                    // for(var k in json){
+                    //     var value = json[k];
+                    //     console.log(value);
+                        var dates = Object.keys(json);
+                        partList = json[dates[0]]['parts'];
                         console.log(partList);
 
                         //method to add individual parts under a part type
-                        addItems(partList,i);
-                        i++;
+                        for(var i=0; i<partList.length - 1; i++){
+                          addItems(partList);
+                        }
 
-                    }
+
+
+                    // }
 
                     updateDisplay(json);
             	   });
@@ -41,19 +47,17 @@ fetch(url, {
 function updateDisplay(json){
 var container = document.querySelector('div.container');
 var children = container.children;
-var i=0;
+
 
 //for every key in the root object
-for(var k in json){
-  var obj = json[k];
-  var dates = Object.keys(obj);
-  parts = json[k][dates[0]]['parts'];
+  var dates = Object.keys(json);
+  parts = json[dates[0]]['parts'];
 
 
 
-var partType = children[i].childNodes[1].childNodes[1].childNodes[1]; //card title
-partType.innerHTML = k;
-var partContainer = children[i].childNodes[1].childNodes[1].childNodes[3].childNodes[1]; //#ul class-collapsible popout
+var partType = children[0].childNodes[1].childNodes[1].childNodes[1]; //card title
+partType.innerHTML = selection.replace(/%20/g," ");
+var partContainer = children[0].childNodes[1].childNodes[1].childNodes[3].childNodes[1]; //#ul class-collapsible popout
 var partDetails = partContainer.children;
 
 for(var j=0; j<partDetails.length; j++){
@@ -87,9 +91,6 @@ for(var j=0; j<partDetails.length; j++){
 
 }
 
-i++;
-
-}
 
 
 
@@ -129,11 +130,11 @@ i++;
 }
 
 
-function addItems(list,i){
+function addItems(list){
     var container = document.querySelector('div.container');
     var children = container.children;
 
-      var itemContainer = children[i].childNodes[1].childNodes[1].childNodes[3].childNodes[1];
+      var itemContainer = children[0].childNodes[1].childNodes[1].childNodes[3].childNodes[1];
       var child = itemContainer.childNodes;
       var item = child[1];
       for( var j=0; j<list.length-1; j++)
