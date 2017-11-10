@@ -28,7 +28,7 @@ $(function(){
                             response.json().then(function(json){
                                  sessionStorage.tokenid=token;
                                  console.log(sessionStorage.tokenid);
-                                 
+
                                  window.location.replace("https://daimler-frontend.netlify.com/select.html");
                             });
                         }
