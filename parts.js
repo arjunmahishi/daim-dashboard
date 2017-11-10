@@ -93,7 +93,7 @@ for(var j=0; j<partDetails.length; j++){
     var supplierNameListItem = partDetails[j].childNodes[1].childNodes[1].childNodes[1];
     supplierNameListItem.innerHTML = '<img id="star" src="images/star.png">'+'</img>' + "Supplier Name:" + " " + parts[j].supplier_name;
     var partNoListItem = partDetails[j].childNodes[1].childNodes[1].childNodes[3];
-    partNoListItem.innerHTML = '<i class="material-icons">edit</i>' + Part No:" + " " + parts[j].part_number;
+    partNoListItem.innerHTML = '<i class="material-icons">edit</i>' + "Part No:" + " " + parts[j].part_number;
 
      //traverse the DOM and get the span element on popout
     var detailSpan = partDetails[j].childNodes[3].childNodes[0];
