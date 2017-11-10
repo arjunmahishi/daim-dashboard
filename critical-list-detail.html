@@ -21,15 +21,42 @@
         </nav>
 
 
-        <div class="col s12 m6">
+        <div class="col s12 m6" id="date-selection">
             <div class="card teal lighten-2" style="cursor: pointer;">
                 <div class="card-content white-text">
-                    <span class="card-title" style="text-align: center;">Today</span>
-                    <p style="text-align: center">10/19/2017<br/>
+                    <span class="card-title" style="text-align: center;" id="day">Today</span>
+                    <p style="text-align: center" id="date">10/19/2017<br/>
                         45 parts delayed!</p>
                 </div>
             </div>
         </div>
+
+
+        <div class="col s12 m6" style="display: none;" id="date-choices">
+          <div class="card teal lighten-2">
+            <div class="card-content white-text">
+              <span class="card-title">Card Title</span>
+              <form action="#">
+                <p>
+                  <input class="with-gap" name="dates" type="radio" id="test1" />
+                  <label for="test1" style="color: white;" id="day-1"></label>
+                </p>
+                <p>
+                  <input class="with-gap" name="dates" type="radio" id="test2" />
+                  <label for="test2" style="color: white;" id="day-2"></label>
+                </p>
+                <p>
+                  <input class="with-gap" name="dates" type="radio" id="test3"  />
+                  <label for="test3" style="color: white;" id="day-3"></label>
+                </p>
+              </form>
+            </div>
+            <div class="btn" id="apply-btn">
+              <a href="#" style="color: white;">Apply</a>
+            </div>
+          </div>
+        </div>
+
 
         <div class="container">
             <div class="col s12 m6">

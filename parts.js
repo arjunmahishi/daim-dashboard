@@ -1,6 +1,7 @@
 var url = "https://daimler-backend.herokuapp.com/critical_list/";
-var token = sessionStorage.tokenid || "99f2d9e404f270fb5ec6033b0e5fbaa5d8c09f35";
+var token = "99f2d9e404f270fb5ec6033b0e5fbaa5d8c09f35";
 console.log(token);
+var json;
 
 var selection = sessionStorage.selection;
 selection = selection.replace(/ /g,'%20');
@@ -15,8 +16,10 @@ fetch(url + selection, {
                 }
             }).then(function(response){
             	if(response.ok){
-            		response.json().then(function(json){
+            		response.json().then(function(data){
+                    json = data;
 					          console.log(json);
+                    updateDates(json);
                     //addCards(json);
 
 
@@ -36,7 +39,7 @@ fetch(url + selection, {
 
                     // }
 
-                    updateDisplay(json);
+                    updateDisplay(json, dates[0]);
             	   });
             	}
             	else {
@@ -44,14 +47,33 @@ fetch(url + selection, {
             	}
             });
 
-function updateDisplay(json){
+function updateDisplay(json, dateSelected){
+
+var dates = Object.keys(json);
+if(dates.indexOf(dateSelected) === 0){
+  $('#day').text('Today');
+  document.getElementById('date').innerHTML = dateSelected;
+
+}else if(dates.indexOf(dateSelected) === 1){
+    $('#day').text('Tomorrow');
+    $('#date').text(dateSelected);
+
+
+}else {
+      $('#day').text('Day after Tomorrow');
+      $('#date').text(dateSelected);
+
+
+}
+
+
 var container = document.querySelector('div.container');
 var children = container.children;
 
 
 //for every key in the root object
-  var dates = Object.keys(json);
-  parts = json[dates[0]]['parts'];
+
+  parts = json[dateSelected]['parts'];
 
 
 
@@ -67,11 +89,9 @@ for(var j=0; j<partDetails.length; j++){
 
     //traverse the DOM and get the li element
     var supplierNameListItem = partDetails[j].childNodes[1].childNodes[2].childNodes[1];
-    var supplierNameHTMLString = supplierNameListItem.innerHTML;
-    supplierNameListItem.innerHTML = supplierNameHTMLString + " " + parts[j].supplier_name;
+    supplierNameListItem.innerHTML = "Supplier Name:" + " " + parts[j].supplier_name;
     var partNoListItem = partDetails[j].childNodes[1].childNodes[2].childNodes[3];
-    var partNoHTMLString = partNoListItem.innerHTML;
-    partNoListItem.innerHTML = partNoHTMLString + " " + (j+1);
+    partNoListItem.innerHTML = "Part No:" + " " + parts[j].part_number;
 
      //traverse the DOM and get the span element on popout
     var detailSpan = partDetails[j].childNodes[3].childNodes[0];
@@ -142,30 +162,35 @@ function addItems(list){
           var newItem = item.cloneNode(true);
           itemContainer.appendChild(newItem);
       }
+}
 
+function updateDates(json){
+
+var dates = Object.keys(json);
+$('#day-1').text(dates[0]);
+$('#day-2').text(dates[1]);
+$('#day-3').text(dates[2]);
 
 
 }
 
-function addCards(json){
-var cardContainer = document.querySelector('div.container');
-var children = cardContainer.childNodes;
-var card = children[1];
-for(var i=0; i< (Object.keys(json).length)-1; i++){
-    var newCard = card.cloneNode(true);
-    //console.log(newCard);
+$('#date-selection').click(function(){
 
-    cardContainer.appendChild(newCard);
+  var datesCard = document.getElementById('date-choices');
+  datesCard.style.removeProperty('display');
+  console.log(datesCard.children);
 
-    //collapsibles do not work on dynamic changes and need to be updated each time content changes
-    $('.collapsible').collapsible({
-        accordion : true
-        });
-  }
-  console.log(cardContainer.children);
+  $('#apply-btn').click(function(){
+      datesCard.setAttribute('style','display: none;');
 
+      var dateSelected = $('input[name=dates]:checked').next().text();
+      console.log(dateSelected);
+      updateDisplay(json, dateSelected);
 
-}
+  });
+
+});
+
 
 
 });
