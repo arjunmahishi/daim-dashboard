@@ -1,5 +1,5 @@
 var url = "https://daimler-backend.herokuapp.com/critical_list/";
-var token = "99f2d9e404f270fb5ec6033b0e5fbaa5d8c09f35";
+var token = sessonStorage.tokenid;
 
 $(function(){
 fetch(url, {

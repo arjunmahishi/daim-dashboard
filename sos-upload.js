@@ -37,21 +37,23 @@ for (var i = 0; i < files.length; i++) {
     formData.append('status','true');
     formData.append('level',2);
     formData.append('users','https://daimler-backend.herokuapp.com/users/2/');
-
-
-    // Set up the request.
+for(var i of  formData.values())
+{
+console.log(i);
+ }   // Set up the request.
 var xhr = new XMLHttpRequest();
 
 // Open the connection.
 xhr.open('POST', url, true);
 
-xhr.setRequestHeader('Content-Type','multipart/form-data');
+//xhr.setRequestHeader('Content-Type','multipart/form-data');
 xhr.setRequestHeader('Authorization','Token '+token);
 
 
 // Set up a handler for when the request finishes.
 xhr.onload = function () {
-  if (xhr.status === 200) {
+  console.log(xhr.status);
+  if (xhr.status === 201) {
     // File(s) uploaded.
     uploadButton.innerHTML = 'Upload';
   } else {
