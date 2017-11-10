@@ -2,7 +2,7 @@
 <html>
     <head>
         <!--Import Google Icon Font-->
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -38,20 +38,20 @@
               <span class="card-title">Card Title</span>
               <form action="#">
                 <p>
-                  <input class="with-gap" name="dates" type="radio" id="test1" />
+                  <input class="with-gap filled-in radio-white" style="color: white;" name="dates" type="radio" id="test1" />
                   <label for="test1" style="color: white;" id="day-1"></label>
                 </p>
                 <p>
-                  <input class="with-gap" name="dates" type="radio" id="test2" />
+                  <input class="with-gap filled-in radio-white" name="dates" type="radio" id="test2" />
                   <label for="test2" style="color: white;" id="day-2"></label>
                 </p>
                 <p>
-                  <input class="with-gap" name="dates" type="radio" id="test3"  />
+                  <input class="with-gap filled-in radio-white" name="dates" type="radio" id="test3"  />
                   <label for="test3" style="color: white;" id="day-3"></label>
                 </p>
               </form>
             </div>
-            <div class="btn" id="apply-btn">
+            <button class="btn waves-effect waves-light" style="background-color: #00897b;" id="apply-btn">
               <a href="#" style="color: white;">Apply</a>
             </div>
           </div>
@@ -66,10 +66,10 @@
                         <div class="card-container">
                             <ul class="collapsible popout" data-collapsible="accordion">
                                 <li id="list-item">
-                                    <div class="collapsible-header red lighten-1"><i class="material-icons">settings</i>
+                                    <div class="collapsible-header red lighten-1">
                                         <ul id="part-details">
-                                        <li>Supplier name:</li>
-                                        <li>Part No:</li>
+                                        <li><img id="star" src="images/star.png"></img>Supplier name:</li>
+                                        <li><i class="material-icons">edit</i>Part No:</li>
                                         </ul>
                                         </div>
                                     <div class="collapsible-body" style="text-align: center;"><span></span></div>
