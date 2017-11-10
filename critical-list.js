@@ -79,7 +79,7 @@ function updateDisplay(json){
         cards[j].onclick = function(e){
             var selection = this.childNodes[1].childNodes[1].childNodes[1].innerText;
             sessionStorage.selection = selection;
-            window.location.replace("https://localhost:3000/critical-list-detail.html");
+            window.location.replace("https://daimler-frontend.netlify.com/critical-list-detail.html");
 
         }
 
