@@ -1,5 +1,8 @@
 var url = "https://daimler-backend.herokuapp.com/critical_list/";
-var token = sessonStorage.tokenid;
+
+
+var token ="3d35519e0f437d19e8f625c143bb63a7989753a8";
+
 
 
 

@@ -1,5 +1,5 @@
 var url = "https://daimler-backend.herokuapp.com/critical_list/";
-var token = "99f2d9e404f270fb5ec6033b0e5fbaa5d8c09f35";
+var token = sessionStorage.tokenid || "3d35519e0f437d19e8f625c143bb63a7989753a8";
 console.log(token);
 var json;
 
@@ -82,16 +82,18 @@ partType.innerHTML = selection.replace(/%20/g," ");
 var partContainer = children[0].childNodes[1].childNodes[1].childNodes[3].childNodes[1]; //#ul class-collapsible popout
 var partDetails = partContainer.children;
 
+console.log(partDetails);
+
 for(var j=0; j<partDetails.length; j++){
 
 
    if(parts.length>0){
 
     //traverse the DOM and get the li element
-    var supplierNameListItem = partDetails[j].childNodes[1].childNodes[2].childNodes[1];
-    supplierNameListItem.innerHTML = "Supplier Name:" + " " + parts[j].supplier_name;
-    var partNoListItem = partDetails[j].childNodes[1].childNodes[2].childNodes[3];
-    partNoListItem.innerHTML = "Part No:" + " " + parts[j].part_number;
+    var supplierNameListItem = partDetails[j].childNodes[1].childNodes[1].childNodes[1];
+    supplierNameListItem.innerHTML = '<img id="star" src="images/star.png">'+'</img>' + "Supplier Name:" + " " + parts[j].supplier_name;
+    var partNoListItem = partDetails[j].childNodes[1].childNodes[1].childNodes[3];
+    partNoListItem.innerHTML = '<i class="material-icons">edit</i>' + "Part No:" + " " + parts[j].part_number;
 
      //traverse the DOM and get the span element on popout
     var detailSpan = partDetails[j].childNodes[3].childNodes[0];
@@ -164,6 +166,7 @@ function addItems(list){
       }
 }
 
+//method to add dates along with the radio buttons
 function updateDates(json){
 
 var dates = Object.keys(json);
@@ -174,6 +177,17 @@ $('#day-3').text(dates[2]);
 
 }
 
+// $('#star').click(function(){
+//   this.setAttribute("src","images/filled_star.png");
+// });
+
+var star = document.getElementById('star');
+star.onclick = function(e){
+var image = e.target;
+this.src = "images/filled_star.png";
+};
+
+// to select a date
 $('#date-selection').click(function(){
 
   var datesCard = document.getElementById('date-choices');
