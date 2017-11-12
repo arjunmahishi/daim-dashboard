@@ -1,5 +1,5 @@
 var url = "https://daimler-backend.herokuapp.com/sos/";
-var token = "99f2d9e404f270fb5ec6033b0e5fbaa5d8c09f35";
+var token = "3d35519e0f437d19e8f625c143bb63a7989753a8";
 
 $(function(){
 var form = document.getElementById('file-form');
@@ -36,24 +36,27 @@ for (var i = 0; i < files.length; i++) {
     formData.append('content','photo');
     formData.append('status','true');
     formData.append('level',2);
-    formData.append('users','https://daimler-backend.herokuapp.com/users/2/');
-
-
-    // Set up the request.
+    formData.append('users','https://daimler-backend.herokuapp.com/users/1/');
+for(var i of  formData.values())
+{
+console.log(i);
+ }   // Set up the request.
 var xhr = new XMLHttpRequest();
 
 // Open the connection.
 xhr.open('POST', url, true);
 
-xhr.setRequestHeader('Content-Type','multipart/form-data');
+//xhr.setRequestHeader('Content-Type','multipart/form-data');
 xhr.setRequestHeader('Authorization','Token '+token);
 
 
 // Set up a handler for when the request finishes.
 xhr.onload = function () {
-  if (xhr.status === 200) {
+  console.log(xhr.status);
+  if (xhr.status === 201) {
     // File(s) uploaded.
     uploadButton.innerHTML = 'Upload';
+    window.location.replace("https://daimler-frontend.netlify.com/sos-dashboard.html");
   } else {
     alert('An error occurred!');
   }
