@@ -37,29 +37,47 @@ $(function(){
   //get response from api
   getData();
 
-  var star = document.getElementById('star');
-star.onclick = function(e){
-var image = e.target;
-this.src = "images/filled_star.png";
-};
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+  });
 
-// to select a date
-// $('#date-selection').click(function(){
+  // var star = document.getElementById('star');
+  // star.onclick = function(e){
+  // var image = e.target;
+  // this.src = "images/filled_star.png";
+  // };
 
-//   var datesCard = document.getElementById('date-choices');
-//   datesCard.style.removeProperty('display');
-//   console.log(datesCard.children);
 
-//   $('#apply-btn').click(function(){
-//       datesCard.setAttribute('style','display: none;');
+  var images = document.getElementsByTagName('img');
+  for( var i=0; i<images.length; i++){
+    images[i].onclick = starring;
+  }
 
-//       var dateSelected = $('input[name=dates]:checked').next().text();
-//       console.log(dateSelected);
-//       updateDisplay(json, dateSelected);
+//to select a date
+$('#sort-selection').click(function(){
 
-//   });
+  var sortsCard = document.getElementById('sort-choices');
+  sortsCard.style.removeProperty('display');
+  console.log(sortsCard.children);
 
-// });
+  $('#apply-btn').click(function(){
+      datesCard.setAttribute('style','display: none;');
+
+      var sortSelected = $('input[name=dates]:checked').next().text();
+      console.log(sortSelected);
+
+      getData();
+
+      //updateDisplay(json, dateSelected);
+
+  });
+
+});
 
 
 $('#next').click(function(){
@@ -159,8 +177,10 @@ for(var j=0; j<partDetails.length; j++){
                            "reported on: " + parts[j].reported_on + "<br/>" +
                            "short on: " + parts[j].short_on + "<br/>" +
                            "shortage reason: " + parts[j].shortage_reason + "<br/>" +
+                           // "status:" + parts[j].status + "<br/>" +
                            "truck details: " + parts[j].truck_details + "<br/>" +
                            "unloading point: " + parts[j].unloading_point + "<br/>";
+
    }
 
 }
@@ -190,6 +210,11 @@ function addItems(list){
           var newItem = item.cloneNode(true);
           itemContainer.appendChild(newItem);
       }
+}
+
+function starring(){
+  alert('clicked');
+  console.log('clicked');
 }
 
 

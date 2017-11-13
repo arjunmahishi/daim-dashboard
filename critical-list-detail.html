@@ -21,11 +21,11 @@
         </nav>
 
 
-        <div class="col s12 m6" id="date-selection">
+        <div class="col s12 m6" id="sort-selection">
             <div class="card teal lighten-2" style="cursor: pointer;">
                 <div class="card-content white-text">
-                    <div><i class="material-icons" id="prev">arrow_back</i>
-                    <span class="card-title" style="text-align: center;" id="day">Today</span><i class="material-icons" id="next">arrow_forward</i></div>
+                    <div>
+                    <span class="card-title" style="text-align: center;" id="day">Today</span></div>
                     <p style="text-align: center" id="date">10/19/2017<br/>
                         45 parts delayed!</p>
                 </div>
@@ -33,22 +33,27 @@
         </div>
 
 
-        <div class="col s12 m6" style="display: none;" id="date-choices">
+        <div class="col s12 m6" style="display: none;" id="sort-choices">
           <div class="card teal lighten-2">
             <div class="card-content white-text">
-              <span class="card-title">Card Title</span>
+            <div class="input-field col s6">
+              <i class="material-icons prefix">event</i>
+              <input type="text" class="datepicker date-color">
+              <label for="icon_prefix">Date</label>
+            </div>
+              <span class="card-title">Sort by:</span>
               <form action="#">
                 <p>
                   <input class="with-gap filled-in radio-white" style="color: white;" name="dates" type="radio" id="test1" />
-                  <label for="test1" style="color: white;" id="day-1"></label>
+                  <label for="test1" style="color: white;" id="status">Status</label>
                 </p>
                 <p>
                   <input class="with-gap filled-in radio-white" name="dates" type="radio" id="test2" />
-                  <label for="test2" style="color: white;" id="day-2"></label>
+                  <label for="test2" style="color: white;" id="starred-parts">Stars</label>
                 </p>
                 <p>
                   <input class="with-gap filled-in radio-white" name="dates" type="radio" id="test3"  />
-                  <label for="test3" style="color: white;" id="day-3"></label>
+                  <label for="test3" style="color: white;" id="all">All</label>
                 </p>
               </form>
             </div>

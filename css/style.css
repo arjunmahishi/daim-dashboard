@@ -17,6 +17,10 @@ main
 {
     flex: 1 0 auto;
 }
+
+.date-color{
+    background-color: #FFFFFF;
+}
 .radio-white[type="radio"].filled-in:checked + label:after{
      border: 2px solid #ffffff;
      background-color: #ffffff;
