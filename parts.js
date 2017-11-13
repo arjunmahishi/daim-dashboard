@@ -20,7 +20,7 @@ if(mm<10) {
 
 
 
-var selection = "MDT ENGINE";
+var selection = sessionStorage.selection;
 var date = today;
 selection = selection.replace(/ /g,'%20');
 
@@ -43,15 +43,18 @@ $(function(){
     today: 'Today',
     clear: 'Clear',
     close: 'Ok',
-    closeOnSelect: false // Close upon selecting a date,
+    closeOnSelect: true // Close upon selecting a date,
   });
+
+  // var picker = $input.pickadate('picker');
+  // date = picker.get('select', 'yyyy/mm/dd');
+  // console.log(date);
 
   // var star = document.getElementById('star');
   // star.onclick = function(e){
   // var image = e.target;
   // this.src = "images/filled_star.png";
   // };
-
 
   var images = document.getElementsByTagName('img');
   for( var i=0; i<images.length; i++){
@@ -62,14 +65,29 @@ $(function(){
 $('#sort-selection').click(function(){
 
   var sortsCard = document.getElementById('sort-choices');
-  sortsCard.style.removeProperty('display');
-  console.log(sortsCard.children);
+
+  if($('#sort-choices').css('display') == 'none') {
+    sortsCard.style.removeProperty('display');
+      console.log(sortsCard.children);
+
+  }
+  else{
+    $('#sort-choices').css('display','none');
+
+  }
 
   $('#apply-btn').click(function(){
-      datesCard.setAttribute('style','display: none;');
+      sortsCard.setAttribute('style','display: none;');
 
       var sortSelected = $('input[name=dates]:checked').next().text();
       console.log(sortSelected);
+
+      var year = $('.datepicker').pickadate('picker').get('highlight', 'yyyy');
+      var month = $('.datepicker').pickadate('picker').get('highlight', 'mm');
+      var day = $('.datepicker').pickadate('picker').get('highlight', 'dd');
+      date = year + '-' + month + '-' + day;
+
+
 
       getData();
 
@@ -114,19 +132,8 @@ fetch(url + selection+"&short_on="+date, {
                 response.json().then(function(data){
                     json = data;
                     console.log(json);
-                    //updateDates();
-
-                    // var dates = Object.keys(json);
-                    //     for(i in dates){
-
-
-                    //     partList[i] = json[dates[i]];
-                    //     console.log(partList.length);
-                    //      }
 
                         //method to add individual parts under a part type
-
-
                           addItems(json);
                           updateDisplay(json, date);
                  });
@@ -139,6 +146,8 @@ fetch(url + selection+"&short_on="+date, {
 
 function updateDisplay(json, date){
 $('#date').text(date);
+
+
 
 var container = document.querySelector('div.container');
 var children = container.children;
@@ -158,6 +167,23 @@ for(var j=0; j<partDetails.length; j++){
 
 
    if(parts.length>0){
+
+    //change color of item according to status level
+    if(parts[j].status === 3){
+
+      // color set to red by default
+
+    }else if(parts[j].status === 2){
+      partDetails[j].childNodes[1].removeAttribute('class', 'red');
+      partDetails[j].childNodes[1].setAttribute('class', 'yellow collapsible-header');
+
+
+
+    }else{
+      partDetails[j].childNodes[1].removeAttribute('class', 'red');
+      partDetails[j].childNodes[1].setAttribute('class', 'green collapsible-header');
+
+    }
 
     //traverse the DOM and get the li element
     var supplierNameListItem = partDetails[j].childNodes[1].childNodes[1].childNodes[1];
@@ -181,6 +207,11 @@ for(var j=0; j<partDetails.length; j++){
                            "truck details: " + parts[j].truck_details + "<br/>" +
                            "unloading point: " + parts[j].unloading_point + "<br/>";
 
+   }else{
+     var displayMessage = partDetails[j].childNodes[1];
+    displayMessage.innerHTML = "Nothing to display!";
+    displayMessage.setAttribute('style','text-align:center;');
+
    }
 
 }
@@ -201,15 +232,25 @@ function addItems(list){
       var children = container.children;
       var itemContainer = children[0].childNodes[1].childNodes[1].childNodes[3].childNodes[1];
 
-      while (itemContainer.firstChild) {
+        while (itemContainer.firstChild) {
         itemContainer.removeChild(itemContainer.firstChild);
       }
       console.log(list.length);
-      for( var j=0; j<list.length; j++)
+      if(list.length>0){
+        for( var j=0; j<list.length; j++)
       {
           var newItem = item.cloneNode(true);
           itemContainer.appendChild(newItem);
       }
+    }else{
+
+        var newItem = item.cloneNode(true);
+        itemContainer.appendChild(newItem);
+
+    }
+
+
+
 }
 
 function starring(){
