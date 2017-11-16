@@ -1,4 +1,12 @@
+#bod{
+    padding-left: 230px;
+}
 
+    @media only screen and (max-width : 992px) {
+      #bod{
+        padding-left: 0;
+      }
+    }
 .forgot
 {
     margin-top: 20px;
@@ -12,39 +20,13 @@ body
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    
 }
 main
 {
     flex: 1 0 auto;
 }
 
- /* label color */
-   .input-field label {
-     color: #fff;
-   }
-   /* label focus color */
-   .input-field input[type=text]:focus + label {
-     color: #fff;
-   }
-   /* label underline focus color */
-   .input-field input[type=text]:focus {
-     border-bottom: 1px solid #fff;
-     box-shadow: 0 1px 0 0 #fff;
-   }
-   /* valid color */
-   .input-field input[type=text].valid {
-     border-bottom: 1px solid #fff;
-     box-shadow: 0 1px 0 0 #fff;
-   }
-   /* invalid color */
-   .input-field input[type=text].invalid {
-     border-bottom: 1px solid #fff;
-     box-shadow: 0 1px 0 0 #fff;
-   }
-   /* icon prefix focus color */
-   .input-field .prefix.active {
-     color: #fff;
-   }
 .radio-white[type="radio"].filled-in:checked + label:after{
      border: 2px solid #ffffff;
      background-color: #ffffff;
