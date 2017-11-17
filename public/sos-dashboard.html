@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
     <head>
         <!--Import Google Icon Font-->
@@ -12,7 +12,7 @@
     </head>
 
     <body style="background-color: #424242;">
-   <!--  <script src="checktoken.js"></script> -->
+    <script src="resources/js/checktoken.js"></script>
         <!--Import jQuery before materialize.js-->
         <nav>
             <div class="nav-wrapper" style="background-color: #00897b;">
@@ -20,7 +20,7 @@
             </div>
         </nav>
         <div style="text-align: center; color: white;"><h3><b>SOS dashboard:</b></h3></div>
-        <div class="container">
+        <div class="container" id="container">
             <div class="card hoverable" style="margin: auto; margin-top: 20px; cursor: pointer;">
                 <form id="login-form" method="post" action="">
                     <div class="row">
@@ -29,9 +29,9 @@
                                 <img class="responsive-img" src="images/cool_pic.jpg" style="margin-left: 6px;">
                             </div>
                         </div>
-                        <div class="col s9" style="padding: 5px;">
+                        <div class="col s9"  style="padding: 5px;">
                             <b>Description:</b><br/>
-                            <p style="margin-bottom: 10px; margin-right: 10px;">
+                            <p id="para" style="margin-bottom: 10px; margin-right: 10px;">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec diam egestas, venenatis augue quis, rutrum lacus. Curabitur ultricies neque ornare laoreet vulputate. Sed ut odio pharetra, auctor nunc id, sodales purus. Nunc lobortis consequat sodales. Vestibulum cursus dolor quis nulla efficitur, in dictum nisl ullamcorper.
                             </p>
                         </div>
@@ -39,7 +39,8 @@
                 </form>
             </div>
         </div>
-        <div class="container">
+
+        <!-- <div class="container">
             <div class="card hoverable" style="margin: auto; margin-top: 20px; cursor: pointer;">
                 <form id="login-form" method="post" action="">
                     <div class="row">
@@ -57,7 +58,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> -->
         <a class="btn-floating btn-large waves-effect waves-light teal darken-2" style="position: fixed; bottom: 20px; right: 20px;" 
            onclick="window.location.replace('https://daimler-frontend.netlify.com/sos-upload.html');"><i class="material-icons">add</i></a>
         
@@ -77,7 +78,7 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             }</script>
-        <script src="js/parts.js"></script>
+        <script src="resources/js/sos-dashboard.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     </body>
 </html>
