@@ -20,7 +20,7 @@ body
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    
+
 }
 main
 {
@@ -30,4 +30,9 @@ main
 .radio-white[type="radio"].filled-in:checked + label:after{
      border: 2px solid #ffffff;
      background-color: #ffffff;
+}
+
+#data-h{
+  color: #ffffff;
+  text-align: center;
 }
