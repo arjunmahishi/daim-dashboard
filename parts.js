@@ -21,12 +21,13 @@ if(mm<10) {
 
 
 var selection = sessionStorage.selection || "MDT ENGINE";
+console.log(selection);
 var shopType = selection; // For card Title
 var date = today;
 selection = selection.replace(/ /g,'%20');
 
 date = yyyy + '-' + mm + '-' + dd;
-//if(token==undefined) window.location="http://localhost:3000";
+// if(token==undefined) window.location="http://localhost:3000";
 $(function(){
 
    //get response from api
