@@ -1,30 +1,31 @@
 {
-  "short_name": "SMP",
-  "name": "SMP - Daimler",
-  "icons": [
-    {
-      "src": "images/Logo.jpg",
-      "type": "image/png",
-      "sizes": "48x48"
+    "short_name": "SMP",
+    "name": "SMP - Daimler",
+    "icons": [
+        {
+            "src": "images/Logo.jpg",
+            "type": "image/png",
+            "sizes": "48x48"
     },
-    {
-      "src": "images/Logo.jpg",
-      "type": "image/png",
-      "sizes": "96x96"
+        {
+            "src": "images/Logo.jpg",
+            "type": "image/png",
+            "sizes": "96x96"
     },
-    {
-      "src":"images/Logo.jpg",
-      "sizes": "144x144",
-      "type": "image/jpg"
+        {
+            "src": "images/Logo.jpg",
+            "sizes": "144x144",
+            "type": "image/jpg"
     },
-    {
-      "src": "images/Logo.jpg",
-      "type": "image/png",
-      "sizes": "192x192"
+        {
+            "src": "images/Logo.jpg",
+            "type": "image/png",
+            "sizes": "192x192"
     }
   ],
-  "start_url": "/index.html",
-  "display": "standalone",
-  "orientation": "portrait",
-  "theme_color": "#191818"
+    "start_url": "/index.html",
+    "display": "standalone",
+    "orientation": "portrait",
+    "theme_color": "#191818",
+    "gcm_sender_id": "883432763386"
 }

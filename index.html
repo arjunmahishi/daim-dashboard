@@ -1,80 +1,83 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>SMP | Daimler</title>
+<head>
+    <title>SMP | Daimler</title>
 
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="css/style.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!--Import materialize.css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <link rel="apple-touch-icon" sizes="180x180" href="images/Logo.jpg">
-        <link rel="icon" type="image/png" href="images/Logo.jpg" sizes="32x32">
-        <link rel="icon" type="image/png" href="images/Logo.jpg" sizes="16x16">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/Logo.jpg">
+    <link rel="icon" type="image/png" href="images/Logo.jpg" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/Logo.jpg" sizes="16x16">
 
-        <link rel="manifest" href="./manifest.json">
+    <link rel="manifest" href="./manifest.json">
 
-    </head>
+</head>
 
-    <body style="display: flex; min-height: 100vh; flex-direction: column; background-color: #424242;">
-        <!--Import jQuery before materialize.js-->
-        <header>
-            <nav>
-                <div class="nav-wrapper" style="background-color: #00897b;">
-                    <a href="#" class="brand-logo" style="margin-left: 12px;">Daimler</a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="index.htm" style="text-align: center;">Login</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <div class="contai">
-            <main>
-                <div class="container">
-                    <div class="card hoverable" style="margin: auto;">
-                        <form id="login-form" method="post" action="">
-                            <div style="text-align: center;"><h3>Login</h3></div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix" style="margin-top:10px; margin-left: 5px;">account_circle</i>
-                                    <input id="email" type="text" name="username" class="validate">
-                                    <label for="email">Email</label>
-                                </div>
+<body style="display: flex; min-height: 100vh; flex-direction: column; background-color: #424242;">
+    <!--Import jQuery before materialize.js-->
+    <header>
+        <nav>
+            <div class="nav-wrapper" style="background-color: #00897b;">
+                <a href="#" class="brand-logo" style="margin-left: 12px;">Daimler</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="index.htm" style="text-align: center;">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="contai">
+        <main>
+            <div class="container">
+                <div class="card hoverable" style="margin: auto;">
+                    <form id="login-form" method="post" action="">
+                        <div style="text-align: center;">
+                            <h3>Login</h3>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix" style="margin-top:10px; margin-left: 5px;">account_circle</i>
+                                <input id="email" type="text" name="username" class="validate">
+                                <label for="email">Email</label>
                             </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix" style="margin-top:10px; margin-left: 5px;">brightness_1</i>
-                                    <input id="password" type="password" name="password" class="validate">
-                                    <label for="password">Password</label>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix" style="margin-top:10px; margin-left: 5px;">brightness_1</i>
+                                <input id="password" type="password" name="password" class="validate">
+                                <label for="password">Password</label>
                             </div>
+                        </div>
 
-                            <div style="text-align:center;">
-                                <button class="btn waves-effect waves-light" style="background-color: #00897b;" type="submit" name="action">Submit
+                        <div style="text-align:center;">
+                            <button class="btn waves-effect waves-light" style="background-color: #00897b;" type="submit" name="action">Submit
                                     <i class="material-icons right">cloud</i>
                                 </button>
 
-                            </div>
+                        </div>
 
-                            <div class="forgot" style="text-align:center; margin-top: 5px;">
-                                <a href="#" style="color: #00897b;"><u>forgot password?</u></a>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="forgot" style="text-align:center; margin-top: 5px;">
+                            <a href="#" style="color: #00897b;"><u>forgot password?</u></a>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
 
 
-                <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-                <script src="index.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-            </main>
-        </div>
-    </body>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+            <script src="index.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        </main>
+    </div>
+</body>
 
 </html>
