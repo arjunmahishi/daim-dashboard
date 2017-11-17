@@ -8,7 +8,7 @@ var mm = today.getMonth()+1;
 var yyyy = today.getFullYear();
 
 //global variable that holds a reference to the node that displays parts
-var item;
+var tableRow;
 
 if(dd<10) {
     dd = '0'+dd
@@ -20,22 +20,29 @@ if(mm<10) {
 
 
 
-var selection = sessionStorage.selection;
+var selection = sessionStorage.selection || "MDT ENGINE";
+var shopType = selection; // For card Title
 var date = today;
 selection = selection.replace(/ /g,'%20');
 
 date = yyyy + '-' + mm + '-' + dd;
 //if(token==undefined) window.location="http://localhost:3000";
 $(function(){
-//For storing a reference to the node that displays parts
-      var container = document.querySelector('div.container');
-      var children = container.children;
-      var itemContainer = children[0].childNodes[1].childNodes[1].childNodes[3].childNodes[1];
-      var child = itemContainer.childNodes;
-      item = child[1];
 
-  //get response from api
+   //get response from api
   getData();
+
+  $('#shop_type').html(shopType);
+
+
+//For storing a reference to the node that displays parts
+      var tableContainer = document.getElementById('table');
+      var childNodes = tableContainer.children;
+      console.log(childNodes);
+
+       tableRow = childNodes[1].childNodes[1];
+
+
 
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -91,7 +98,7 @@ $('#sort-selection').click(function(){
 
       getData();
 
-      //updateDisplay(json, dateSelected);
+      updateDisplay(json, date);
 
   });
 
@@ -149,103 +156,118 @@ $('#date').text(date);
 
 
 
-var container = document.querySelector('div.container');
+var container = document.getElementById('table');
 var children = container.children;
 
-var parts = json;
 
 
 
-var partType = children[0].childNodes[1].childNodes[1].childNodes[1]; //card title
-partType.innerHTML = selection.replace(/%20/g," ");
-var partContainer = children[0].childNodes[1].childNodes[1].childNodes[3].childNodes[1]; //#ul class-collapsible popout
+
+// var partType = children[0].childNodes[1].childNodes[1].childNodes[1]; //card title
+// partType.innerHTML = selection.replace(/%20/g," ");
+var partContainer = children[1] //tbody
 var partDetails = partContainer.children;
 
 console.log(partDetails);
 
-for(var j=0; j<partDetails.length; j++){
+var card_ref = document.getElementById('card-cont');
+var no_data = document.getElementById('data-h');
+
+if(json.length>0)
+{
+  no_data.setAttribute('style','display: none;');
+   card_ref.removeAttribute('style','display: none;');
+  for(var i=0; i<json.length; i++){
 
 
-   if(parts.length>0){
+  var j=0;
+  for(var prop in json[i]){
+
+    if(prop === "url")continue;
+
+    var parts = json[i];
+
+    //traverse the DOM and get the td cell
+    var cells = partDetails[i].children;
 
     //change color of item according to status level
-    if(parts[j].status === 3){
-
-      // color set to red by default
-
-    }else if(parts[j].status === 2){
-      partDetails[j].childNodes[1].removeAttribute('class', 'red');
-      partDetails[j].childNodes[1].setAttribute('class', 'yellow collapsible-header');
-
-
-
-    }else{
-      partDetails[j].childNodes[1].removeAttribute('class', 'red');
-      partDetails[j].childNodes[1].setAttribute('class', 'green collapsible-header');
+    if(prop === "status"){
+      if(parts[prop] === 3){
+        cells[j].innerText = "Critical";
+        partDetails[i].setAttribute('class', 'red lighten-2');
+      }
+      else if(parts[prop] === 2){
+        cells[j].innerText = "Warning";
+        partDetails[i].setAttribute('class', 'yellow lighten-2');
+      }else {
+        cells[j].innerText = "Normal";
+        partDetails[i].setAttribute('class', 'green lighten-2');
+      }
 
     }
 
-    //traverse the DOM and get the li element
-    var supplierNameListItem = partDetails[j].childNodes[1].childNodes[1].childNodes[1];
-    supplierNameListItem.innerHTML = '<img id="star" src="images/star.png">'+'</img>' + "Supplier Name:" + " " + parts[j].supplier_name;
-    var partNoListItem = partDetails[j].childNodes[1].childNodes[1].childNodes[3];
-    partNoListItem.innerHTML = '<i class="material-icons">edit</i>' + "Part No:" + " " + parts[j].part_number;
+      else if(prop === "starred")
+      {
+        if(parts[prop]===true)
+        {
+          cells[j].innerHTML = "<img src='images/filled_star.png'>";
+        }
+        else
+        {
+          cells[j].innerHTML = "<img src='images/star2.png'>";
+        }
+      }
+      else
+      {
+        cells[j].innerText = parts[prop];
+      }
 
-     //traverse the DOM and get the span element on popout
-    var detailSpan = partDetails[j].childNodes[3].childNodes[0];
-    detailSpan.innerHTML = "backlog: " + parts[j].backlog + "<br/>" + "count: " + parts[j].count
-                           + "<br/>" + "description: "  + parts[j].description + "<br/>" +
-                           "ETA: " + parts[j].eta_dicv + "<br/>" +
-                           "planned vehicle quantity: " + parts[j].planned_vehicle_qty + "<br/>" +
-                           "pmc: " + parts[j].pmc + "<br/>" +
-                           "quantity: " + parts[j].quantity + "<br/>" +
-                           "quantity expected: " + parts[j].quantity_expected + "<br/>" +
-                           "reported on: " + parts[j].reported_on + "<br/>" +
-                           "short on: " + parts[j].short_on + "<br/>" +
-                           "shortage reason: " + parts[j].shortage_reason + "<br/>" +
-                           // "status:" + parts[j].status + "<br/>" +
-                           "truck details: " + parts[j].truck_details + "<br/>" +
-                           "unloading point: " + parts[j].unloading_point + "<br/>";
+      j++;
 
-   }else{
-     var displayMessage = partDetails[j].childNodes[1];
-    displayMessage.innerHTML = "Nothing to display!";
-    displayMessage.setAttribute('style','text-align:center;');
 
-   }
+
+
+
+ }
+  }
+
+}
+else
+  {
+     card_ref.setAttribute('style','display: none;');
+     no_data.removeAttribute('style','display: none;');
+  }
+
+
+
+
 
 }
 
-
-
-
-//Now new list items have been added from addCards method.
-// var partContainer = document.querySelector('.collapsible.popout');
-// var partDetails = partContainer.children;
-
-// console.log(partDetails);
-}
 function addItems(list){
 
 
-      var container = document.querySelector('div.container');
-      var children = container.children;
-      var itemContainer = children[0].childNodes[1].childNodes[1].childNodes[3].childNodes[1];
 
-        while (itemContainer.firstChild) {
-        itemContainer.removeChild(itemContainer.firstChild);
+      var tableContainer = document.getElementById('table');
+      var childNodes = tableContainer.children;
+      console.log(childNodes);
+
+      var tableBody = childNodes[1];
+
+        while (tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
       }
       console.log(list.length);
       if(list.length>0){
         for( var j=0; j<list.length; j++)
       {
-          var newItem = item.cloneNode(true);
-          itemContainer.appendChild(newItem);
+          var newRow = tableRow.cloneNode(true);
+          tableBody.appendChild(newRow);
       }
     }else{
 
-        var newItem = item.cloneNode(true);
-        itemContainer.appendChild(newItem);
+          var newRow = tableRow.cloneNode(true);
+          tableBody.appendChild(newRow);
 
     }
 

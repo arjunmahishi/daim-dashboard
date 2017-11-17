@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body id="bod" style="background-color: #424242;">
+        <!--Import jQuery before materialize.js-->
+         <script src="checktoken.js"></script>
+         <ul id="slide-out" class="side-nav fixed">
+            <li><div class="user-view">
+                <div class="background" style="background-color: #424242; ">
+                </div>
+                <img class="circle" src="images/user.png">
+                <a href="#!name"><span class="white-text name">John Doe</span></a>
+                <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                </div></li>
+            <li><a href="#!">Critical List</a></li>
+            <li><a href="#!">SOS</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Account</a></li>
+            <li><a class="waves-effect" href="#!">Logout</a></li>
+        </ul>
+
+
+
+        <nav>
+            <div class="nav-wrapper" style="background-color: #00897b;">
+                <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+
+
+        <div class="col s12 m6" id="sort-selection">
+            <div class="card teal lighten-2" style="cursor: pointer;">
+                <div class="card-content white-text">
+                    <div>
+                    <span class="card-title" style="text-align: center;" id="shop_type">Shop Type</span>
+                    <span class="card-title" style="text-align: center;" id="day">Today</span>
+                    </div>
+                    <p style="text-align: center" id="date">10/19/2017</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col s12 m6" style="display: none;" id="sort-choices">
+          <div class="card teal lighten-2">
+            <div class="card-content white-text">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">event</i>
+              <input type="text" class="datepicker date-color">
+              <label for="icon_prefix">Date</label>
+            </div>
+              <span class="card-title">Sort by:</span>
+              <form action="#">
+                <p>
+                  <input class="with-gap filled-in radio-white" style="color: white;" name="dates" type="radio" id="test1"/>
+                  <label for="test1" style="color: white;" id="status">Status</label>
+                </p>
+                <p>
+                  <input class="with-gap filled-in radio-white" name="dates" type="radio" id="test2" />
+                  <label for="test2" style="color: white;" id="starred-parts">Stars</label>
+                </p>
+                <p>
+                  <input class="with-gap filled-in radio-white" name="dates" type="radio" id="test3"  />
+                  <label for="test3" style="color: white;" id="all">All</label>
+                </p>
+              </form>
+            </div>
+            <button class="btn waves-effect waves-light" style="background-color: #00897b;" id="apply-btn">
+              <a href="#" style="color: white;">Apply</a>
+            </div>
+          </div>
+        </div>
+        <h3 id="data-h" style="display: none;">No Data</h3>
+
+        <div class="container" id="card-cont">
+            <div class="col s12 m6">
+                <div class="card hoverable">
+                    <table class="responsive-table centered" id="table">
+                    <thead>
+                      <tr>
+                          <th>Part Number</th>
+                          <th>Starred</th>
+                          <th>description</th>
+                          <th>Supplier Name</th>
+                          <th>Variants</th>
+                          <th>Count</th>
+                          <th>Short on</th>
+                          <th>Reported on</th>
+                          <th>Shop</th>
+                          <th>pmc</th>
+                          <th>team</th>
+                          <th>backlog</th>
+                          <th>region</th>
+                          <th>Unloading point</th>
+                          <th>pq</th>
+                          <th>quantity</th>
+                          <th>quantity expected</th>
+                          <th>planned vehicle quantity</th>
+                          <th>eta dicv</th>
+                          <th>truck details</th>
+                          <th>shortage reason</th>
+                          <th>status</th>
+
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <script type="text/javascript" src="vendors/jquery/jquery-3.2.1.min.js"></script>
+        <script src="parts.js"></script>
+        <!-- <script>
+            $(document).ready(function(){
+                $('.collapsible').collapsible();
+            });
+        </script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script>
+            $(document).ready(function(){$(".button-collapse").sideNav();});
+            $('.button-collapse').sideNav({
+                menuWidth: 230, // Default is 300
+                edge: 'left', // Choose the horizontal origin
+                closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                draggable: true, // Choose whether you can drag to open on touch screens,
+
+            }
+                                         );
+        </script>
+    </body>
+</html>
