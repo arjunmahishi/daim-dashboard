@@ -1,57 +1,121 @@
-const applicationServerPublicKey = 'BJZy3aVYrxbEKeEEqRReRPs_239ZUxj5LCm_E-LRiMrz47IA51VmCyC8A4XpvuaoY5hjYhJ8TT5eA5dEq7F0BZ8';
+ const applicationServerPublicKey = 'BJZy3aVYrxbEKeEEqRReRPs_239ZUxj5LCm_E-LRiMrz47IA51VmCyC8A4XpvuaoY5hjYhJ8TT5eA5dEq7F0BZ8';
+ let isSubscribed = false;
+ let swRegistration = null;
+ /*
+   let token = sessionStorage.tokenid;
+   let url = "http://127.0.0.1:8000/device/gcm/"
 
-/* eslint-enable max-len */
+  function updateSubscriptionOnServer(subscription) {
+      // TODO: Send subscription to application server
 
-function urlB64ToUint8Array(base64String) {
-    const padding = '='.repeat((4 - base64String.length % 4) % 4);
-    const base64 = (base64String + padding)
-        .replace(/\-/g, '+')
-        .replace(/_/g, '/');
+      fetch(url, {
+          method: "patch",
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Token ' + token
+          },
+          body: subscription
 
-    const rawData = window.atob(base64);
-    const outputArray = new Uint8Array(rawData.length);
+      }).then(function (response) {
+          if (response.ok) {
+              response.json().then(function (data) {
+                  json = data;
+                  console.log(json);
+              });
+          } else {
+              console.log('Network request failed with response ' + response.status + ': ' + response.statusText);
+          }
+      });
+  }
+ */
+ function urlB64ToUint8Array(base64String) {
+     const padding = '='.repeat((4 - base64String.length % 4) % 4);
+     const base64 = (base64String + padding)
+         .replace(/\-/g, '+')
+         .replace(/_/g, '/');
 
-    for (let i = 0; i < rawData.length; ++i) {
-        outputArray[i] = rawData.charCodeAt(i);
-    }
-    return outputArray;
-}
 
-self.addEventListener('push', function (event) {
-    console.log('[Service Worker] Push Received.');
-    console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+     const rawData = window.atob(base64);
+     const outputArray = new Uint8Array(rawData.length);
 
-    const title = 'Push Codelab';
-    const options = {
-        body: 'Yay it works.',
-        icon: 'images/icon.png',
-        badge: 'images/badge.png'
-    };
+     for (let i = 0; i < rawData.length; ++i) {
+         outputArray[i] = rawData.charCodeAt(i);
+     }
+     return outputArray;
+ }
 
-    event.waitUntil(self.registration.showNotification(title, options));
-});
+ function subscribeUser() {
+     const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+     swRegistration.pushManager.subscribe({
+             userVisibleOnly: true,
+             applicationServerKey: applicationServerKey
+         })
+         .then(function (subscription) {
+             console.log('User is subscribed.');
+             console.log(subscription);
 
-self.addEventListener('notificationclick', function (event) {
-    console.log('[Service Worker] Notification click Received.');
+             //             updateSubscriptionOnServer(subscription);
 
-    event.notification.close();
+             isSubscribed = true;
 
-    event.waitUntil(
-        clients.openWindow('https://developers.google.com/web/')
-    );
-});
+         })
+         .catch(function (err) {
+             console.log('Failed to subscribe the user: ', err);
+         });
+ }
 
-self.addEventListener('pushsubscriptionchange', function (event) {
-    console.log('[Service Worker]: \'pushsubscriptionchange\' event fired.');
-    const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
-    event.waitUntil(
-        self.registration.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: applicationServerKey
-        })
-        .then(function (newSubscription) {
-            // TODO: Send to application server
-            console.log('[Service Worker] New subscription: ', newSubscription);
-        })
-    );
-});
+ function unsubscribeUser() {
+     swRegistration.pushManager.getSubscription()
+         .then(function (subscription) {
+             if (subscription) {
+                 return subscription.unsubscribe();
+             }
+         })
+         .catch(function (error) {
+             console.log('Error unsubscribing', error);
+         })
+         .then(function () {
+             //             updateSubscriptionOnServer(null);
+
+             console.log('User is unsubscribed.');
+             isSubscribed = false;
+
+         });
+ }
+
+ function initializeNotifications() {
+
+     // Set the initial subscription value
+     swRegistration.pushManager.getSubscription()
+         .then(function (subscription) {
+             isSubscribed = !(subscription === null);
+
+             //    updateSubscriptionOnServer(subscription);
+
+             if (isSubscribed) {
+                 console.log('User IS subscribed.');
+             } else {
+                 console.log('User is NOT subscribed.');
+             }
+         });
+ }
+ if ('serviceWorker' in navigator && 'PushManager' in window) {
+     console.log('Service Worker and Push is supported');
+
+     navigator.serviceWorker.register('service-worker.js')
+         .then(function (swReg) {
+             console.log('Service Worker is registered', swReg);
+
+             swRegistration = swReg;
+             subscribeUser();
+             initializeNotifications()
+         })
+         .catch(function (error) {
+             console.error('Service Worker Error', error);
+         });
+ } else {
+     console.warn('Push messaging is not supported');
+
+ }
+ //PUB:BJZy3aVYrxbEKeEEqRReRPs_239ZUxj5LCm_E-LRiMrz47IA51VmCyC8A4XpvuaoY5hjYhJ8TT5eA5dEq7F0BZ8
+ //PRIV:5tOi9dKR77pqY0uQ5H2PqQbR6YMG1c75A2XgR7izOcA

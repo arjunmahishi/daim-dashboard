@@ -1,41 +1,40 @@
 var url = "https://daimler-backend.herokuapp.com/";
 var token = "";
 
-$(function(){
+$(function () {
 
-    $('#login-form').submit(function(e){
+    $('#login-form').submit(function (e) {
         e.preventDefault();
         var formBody = $('#login-form').serialize();
-        fetch(url + "api-token-auth/" ,{
+        fetch(url + "api-token-auth/", {
             method: 'post',
             headers: {
-                "Content-Type" : "application/x-www-form-urlencoded"
+                "Content-Type": "application/x-www-form-urlencoded"
             },
             body: formBody
-        }).then(function(response){
-            if(response.ok){
-                response.json().then(function(json){
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (json) {
                     token = json.token;
                     console.log(token);
                     fetch(url + "current_user/", {
                         method: "get",
                         headers: {
-                            'Content-Type' : 'application/x-www-form-urlencoded',
-                            'Authorization' : 'Token '+token
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'Authorization': 'Token ' + token
                         }
-                    }).then(function(response){
-                        if(response.ok){
-                            response.json().then(function(json){
-                                 sessionStorage.tokenid=token;
-                                 console.log(sessionStorage.tokenid);
+                    }).then(function (response) {
+                        if (response.ok) {
+                            response.json().then(function (json) {
+                                sessionStorage.tokenid = token;
+                                console.log(sessionStorage.tokenid);
 
-                                 window.location.replace("https://daimler-frontend.netlify.com/select.html");
+                                window.location.replace("/select.html");
                             });
                         }
                     });
                 });
-            }
-            else {
+            } else {
                 console.log('Network request failed with response ' + response.status + ': ' + response.statusText);
             }
         });

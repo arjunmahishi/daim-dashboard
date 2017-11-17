@@ -3,22 +3,22 @@
     "name": "SMP - Daimler",
     "icons": [
         {
-            "src": "images/Logo.jpg",
+            "src": "/resources/images/Logo.jpg",
             "type": "image/png",
             "sizes": "48x48"
     },
         {
-            "src": "images/Logo.jpg",
+            "src": "/resources/images/Logo.jpg",
             "type": "image/png",
             "sizes": "96x96"
     },
         {
-            "src": "images/Logo.jpg",
+            "src": "/resources/images/Logo.jpg",
             "sizes": "144x144",
             "type": "image/jpg"
     },
         {
-            "src": "images/Logo.jpg",
+            "src": "/resources/images/Logo.jpg",
             "type": "image/png",
             "sizes": "192x192"
     }
