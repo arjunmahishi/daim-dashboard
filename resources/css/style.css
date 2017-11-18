@@ -1,38 +1,51 @@
-#bod{
+#bod {
     padding-left: 230px;
 }
 
-    @media only screen and (max-width : 992px) {
-      #bod{
+@media only screen and (max-width: 992px) {
+    #bod {
         padding-left: 0;
-      }
     }
-.forgot
-{
+}
+
+.forgot {
     margin-top: 20px;
 }
+
 /*row
 {
     width: 100px;
 }*/
-body
-{
+
+body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 
 }
-main
-{
+
+main {
     flex: 1 0 auto;
 }
 
-.radio-white[type="radio"].filled-in:checked + label:after{
-     border: 2px solid #ffffff;
-     background-color: #ffffff;
+.radio-white[type="radio"].filled-in:checked + label:after {
+    border: 2px solid #ffffff;
+    background-color: #ffffff;
 }
 
-#data-h{
-  color: #ffffff;
-  text-align: center;
+#data-h {
+    color: #ffffff;
+    text-align: center;
+}
+
+#chartDiv {
+    max-height: 250px;
+    max-width: 600px;
+    margin: 0 auto;
+
+}
+
+#myChart {
+    max-height: inherit;
+    max-width: inherit;
 }

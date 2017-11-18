@@ -16,9 +16,23 @@
 
         <script src="resources/js/checktoken.js"></script>
 
-
-
-
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <form id="edit-form" method="post" action="">
+                    <div style="text-align: center;"><h3 id="property_type">Edit Part Attribue</h3></div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix" style="margin-top:10px; margin-left: 5px;">edit</i>
+                            <input id="field" type="text" name="username" class="validate">                                </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+            </div>
+        </div>
         <ul id="slide-out" class="side-nav fixed">
             <li><div class="user-view">
                 <div class="background" style="background-color: #424242; ">
@@ -43,17 +57,20 @@
             </div>
         </nav>
 
-        <div id="sort-selection">
-            <div class="card teal lighten-2 m12 s12" style="cursor: pointer;">
+
+        <div class="col s12 m6" id="sort-selection">
+            <div class="card teal lighten-2" style="cursor: pointer;">
                 <div class="card-content white-text">
                     <div>
-                        <span class="card-title" style="text-align: center;" id="shop_type">Part Type</span>
+                        <span class="card-title" style="text-align: center;" id="shop_type">Shop Type</span>
                         <span class="card-title" style="text-align: center;" id="day">Today</span>
                     </div>
                     <p style="text-align: center" id="date">10/19/2017</p>
                 </div>
             </div>
         </div>
+
+
         <div class="col s12 m6" style="display: none;" id="sort-choices">
             <div class="card teal lighten-2">
                 <div class="card-content white-text">
@@ -62,46 +79,92 @@
                         <input type="text" class="datepicker date-color">
                         <label for="icon_prefix">Date</label>
                     </div>
+                    <span class="card-title">Sort by:</span>
+                    <form action="#">
+                        <p>
+                            <input class="with-gap filled-in radio-white" style="color: white;" name="dates" type="radio" id="test1"/>
+                            <label for="test1" style="color: white;" id="status">Status</label>
+                        </p>
+                        <p>
+                            <input class="with-gap filled-in radio-white" name="dates" type="radio" id="test2" />
+                            <label for="test2" style="color: white;" id="starred-parts">Stars</label>
+                        </p>
+                        <p>
+                            <input class="with-gap filled-in radio-white" name="dates" type="radio" id="test3"  />
+                            <label for="test3" style="color: white;" id="all">All</label>
+                        </p>
+                    </form>
                 </div>
                 <button class="btn waves-effect waves-light" style="background-color: #00897b;" id="apply-btn">
                     <a href="#" style="color: white;">Apply</a>
                 </button>
             </div>
-        </div>
-        <div>
-            <div class="card teal lighten-2" style="cursor: pointer;">
-                <canvas id="myChart"></canvas>
-            </div>
-        </div>
+                    </div>
 
 
-        <h3 id="data-h" style="display: none;">No Data</h3>
+            <h3 id="data-h" style="display: none;">No Data</h3>
 
-        <div class="container" id="card-cont">
-            <div class="col s12 m6">
-                <div class="card hoverable">
-                    <table class="responsive-table centered" id="table">
-                        <thead>
-                            <tr>
-                                <th>Part Number</th>
-                                <th>Starred</th>
-                                <th>Supplier Name</th>
-                                <th>Shop</th>
-                            </tr>
-                        </thead>
+            <div class="container" id="card-cont">
+                <div class="col s12 m6">
+                    <div class="card hoverable">
+                        <table class="responsive-table centered" id="table">
+                            <thead>
+                                <tr>
+                                    <th>Part Number</th>
+                                    <th>Starred</th>
+                                    <th>description</th>
+                                    <th>Supplier Name</th>
+                                    <th>Variants</th>
+                                    <th>Count</th>
+                                    <th>Short on</th>
+                                    <th>Reported on</th>
+                                    <th>Shop</th>
+                                    <th>pmc</th>
+                                    <th>team</th>
+                                    <th>backlog</th>
+                                    <th>region</th>
+                                    <th>Unloading point</th>
+                                    <th>pq</th>
+                                    <th>quantity</th>
+                                    <th>quantity expected</th>
+                                    <th>planned vehicle quantity</th>
+                                    <th>eta dicv</th>
+                                    <th>truck details</th>
+                                    <th>shortage reason</th>
+                                    <th>status</th>
+                                </tr>
+                            </thead>
 
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
 
@@ -109,9 +172,13 @@
 
 
         <script type="text/javascript" src="resources/vendors/jquery/jquery-3.2.1.min.js"></script>
-        <script src="resources/js/parts.js"></script>
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+        <script src="resources/js/parts-detail.js"></script>
+        <!-- <script>
+$(document).ready(function(){
+$('.collapsible').collapsible();
+});
+</script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script>
             $(document).ready(function(){
                 // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
@@ -126,42 +193,6 @@
                 closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
                 draggable: true, // Choose whether you can drag to open on touch screens,
 
-            });
-        </script>
-        <script>
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var chart = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'bar',
-
-                // The data for our dataset
-                data: {
-                    labels: ["10-11-17", "11-11-17", "12-11-17", "13-11-17"],
-                    datasets: [{
-                        label: "Count",
-                        backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(255, 99, 132)',
-                        data: [0, 10, 5, 2],
-                    },
-                              {
-                        label: "Quantity",
-                        backgroundColor: 'rgb(105, 108, 136)',
-                        borderColor: 'rgb(105, 108, 136)',
-                        data: [5, 3, 12, 14],
-                    },
-                              {
-                        label: "Quantity expected",
-                        backgroundColor: 'rgb(200, 200, 136)',
-                        borderColor: 'rgb(200, 200, 136)',
-                        data: [23, 15, 5, 6],
-                    }]
-
-                },
-
-                // Configuration options go here
-                options: {
-                    responsive: "true",
-                }
             });
         </script>
     </body>
