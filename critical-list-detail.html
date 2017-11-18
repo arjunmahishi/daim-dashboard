@@ -15,6 +15,24 @@
         <!--Import jQuery before materialize.js-->
 
         <script src="resources/js/checktoken.js"></script>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <form id="edit-form" method="post" action="">
+                    <div style="text-align: center;"><h3 id="property_type">Edit Part Attribue</h3></div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix" style="margin-top:10px; margin-left: 5px;">edit</i>
+                            <input id="field" type="text" name="username" class="validate">                                </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+            </div>
+        </div>
         <ul id="slide-out" class="side-nav fixed">
             <li><div class="user-view">
                 <div class="background" style="background-color: #424242; ">
@@ -89,18 +107,54 @@
             <div class="container" id="card-cont">
                 <div class="col s12 m6">
                     <div class="card hoverable">
-                        <table class="table centered" id="table">
+                        <table class="responsive-table centered" id="table">
                             <thead>
                                 <tr>
                                     <th>Part Number</th>
                                     <th>Starred</th>
+                                    <th>description</th>
                                     <th>Supplier Name</th>
+                                    <th>Variants</th>
+                                    <th>Count</th>
+                                    <th>Short on</th>
+                                    <th>Reported on</th>
                                     <th>Shop</th>
+                                    <th>pmc</th>
+                                    <th>team</th>
+                                    <th>backlog</th>
+                                    <th>region</th>
+                                    <th>Unloading point</th>
+                                    <th>pq</th>
+                                    <th>quantity</th>
+                                    <th>quantity expected</th>
+                                    <th>planned vehicle quantity</th>
+                                    <th>eta dicv</th>
+                                    <th>truck details</th>
+                                    <th>shortage reason</th>
+                                    <th>status</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -118,7 +172,7 @@
 
 
         <script type="text/javascript" src="resources/vendors/jquery/jquery-3.2.1.min.js"></script>
-        <script src="resources/js/parts.js"></script>
+        <script src="resources/js/parts-detail.js"></script>
         <!-- <script>
 $(document).ready(function(){
 $('.collapsible').collapsible();
