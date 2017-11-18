@@ -20,6 +20,12 @@
                 <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
             </div>
         </nav>
+        <div>
+            <div id="chartDiv" class="card teal lighten-2" style="cursor: pointer; margin-top: 10px;">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
         <h2 style="text-align: center; color: white;">Part Types:</h2>
         <div class="container">
             <div class="row" style="margin-bottom: 0px;">
@@ -70,7 +76,51 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="/resources/js/critical-list.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+        <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'bar',
+
+                // The data for our dataset
+                data: {
+                    labels: ["10-11-17", "11-11-17", "12-11-17", "13-11-17"],
+                    datasets: [{
+                        label: "Count",
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: [0, 10, 5, 2],
+                    },
+                               {
+                                   label: "Quantity",
+                                   backgroundColor: 'rgb(105, 108, 136)',
+                                   borderColor: 'rgb(105, 108, 136)',
+                                   data: [5, 3, 12, 14],
+                               },
+                               {
+                                   label: "Quantity expected",
+                                   backgroundColor: 'rgb(200, 200, 136)',
+                                   borderColor: 'rgb(200, 200, 136)',
+                                   data: [23, 15, 5, 6],
+                               }],
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: "true",
+                    layout: {
+                        padding: {
+                            left: 20,
+                            right: 20,
+                            top: 10,
+                            bottom: 10
+                        }
+                    }
+                }
+            });
+
+        </script>
 
         
     </body>
