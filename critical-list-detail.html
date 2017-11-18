@@ -74,6 +74,7 @@
         <div id="chartDiv" class="card teal lighten-2" style="cursor: pointer;">
             <canvas id="myChart"></canvas>
         </div>
+    </div>
 
 
     <h3 id="data-h" style="display: none;">No Data</h3>
@@ -129,37 +130,32 @@
 
             });
         </script>
+    
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'bar',
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'doughnut',
 
-            // The data for our dataset
-            data: {
-                labels: ["10-11-17", "11-11-17", "12-11-17", "13-11-17"],
-                datasets: [{
-                        label: "Count",
-                        backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(255, 99, 132)',
-                        data: [0, 10, 5, 2],
-                    },
-                    {
-                        label: "Quantity",
-                        backgroundColor: 'rgb(105, 108, 136)',
-                        borderColor: 'rgb(105, 108, 136)',
-                        data: [5, 3, 12, 14],
-                    },
-                    {
-                        label: "Quantity expected",
-                        backgroundColor: 'rgb(200, 200, 136)',
-                        borderColor: 'rgb(200, 200, 136)',
-                        data: [23, 15, 5, 6],
+                // The data for our dataset
+                data: {
+                    datasets: [{
+                        data: [10, 20, 30],
+                        backgroundColor: ['rgb(203, 47, 47)','rgb(32, 161, 62)','rgb(186, 209, 70)'],
+                        borderColor: ['rgb(203, 47, 47)','rgb(32, 161, 62)','rgb(186, 209, 70)']
                     }],
+
+                    // These labels appear in the legend and in the tooltips when hovering different arcs
+                    labels: [
+                        'Available',
+                        'Expected',
+                        'Critical'
+                    ]
+
                 },
 
-            // Configuration options go here
-            options: {
+                // Configuration options go here
+                options: {
                 responsive: "true",
                 layout: {
                     padding: {
@@ -170,9 +166,8 @@
                     }
                 }
             }
-        });
-
-    </script>
+            });
+        </script>
 </body>
 
 </html>
