@@ -78,6 +78,32 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
         <script>
+            var url = "https://daimler-backend.herokuapp.com/api/parts/?ordering=-status";
+
+            var data = [];
+            var json;
+
+            var token = "3d35519e0f437d19e8f625c143bb63a7989753a8";
+
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1;
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+            dd = '0'+dd
+                }
+
+            if(mm<10) {
+            mm = '0'+mm
+                }
+
+            date = yyyy + '-' + mm + '-' + dd;
+
+
+            getData();
+
+
             var ctx = document.getElementById('myChart').getContext('2d');
             var chart = new Chart(ctx, {
                 // The type of chart we want to create
@@ -85,7 +111,7 @@
 
                 // The data for our dataset
                 data: {
-                    labels: ["10-11-17", "11-11-17", "12-11-17", "13-11-17"],
+                    labels: ["Quantity Avl", "DICV", "Planned Vehile Qty"],
                     datasets: [{
                         label: "Count",
                         backgroundColor: 'rgb(255, 99, 132)',
@@ -120,9 +146,70 @@
                 }
             });
 
+            function getData(){
+                fetch(url+"&short_on="+date, {
+                method: "get",
+                headers: {
+                    'Content-Type' : 'application/x-www-form-urlencoded',
+                    'Authorization' : 'Token '+token
+                }
+                    }).then(function(response){
+                      if(response.ok){
+                        response.json().then(function(data){
+                            json = data;
+                            console.log(json);
+                            dataForChart(json);
+
+
+                         });
+                      }
+                      else {
+                         console.log('Network request failed with response ' + response.status + ': ' + response.statusText);
+                      }
+                    });
+                }
+
+                function dataForChart(json){
+
+                    var quantityAvailable =0;
+                    var plannedVehicleQuantity=0;
+                    var dicv=0;
+
+                    for(var i=0; i<json.length; i++){
+
+                        for(var prop in json[i]){
+
+                            if(prop === 'quantity')
+                            quantityAvailable+=json[i][prop];
+
+                            else if(prop === 'eta_dicv')
+                            dicv+=json[i][prop];
+
+                            else if(prop === 'planned_vehicle_qty')
+                            plannedVehicleQuantity+=json[i][prop];
+
+
+
+                    }
+
+                    }
+                    console.log(quantityAvailable);
+                    console.log(plannedVehicleQuantity);
+                    console.log(dicv);
+
+                    data.push(quantityAvailable);
+                    data.push(plannedVehicleQuantity);
+                    data.push(dicv);
+
+
+
+
+
+                }
+
         </script>
 
-        
+
     </body>
 
 </html>

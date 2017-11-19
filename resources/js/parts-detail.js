@@ -1,4 +1,4 @@
-var url = "https://daimler-backend.herokuapp.com/parts/";
+var url = "https://daimler-backend.herokuapp.com/api/parts/";
 var token = "3d35519e0f437d19e8f625c143bb63a7989753a8";
 console.log(token);
 var json;
@@ -301,7 +301,7 @@ function editCell(event){
 
 
 function star(rowIndex){
-  var url = "https://daimler-backend.herokuapp.com/current_user/starred_parts/";
+  var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
 
   var formData = new FormData();
 
@@ -333,7 +333,7 @@ xhr.send(formData);
 
 function unStar(rowIndex){
 
-  var url = "https://daimler-backend.herokuapp.com/current_user/starred_parts/";
+  var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
 
   var formData = new FormData();
 

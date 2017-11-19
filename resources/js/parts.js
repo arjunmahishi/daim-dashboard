@@ -1,4 +1,4 @@
-var url = "https://daimler-backend.herokuapp.com/parts/?ordering=short_on,-status&shop=";
+var url = "https://daimler-backend.herokuapp.com/api/parts/?ordering=short_on,-status&shop=";
 var token = "3d35519e0f437d19e8f625c143bb63a7989753a8";
 console.log(token);
 var json;
@@ -279,65 +279,3 @@ function editCell(event){
   }
 }
 
-function star(rowIndex){
-  var url = "https://daimler-backend.herokuapp.com/current_user/starred_parts/";
-
-  var formData = new FormData();
-
-  partNumber = json[rowIndex]['part_number'];
-
-  formData.append('part_number', partNumber);
-
-  var xhr = new XMLHttpRequest();
-
-// Open the connection.
-xhr.open('PATCH', url, true);
-
-xhr.setRequestHeader('Authorization','Token '+token);
-
-// Set up a handler for when the request finishes.
-xhr.onload = function () {
-  console.log(xhr.status);
-  if (xhr.status === 200) {
-    alert('successful');
-  }
-  else {
-    alert('An error occurred!');
-  }
-};
-
-// Send the Data.
-xhr.send(formData);
-}
-
-function unStar(rowIndex){
-
-  var url = "https://daimler-backend.herokuapp.com/current_user/starred_parts/";
-
-  var formData = new FormData();
-
-  partNumber = json[rowIndex]['part_number'];
-
-  formData.append('part_number', partNumber);
-
-  var xhr = new XMLHttpRequest();
-
-// Open the connection.
-xhr.open('DELETE', url, true);
-
-xhr.setRequestHeader('Authorization','Token '+token);
-
-// Set up a handler for when the request finishes.
-xhr.onload = function () {
-  console.log(xhr.status);
-  if (xhr.status === 200) {
-    alert('successful');
-  }
-  else {
-    alert('An error occurred!');
-  }
-};
-
-// Send the Data.
-xhr.send(formData);
-}
