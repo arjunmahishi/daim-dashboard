@@ -33,10 +33,10 @@ $(function () {
             $("#container").clone(true, true).insertAfter("#container");
 
         }
-
+        $("#para").text("" + json[i].content);
         $("#hidden").text(json[i].id);
         $("#comments").text(json[i].comments_count + " comments");
-        $("#posted_by").text("By " + json[i].posted_by);
+        $("#posted_by").text("By " + json[i].posted_by + ", " + jQuery.timeago(json[i].date));
     }
 
     $("#container").click(function (e) {
