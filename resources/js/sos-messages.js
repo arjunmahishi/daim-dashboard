@@ -2,6 +2,7 @@ var token = sessionStorage.tokenid;
 var json;
 var url = "https://daimler-backend.herokuapp.com/api/comments/?posted_by=&sosid=" + sessionStorage.sosid + "&date=&partid=";
 var urlpost = "https://daimler-backend.herokuapp.com/api/comments/";
+
 $(function () {
     $("#description").text(sessionStorage.desc);
     fetch(url, {
@@ -34,6 +35,7 @@ $(function () {
         for (var i = json.length - 1; i != 0; i--) {
             $("#message").text(json[i].content);
             $("#user").text(json[i].posted_by);
+            $("#time").text(jQuery.timeago(json[i].date));
             $("#messageContainer").clone().insertAfter("#messageContainer");
 
         }
