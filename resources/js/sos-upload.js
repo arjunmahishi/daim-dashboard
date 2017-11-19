@@ -33,10 +33,10 @@ $(function () {
         }
 
         formData.append('name', 'sample2');
-        formData.append('content',$("#textarea1").val());
+        formData.append('content', $("#textarea1").val());
         formData.append('status', 'true');
         formData.append('level', 2);
-        formData.append('users', 'https://daimler-backend.herokuapp.com/users/1/');
+        formData.append('users', 'https://daimler-backend.herokuapp.com/api/users/1/');
         for (var i of formData.values()) {
             console.log(i);
         } // Set up the request.
