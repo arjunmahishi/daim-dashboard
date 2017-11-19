@@ -1,5 +1,5 @@
-var url = "https://daimler-backend.herokuapp.com/sos/";
-var token = "3d35519e0f437d19e8f625c143bb63a7989753a8";
+var url = "https://daimler-backend.herokuapp.com/api/sos/";
+var token = sessionStorage.tokenid;
 
 $(function () {
     var form = document.getElementById('file-form');
@@ -33,7 +33,7 @@ $(function () {
         }
 
         formData.append('name', 'sample2');
-        formData.append('content', 'photo');
+        formData.append('content',$("#textarea1").val());
         formData.append('status', 'true');
         formData.append('level', 2);
         formData.append('users', 'https://daimler-backend.herokuapp.com/users/1/');

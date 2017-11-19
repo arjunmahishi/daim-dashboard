@@ -27,8 +27,16 @@
                     <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
                 </div>
             </li>
-            <li><a href="#!">Critical List</a></li>
             <li><a href="#!">SOS</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Critical List</a></li>
+            <li><a href="#!">MDT</a></li>
+            <li><a href="#!">HDT</a></li>
+            <li><a href="#!">Axel</a></li>
+            <li><a href="#!">Casting and forging</a></li>
+            <li><a href="#!">Transmission</a></li>
             <li>
                 <div class="divider"></div>
             </li>
@@ -80,11 +88,7 @@
                 </button>
             </div>
         </div>
-        <div>
-            <div id="chartDiv" class="card teal lighten-2" style="cursor: pointer;">
-                <canvas id="myChart"></canvas>
-            </div>
-        </div>
+       
 
 
         <h3 id="data-h" style="display: none;">No Data</h3>
@@ -123,7 +127,7 @@
         <script type="text/javascript" src="resources/vendors/jquery/jquery-3.2.1.min.js"></script>
         <script src="resources/js/parts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+        
         <script>
             $(document).ready(function() {
                 // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
@@ -141,44 +145,7 @@
             });
         </script>
 
-        <script>
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var chart = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'doughnut',
-
-                // The data for our dataset
-                data: {
-                    datasets: [{
-                        data: [10, 20, 30,30],
-                        backgroundColor: ['rgb(203, 47, 47)','rgb(32, 161, 62)','rgb(186, 209, 70)','rgb(56, 132, 209)'],
-                        //                        borderColor: ['rgb(203, 47, 47)','rgb(32, 161, 62)','rgb(186, 209, 70)','rgb(56, 132, 209)']
-                    }],
-
-                    // These labels appear in the legend and in the tooltips when hovering different arcs
-                    labels: [
-                        'Available',
-                        'Expected',
-                        'Critical',
-                        'Normal'
-                    ]
-
-                },
-
-                // Configuration options go here
-                options: {
-                    responsive: "true",
-                    layout: {
-                        padding: {
-                            left: 20,
-                            right: 20,
-                            top: 10,
-                            bottom: 10
-                        }
-                    }
-                }
-            });
-        </script>
+        
     </body>
 
 </html>

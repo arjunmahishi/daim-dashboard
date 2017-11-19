@@ -1,5 +1,6 @@
 var url = "https://daimler-backend.herokuapp.com/api/parts/?ordering=short_on,-status&shop=";
-var token = "3d35519e0f437d19e8f625c143bb63a7989753a8";
+
+var token = sessionStorage.tokenid || "3d35519e0f437d19e8f625c143bb63a7989753a8";
 console.log(token);
 var json;
 var today = new Date();
@@ -29,14 +30,16 @@ var date = today;
 selection = selection.replace(/ /g,'%20');
 
 date = yyyy + '-' + mm + '-' + dd;
-
+// if(token==undefined) window.location="http://localhost:3000";
 $(function(){
 
-
- //get response from api
+   //get response from api
   getData();
 
-  //For storing a reference to the node that displays parts
+  $('#shop_type').html(shopType);
+
+
+//For storing a reference to the node that displays parts
       var tableContainer = document.getElementById('table');
       var childNodes = tableContainer.children;
       console.log(childNodes);
@@ -44,7 +47,6 @@ $(function(){
        tableRow = childNodes[1].childNodes[1];
 
 
-  $('#shop_type').html(shopType);
 
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -52,10 +54,23 @@ $(function(){
     today: 'Today',
     clear: 'Clear',
     close: 'Ok',
-    closeOnSelect: false // Close upon selecting a date,
+    closeOnSelect: true // Close upon selecting a date,
   });
 
-  //to select a date
+  // var picker = $input.pickadate('picker');
+  // date = picker.get('select', 'yyyy/mm/dd');
+  // console.log(date);
+
+  // $('.card.hoverable').on('click', function(e){
+  //   return false;
+  // });
+
+  // $('td.clickable').click(function(e){
+  //   e.stopPropagation();
+  //   alert(e.target.value);
+  // });
+
+//to select a date
 $('#sort-selection').click(function(){
 
   var sortsCard = document.getElementById('sort-choices');
@@ -92,6 +107,26 @@ $('#sort-selection').click(function(){
 });
 
 
+$('#next').click(function(){
+  var d= $('#date').text();
+  dd= parseInt(d.substr(8,9));
+  dd++;
+  if(dd==31) dd=1;
+  date = yyyy + '-' + mm + '-' + dd;
+
+  getData();
+});
+$('#prev').click(function(){
+  var d= $('#date').text();
+  dd= parseInt(d.substr(8,9));
+
+  dd--;
+  if(dd==0) dd=31;
+  date = yyyy + '-' + mm + '-' + dd;
+  getData();
+});
+
+
 });
 
 function getData(){
@@ -118,59 +153,42 @@ fetch(url + selection+"&short_on="+date, {
             });
         }
 
-function addItems(list){
-
-      var tableContainer = document.getElementById('table');
-      var childNodes = tableContainer.children;
-      var tableBody = childNodes[1];
-
-        while (tableBody.firstChild) {
-        tableBody.removeChild(tableBody.firstChild);
-      }
-      console.log(list.length);
-      if(list.length>0){
-        for( var i=0; i<list.length; i++) {
-          var newRow = tableRow.cloneNode(true);
-          var cells = newRow.children;
-          for(var j=0; j<cells.length; j++){
-            cells[j].onclick = editCell;
-          }
-
-          tableBody.appendChild(newRow);
-      }
-    }else{
-          var newRow = tableRow.cloneNode(true);
-          tableBody.appendChild(newRow);
-    }
-}
-
 function updateDisplay(json, date){
-
 $('#date').text(date);
-
-var card_ref = document.getElementById('card-cont');
-var no_data = document.getElementById('data-h');
 
 
 
 var container = document.getElementById('table');
 var children = container.children;
 
+
+
+
+
+// var partType = children[0].childNodes[1].childNodes[1].childNodes[1]; //card title
+// partType.innerHTML = selection.replace(/%20/g," ");
 var partContainer = children[1] //tbody
 var partDetails = partContainer.children;
 
 console.log(partDetails);
 
-if(json.length>0){
+var card_ref = document.getElementById('card-cont');
+var no_data = document.getElementById('data-h');
 
-    no_data.setAttribute('style','display: none;');
-    card_ref.removeAttribute('style','display: none;');
+if(json.length>0)
+{
+  no_data.setAttribute('style','display: none;');
+   card_ref.removeAttribute('style','display: none;');
+  for(var i=0; i<json.length; i++){
 
-    for(var i=0; i<json.length; i++){
 
-    for(var prop in json[i]){
+  var j=0;
+  for(var prop in json[i]){
 
-        var parts = json[i];
+    if(prop === "url")continue;
+
+    var parts = json[i];
+
 
     //traverse the DOM and get the td cell
     var cells = partDetails[i].children;
@@ -184,7 +202,7 @@ if(json.length>0){
         {
           cells[1].innerHTML = "<img src='resources/images/filled_star.png' id='image' onClick='editCell'>";
         }
-        else
+         else
             {
           cells[1].innerHTML = "<img src='resources/images/star2.png' id='image' onClick='editCell'>";
             }
@@ -210,16 +228,57 @@ if(json.length>0){
       }
 
     }
-   }
-
   }
 
- }
+}
+}
 else
   {
      card_ref.setAttribute('style','display: none;');
      no_data.removeAttribute('style','display: none;');
   }
+
+
+
+
+
+}
+
+function addItems(list){
+
+
+
+      var tableContainer = document.getElementById('table');
+      var childNodes = tableContainer.children;
+      console.log(childNodes);
+
+      var tableBody = childNodes[1];
+
+        while (tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
+      }
+      console.log(list.length);
+      if(list.length>0){
+        for( var i=0; i<list.length; i++)
+      {
+          var newRow = tableRow.cloneNode(true);
+          var cells = newRow.children;
+          for(var j=0; j<cells.length; j++){
+            cells[j].onclick = editCell;
+
+
+            // cells[j].getElementsByTagName('img').onclick = demo;
+      }
+
+          tableBody.appendChild(newRow);
+      }
+    }else{
+
+          var newRow = tableRow.cloneNode(true);
+          tableBody.appendChild(newRow);
+
+    }
+
 
 
 }
@@ -247,20 +306,6 @@ function editCell(event){
         sessionStorage.partNumber = partNumber;
         window.location.replace('/part-detail.html');
 
-
-    // var images = event.target.getElementsByTagName('img');
-    // var imageSource = images[0].src;
-    // var fileName = imageSource.substr(imageSource.lastIndexOf('/') + 1);
-    // if(fileName === "star2.png"){
-    //   star(rowIndex);
-    //   images[0].src = "resources/images/filled_star.png";
-    // }
-    // else{
-    //   unStar(rowIndex);
-    //   images[0].src = "resources/images/star2.png";
-    // }
-
-    //alert(imageSource.substr(imageSource.lastIndexOf('/') + 1));
    if(event.target.tagName === 'img'){
 
     var imageSource = event.target.src;
@@ -278,4 +323,7 @@ function editCell(event){
 
   }
 }
+
+
+
 
