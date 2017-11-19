@@ -2,7 +2,7 @@
 
 <head>
     <!--Import Google Icon Font-->
-    <link rel="stylesheet" type="text/css" href="/resources/styles/style.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -22,13 +22,13 @@
     <div style="text-align: center; color: white;">
         <h3><b>SOS dashboard:</b></h3>
     </div>
-    <div class="container" id="container" >
+    <div class="container" id="container">
         <div class="card hoverable" style="margin: auto; margin-top: 20px; cursor: pointer;">
             <form id="login-form" method="post" action="">
                 <div class="row" style="margin-bottom: 0px;">
                     <div class="col s3" style="padding: 6px;">
                         <div class="container">
-                            <img class="responsive-img" src="/resources/images/cool_pic.jpg" style="margin-left: 6px;">
+                            <img class="responsive-img" src="/resources/images/chat.svg" style="margin-left: 6px;">
                         </div>
                     </div>
                     <div class="col s9" style="padding: 5px;">
@@ -37,15 +37,15 @@
                         <p id="para" style="margin-right: 10px;">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec diam egestas, venenatis augue quis, rutrum lacus. Curabitur ultricies neque ornare laoreet vulputate. Sed ut odio pharetra, auctor nunc id, sodales purus. Nunc lobortis consequat sodales. Vestibulum cursus dolor quiss nulla efficitur, in dictum nisl ullamcorper.
                         </p>
-                     
+
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s6 m6" >
+                    <div class="col s6 m6">
                         <p id="posted_by" style="margin-left: 5px; color: darkred">By Mr.Om Prakash</p>
                     </div>
                     <div class="col s6 m6">
-                        <p id= "comments" style="color: cornflowerblue; text-align: right; margin-right: 5px;">32 comments</p>
+                        <p id="comments" style="color: cornflowerblue; text-align: right; margin-right: 5px;">32 comments</p>
                     </div>
                 </div>
             </form>
@@ -77,6 +77,7 @@
 
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="resources/vendors/jquery/jquery.timeago.js" type="text/javascript"></script>
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
