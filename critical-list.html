@@ -173,6 +173,9 @@
                         json = data;
                         console.log(json);
                         dataForChart(json);
+                        addItems(json);
+                        updateDisplay(json);
+
 
 
                     });
@@ -250,6 +253,94 @@
                     }
                 }
             });
+        }
+
+        function updateDisplay(json) {
+            var container = document.getElementById('table');
+            var children = container.children;
+            var partContainer = children[1] //tbody
+            var partDetails = partContainer.children;
+            console.log(partDetails);
+
+            if (json.length > 0) {
+
+                for (var i = 0; i < json.length; i++) {
+                    console.log(String(i) + ' ' + json.length)
+                    var j = 0;
+                    for (var prop in json[i]) {
+
+                        if (prop === "url") continue;
+
+                        var parts = json[i];
+
+                        //traverse the DOM and get the td cell
+                        var cells = partDetails[i].children;
+
+                        if (prop === 'part_number') {
+                            cells[0].innerText = parts[prop];
+                        } else if (prop === 'starred') {
+
+                            if (parts[prop] === true) {
+                                cells[1].innerHTML = "<img src='resources/images/filled_star.png' id='image' onClick='editCell'>";
+                            } else {
+                                cells[1].innerHTML = "<img src='resources/images/star2.png' id='image' onClick='editCell'>";
+                            }
+                        } else if (prop === 'supplier_name') {
+                            cells[2].innerText = parts[prop];
+                        } else if (prop === 'shop') {
+                            cells[3].innerText = parts[prop];
+                        } else if (prop === "status") {
+
+                            if (parts[prop] === 3) {
+                                partDetails[i].setAttribute('class', 'red lighten-2');
+                            } else if (parts[prop] === 2) {
+                                partDetails[i].setAttribute('class', 'yellow lighten-2');
+                            } else {
+                                partDetails[i].setAttribute('class', 'green lighten-2');
+                            }
+
+                        }
+                    }
+
+                }
+            }
+
+
+
+
+
+        }
+
+        function addItems(list) {
+
+
+
+            var tableContainer = document.getElementById('table');
+            var childNodes = tableContainer.children;
+            var tableRow = childNodes[1].childNodes[1];
+            console.log(childNodes);
+
+            var tableBody = childNodes[1];
+
+            while (tableBody.firstChild) {
+                tableBody.removeChild(tableBody.firstChild);
+            }
+            console.log(list.length);
+            if (list.length > 0) {
+                for (var i = 0; i < list.length; i++) {
+                    var newRow = tableRow.cloneNode(true);
+                    var cells = newRow.children;
+                    tableBody.appendChild(newRow);
+                }
+            } else {
+
+                var newRow = tableRow.cloneNode(true);
+                tableBody.appendChild(newRow);
+
+            }
+
+
+
         }
 
     </script>
