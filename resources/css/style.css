@@ -8,6 +8,10 @@
     }
 }
 
+@font-face {
+    font-family: myFirstFont;
+    src: url(Adobe_Hebrew _Bold.otf);
+}
 .forgot {
     margin-top: 20px;
 }

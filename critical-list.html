@@ -1,188 +1,240 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <!--Import Google Icon Font-->
-        <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Import materialize.css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<head>
+    <!--Import Google Icon Font-->
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
 
-    <body id="bod" style="background-color: #424242;">
-        <script src="/resources/js/checktoken.js"></script>
-        <ul id="slide-out" class="side-nav fixed">
-            <li>
-                <div class="user-view">
-                    <div class="background" style="background-color: #424242; ">
-                    </div>
-                    <img class="circle" src="resources/images/user.png">
-                    <a href="#!name"><span class="white-text name">John Doe</span></a>
-                    <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+<body id="bod" style="background-color: #424242;">
+    <script src="/resources/js/checktoken.js"></script>
+    <ul id="slide-out" class="side-nav fixed">
+        <li>
+            <div class="user-view">
+                <div class="background" style="background-color: #424242; ">
                 </div>
-            </li>
-            <li><a href="#!">SOS</a></li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a class="subheader">Critical List</a></li>
-            <li><a href="#!">MDT</a></li>
-            <li><a href="#!">HDT</a></li>
-            <li><a href="#!">Axel</a></li>
-            <li><a href="#!">Casting and forging</a></li>
-            <li><a href="#!">Transmission</a></li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a class="subheader">Account</a></li>
-            <li><a class="waves-effect" href="#!">Logout</a></li>
-        </ul>
-        <!--Import jQuery before materialize.js-->
-        <nav>
-            <div class="nav-wrapper" style="background-color: #00897b;">
-                <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
-                <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+                <img class="circle" src="resources/images/user.png">
+                <a href="#!name"><span class="white-text name">John Doe</span></a>
+                <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
             </div>
-        </nav>
-        <div>
-            <div id="chartDiv" class="card teal lighten-2" style="cursor: pointer; margin-top: 10px;">
-                <canvas id="myChart"></canvas>
+        </li>
+        <li><a href="#!">SOS</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Critical List</a></li>
+        <li><a href="#!">MDT</a></li>
+        <li><a href="#!">HDT</a></li>
+        <li><a href="#!">Axel</a></li>
+        <li><a href="#!">Casting and forging</a></li>
+        <li><a href="#!">Transmission</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Account</a></li>
+        <li><a class="waves-effect" href="#!">Logout</a></li>
+    </ul>
+    <!--Import jQuery before materialize.js-->
+    <nav>
+        <div class="nav-wrapper" style="background-color: #00897b;">
+            <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <div>
+        <div id="chartDiv" class="card teal lighten-2" style="cursor: pointer; margin-top: 10px;">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+    <div class="container" id="card-cont">
+        <div class="col s12 m6">
+            <div class="card hoverable">
+                <h5 style="text-align: center; margin-bottom: 0px;">Critical Parts:</h5>
+                <table class="table centered" id="table">
+                    <thead>
+                        <tr>
+                            <th>Part Number</th>
+                            <th>Starred</th>
+                            <th>Supplier Name</th>
+                            <th>Shop</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="container" id="card-cont">
-            <div class="col s12 m6">
-                <div class="card hoverable">
-                    <h5 style="text-align: center; margin-bottom: 0px;">Critical Parts:</h5>
-                    <table class="table centered" id="table">
-                        <thead>
-                            <tr>
-                                <th>Part Number</th>
-                                <th>Starred</th>
-                                <th>Supplier Name</th>
-                                <th>Shop</th>
-                            </tr>
-                        </thead>
+    </div>
 
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <h2 style="text-align: center; color: white;">Part Types:</h2>
-        <div class="container">
-            <div class="row" style="margin-bottom: 0px;">
-                <div class="col s12 m6" id="mdt">
-                    <div class="card white" style="cursor: pointer;">
-                        <div class="card-content black-text">
-                            <span class="card-title" style="text-align: center;">MDT</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6" id="hdt">
-                    <div class="card white" style="cursor: pointer;">
-                        <div class="card-content black-text">
-                            <span class="card-title" style="text-align: center;">HDT</span>
-                        </div>
+    <h2 style="text-align: center; color: white;">Part Types:</h2>
+    <div class="container">
+        <div class="row" style="margin-bottom: 0px;">
+            <div class="col s12 m6" id="mdt">
+                <div class="card white" style="cursor: pointer;">
+                    <div class="card-content black-text">
+                        <span class="card-title" style="text-align: center;">MDT</span>
                     </div>
                 </div>
             </div>
-            <div class="row" style="margin-bottom: 0px;">
-                <div class="col s12 m6" id="axle">
-                    <div class="card white" style="cursor: pointer;">
-                        <div class="card-content black-text">
-                            <span class="card-title" style="text-align: center;">Axle</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6" id="casting-and-forging">
-                    <div class="card white" style="cursor: pointer;">
-                        <div class="card-content black-text">
-                            <span class="card-title" style="text-align: center;">Casting and forging</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="margin-bottom: 0px;">
-                <div class="col s12 m6" id="transmission">
-                    <div class="card white" style="cursor: pointer;">
-                        <div class="card-content black-text">
-                            <span class="card-title" style="text-align: center;">Transmission</span>
-                        </div>
+            <div class="col s12 m6" id="hdt">
+                <div class="card white" style="cursor: pointer;">
+                    <div class="card-content black-text">
+                        <span class="card-title" style="text-align: center;">HDT</span>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row" style="margin-bottom: 0px;">
+            <div class="col s12 m6" id="axle">
+                <div class="card white" style="cursor: pointer;">
+                    <div class="card-content black-text">
+                        <span class="card-title" style="text-align: center;">Axle</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6" id="casting-and-forging">
+                <div class="card white" style="cursor: pointer;">
+                    <div class="card-content black-text">
+                        <span class="card-title" style="text-align: center;">Casting and forging</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 0px;">
+            <div class="col s12 m6" id="transmission">
+                <div class="card white" style="cursor: pointer;">
+                    <div class="card-content black-text">
+                        <span class="card-title" style="text-align: center;">Transmission</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="/resources/js/critical-list.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-        <script>
-            var url = "https://daimler-backend.herokuapp.com/api/parts/?ordering=-status";
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/resources/js/critical-list.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script>
+        var url = "https://daimler-backend.herokuapp.com/api/parts/?ordering=-status";
 
-            var data = [];
-            var json;
+        var data = [];
+        var json;
 
-            var token = "3d35519e0f437d19e8f625c143bb63a7989753a8";
+        var token = "3d35519e0f437d19e8f625c143bb63a7989753a8";
 
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1;
-            var yyyy = today.getFullYear();
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
 
-            if(dd<10) {
-            dd = '0'+dd
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        date = yyyy + '-' + mm + '-' + dd;
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        getData();
+
+        console.log("hi" + data[0]);
+
+
+
+        function getData() {
+            fetch(url + "&short_on=" + date, {
+                method: "get",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'Token ' + token
+                }
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(data) {
+                        json = data;
+                        console.log(json);
+                        dataForChart(json);
+
+
+                    });
+                } else {
+                    console.log('Network request failed with response ' + response.status + ': ' + response.statusText);
+                }
+            });
+        }
+
+        function dataForChart(json) {
+            var partnumber = [];
+            var quantityAvailable = [];
+            var plannedVehicleQuantity = [];
+            var dicv = [];
+
+            for (var i = 0; i < json.length; i++) {
+
+                for (var prop in json[i]) {
+                    if (prop == 'part_number')
+                        partnumber.push(json[i][prop]);
+
+                    else if (prop === 'quantity')
+                        quantityAvailable.push(json[i][prop]);
+
+                    else if (prop === 'eta_dicv')
+                        dicv.push(json[i][prop]);
+
+                    else if (prop === 'planned_vehicle_qty')
+                        plannedVehicleQuantity.push(json[i][prop]);
+
+
+
+
                 }
 
-            if(mm<10) {
-            mm = '0'+mm
-                }
-
-            date = yyyy + '-' + mm + '-' + dd;
-
-
-            getData();
-
-
-            var ctx = document.getElementById('myChart').getContext('2d');
+            }
             var chart = new Chart(ctx, {
                 // The type of chart we want to create
                 type: 'bar',
 
                 // The data for our dataset
                 data: {
-                    labels: ["Quantity Avl", "DICV", "Planned Vehile Qty"],
+                    labels: partnumber,
                     datasets: [{
-                        label: "Count",
-                        backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(255, 99, 132)',
-                        data: [0, 10, 5, 2],
-                    },
-                               {
-                                   label: "Quantity",
-                                   backgroundColor: 'rgb(105, 108, 136)',
-                                   borderColor: 'rgb(105, 108, 136)',
-                                   data: [5, 3, 12, 14],
-                               },
-                               {
-                                   label: "Quantity expected",
-                                   backgroundColor: 'rgb(200, 200, 136)',
-                                   borderColor: 'rgb(200, 200, 136)',
-                                   data: [23, 15, 5, 6],
-                               }],
+                            label: "Quantity Avl",
+                            backgroundColor: 'rgb(255, 99, 132)',
+                            borderColor: 'rgb(255, 99, 132)',
+                            data: quantityAvailable,
+                        },
+                        {
+                            label: "Planned Vehile Qty",
+                            backgroundColor: 'rgb(200, 200, 136)',
+                            borderColor: 'rgb(200, 200, 136)',
+                            data: plannedVehicleQuantity,
+                        },
+                        {
+                            label: "DICV",
+                            backgroundColor: 'rgb(105, 108, 136)',
+                            borderColor: 'rgb(105, 108, 136)',
+                            data: dicv,
+                        }
+                    ],
                 },
 
                 // Configuration options go here
@@ -198,81 +250,24 @@
                     }
                 }
             });
+        }
 
-            function getData(){
-                fetch(url+"&short_on="+date, {
-                method: "get",
-                headers: {
-                    'Content-Type' : 'application/x-www-form-urlencoded',
-                    'Authorization' : 'Token '+token
-                }
-                    }).then(function(response){
-                      if(response.ok){
-                        response.json().then(function(data){
-                            json = data;
-                            console.log(json);
-                            dataForChart(json);
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(".button-collapse").sideNav();
+        });
+        $('.button-collapse').sideNav({
+            menuWidth: 230, // Default is 300
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true, // Choose whether you can drag to open on touch screens,
 
+        });
 
-                         });
-                      }
-                      else {
-                         console.log('Network request failed with response ' + response.status + ': ' + response.statusText);
-                      }
-                    });
-                }
-
-                function dataForChart(json){
-
-                    var quantityAvailable =0;
-                    var plannedVehicleQuantity=0;
-                    var dicv=0;
-
-                    for(var i=0; i<json.length; i++){
-
-                        for(var prop in json[i]){
-
-                            if(prop === 'quantity')
-                            quantityAvailable+=json[i][prop];
-
-                            else if(prop === 'eta_dicv')
-                            dicv+=json[i][prop];
-
-                            else if(prop === 'planned_vehicle_qty')
-                            plannedVehicleQuantity+=json[i][prop];
+    </script>
 
 
-
-                    }
-
-                    }
-                    console.log(quantityAvailable);
-                    console.log(plannedVehicleQuantity);
-                    console.log(dicv);
-
-                    data.push(quantityAvailable);
-                    data.push(plannedVehicleQuantity);
-                    data.push(dicv);
-
-
-
-
-
-                }
-
-        </script>
-        <script>
-            $(document).ready(function(){$(".button-collapse").sideNav();});
-            $('.button-collapse').sideNav({
-                menuWidth: 230, // Default is 300
-                edge: 'left', // Choose the horizontal origin
-                closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-                draggable: true, // Choose whether you can drag to open on touch screens,
-
-            });
-        </script>
-
-
-    </body>
+</body>
 
 </html>
