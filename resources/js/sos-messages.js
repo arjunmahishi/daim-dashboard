@@ -41,6 +41,7 @@ $(function () {
         }
         $("#message").text(json[i].content);
         $("#user").text(json[i].posted_by);
+        $("#time").text(jQuery.timeago(json[i].date));
 
     }
     $("#send").click(function (event) {
