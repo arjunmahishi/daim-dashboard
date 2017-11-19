@@ -2,7 +2,6 @@ var token = sessionStorage.tokenid;
 var json;
 var url = "https://daimler-backend.herokuapp.com/api/comments/?posted_by=&sosid=" + sessionStorage.sosid + "&date=&partid=";
 var urlpost = "https://daimler-backend.herokuapp.com/api/comments/";
-
 $(function () {
     $("#description").text(sessionStorage.desc);
     fetch(url, {
@@ -35,15 +34,25 @@ $(function () {
         for (var i = json.length - 1; i != 0; i--) {
             $("#message").text(json[i].content);
             $("#user").text(json[i].posted_by);
-            $("#time").text(jQuery.timeago(json[i].date));
+             if(json[i].media!= undefined)
+           {
+           	openlink(json[i].media);
+           }
             $("#messageContainer").clone().insertAfter("#messageContainer");
 
         }
         $("#message").text(json[i].content);
         $("#user").text(json[i].posted_by);
-        $("#time").text(jQuery.timeago(json[i].date));
+         if(json[i].media!= undefined)
+           {
+           	openlink(json[i].media);
+           }
 
     }
+    $("#blah").click(function(event){
+  	if(sessionStorage.file!=undefined)
+  	window.open(sessionStorage.file);
+  })
     $("#send").click(function (event) {
         event.preventDefault();
         var text = $("#icon_prefix").val();
@@ -74,6 +83,16 @@ $(function () {
         };
         xhr.send(formData);
     })
-
+ function openlink(link)
+  {
+  	    var a = document.createElement('a');
+        var linkText = document.createTextNode("\tClick to view the file");
+        a.appendChild(linkText);
+        a.title = "\nClick to view the file";
+        a.href = link;
+        a.target="_blank";
+        document.getElementById("message").append(a);
+  }
+ 
 
 })
