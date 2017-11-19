@@ -1,10 +1,10 @@
 #bod {
-    padding-right: 230px;
+    padding-left: 230px;
 }
 
 @media only screen and (max-width: 992px) {
     #bod {
-        padding-right: 0;
+        padding-left: 0;
     }
 }
 

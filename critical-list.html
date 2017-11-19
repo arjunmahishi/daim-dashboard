@@ -12,17 +12,70 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
 
-    <body style="background-color: #424242;">
+    <body id="bod" style="background-color: #424242;">
         <script src="/resources/js/checktoken.js"></script>
+        <ul id="slide-out" class="side-nav fixed">
+            <li>
+                <div class="user-view">
+                    <div class="background" style="background-color: #424242; ">
+                    </div>
+                    <img class="circle" src="resources/images/user.png">
+                    <a href="#!name"><span class="white-text name">John Doe</span></a>
+                    <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                </div>
+            </li>
+            <li><a href="#!">SOS</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Critical List</a></li>
+            <li><a href="#!">MDT</a></li>
+            <li><a href="#!">HDT</a></li>
+            <li><a href="#!">Axel</a></li>
+            <li><a href="#!">Casting and forging</a></li>
+            <li><a href="#!">Transmission</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Account</a></li>
+            <li><a class="waves-effect" href="#!">Logout</a></li>
+        </ul>
         <!--Import jQuery before materialize.js-->
         <nav>
             <div class="nav-wrapper" style="background-color: #00897b;">
                 <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
         </nav>
         <div>
             <div id="chartDiv" class="card teal lighten-2" style="cursor: pointer; margin-top: 10px;">
                 <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <div class="container" id="card-cont">
+            <div class="col s12 m6">
+                <div class="card hoverable">
+                    <h5 style="text-align: center; margin-bottom: 0px;">Critical Parts:</h5>
+                    <table class="table centered" id="table">
+                        <thead>
+                            <tr>
+                                <th>Part Number</th>
+                                <th>Starred</th>
+                                <th>Supplier Name</th>
+                                <th>Shop</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -120,6 +173,16 @@
                 }
             });
 
+        </script>
+        <script>
+            $(document).ready(function(){$(".button-collapse").sideNav();});
+            $('.button-collapse').sideNav({
+                menuWidth: 230, // Default is 300
+                edge: 'left', // Choose the horizontal origin
+                closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                draggable: true, // Choose whether you can drag to open on touch screens,
+
+            });
         </script>
 
         
