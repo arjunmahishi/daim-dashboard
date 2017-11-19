@@ -17,7 +17,7 @@ $(function () {
                 response.json().then(function (json) {
                     token = json.token;
                     console.log(token);
-                    fetch(url + "current_user/", {
+                    fetch(url + "api/current_user/", {
                         method: "get",
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',

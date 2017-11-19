@@ -22,7 +22,7 @@
     <div style="text-align: center; color: white;">
         <h3><b>SOS dashboard:</b></h3>
     </div>
-    <div class="container" id="container">
+    <div class="container" id="container" >
         <div class="card hoverable" style="margin: auto; margin-top: 20px; cursor: pointer;">
             <form id="login-form" method="post" action="">
                 <div class="row" style="margin-bottom: 0px;">
@@ -33,17 +33,19 @@
                     </div>
                     <div class="col s9" style="padding: 5px;">
                         <b>Description:</b><br/>
+                        <p hidden id="hidden"></p>
                         <p id="para" style="margin-right: 10px;">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec diam egestas, venenatis augue quis, rutrum lacus. Curabitur ultricies neque ornare laoreet vulputate. Sed ut odio pharetra, auctor nunc id, sodales purus. Nunc lobortis consequat sodales. Vestibulum cursus dolor quis nulla efficitur, in dictum nisl ullamcorper.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec diam egestas, venenatis augue quis, rutrum lacus. Curabitur ultricies neque ornare laoreet vulputate. Sed ut odio pharetra, auctor nunc id, sodales purus. Nunc lobortis consequat sodales. Vestibulum cursus dolor quiss nulla efficitur, in dictum nisl ullamcorper.
                         </p>
+                     
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s6 m6" >
-                        <p style="margin-left: 5px; color: darkred">By Mr.Om Prakash</p>
+                        <p id="posted_by" style="margin-left: 5px; color: darkred">By Mr.Om Prakash</p>
                     </div>
                     <div class="col s6 m6">
-                        <p style="color: cornflowerblue; text-align: right; margin-right: 5px;">32 comments</p>
+                        <p id= "comments" style="color: cornflowerblue; text-align: right; margin-right: 5px;">32 comments</p>
                     </div>
                 </div>
             </form>
@@ -69,7 +71,7 @@
                 </form>
             </div>
         </div> -->
-    <a class="btn-floating btn-large waves-effect waves-light teal darken-2" style="position: fixed; bottom: 20px; right: 20px;" onclick="window.location.replace('https://daimler-frontend.netlify.com/sos-upload.html');"><i class="material-icons">add</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light teal darken-2" style="position: fixed; bottom: 20px; right: 20px;" onclick="window.location.replace('/sos-upload.html');"><i class="material-icons">add</i></a>
 
 
 
@@ -90,7 +92,7 @@
         }
 
     </script>
-    <script src="/resources/js/sos-dashboard.js"></script>
+    <script src="resources/js/sos-dashboard.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </body>
 

@@ -13,7 +13,7 @@
 
     <body style="background-color: #424242;">
         <!--Import jQuery before materialize.js-->
-        <script src="checktoken.js"></script>
+        <!-- <script src="resources/js/checktoken.js"></script> -->
         <nav>
             <div class="nav-wrapper" style="background-color: #00897b;">
                 <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
@@ -33,33 +33,25 @@
                                     <div class="card blue-grey darken-1">
                                         <div class="card-content white-text">
                                             <span class="card-title">Description:</span>
-                                            <p>This part is defective and needs to be replaced asap. There are scratches on the top half of the philange. The shipping team might have messed up.</p>
+                                            <p id="description">This part is defective and needs to be replaced asap. There are scratches on the top half of the philange. The shipping team might have messed up.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" style="margin-bottom: 0px;">
+                            <div class="row" id ="messageContainer" style="margin-bottom: 0px;">
                                 <div class="col s12 m5">
                                     <div class="card blue-grey darken-1">
                                         <div class="card-content white-text">
-                                            <span class="card-title" style="color: aquamarine;">Mr. Harry Potter</span>
-                                            <p>Yes, Agreed.</p>
+                                            <span class="card-title" id= "user" style="color: aquamarine;">
+                                            </span>
+                                            <p id= "message"></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" style="margin-bottom: 0px;">
-                                <div class="col s12 m5">
-                                    <div class="card blue-grey darken-1">
-                                        <div class="card-content white-text">
-                                            <span class="card-title" style="color: aquamarine;">Mr. Someone else</span>
-                                            <p>This has happened for the fourth time in a row. Something needs to be done abou it!</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                           
 
-
+                        
 
                         </div>
 
@@ -71,11 +63,12 @@
                                     <div class="row">
                                         <div class="col s9 m10">
                                             <i class="material-icons prefix" style="margin-top: 10px;">message</i>
-                                            <input id="icon_prefix" type="text" class="validate">
+                                            <input hidden type="file" onchange="readURL(this);" id="file-select" name="media" multiple>
+                                            <input id="icon_prefix" type="text"  class="validate">
                                             <label for="icon_prefix">Your Message</label>
                                         </div>
                                         <div class="col s3 m2"></div>
-                                        <a class="btn-floating btn-large waves-effect waves-light teal darken-2"><i class="material-icons">send</i></a>
+                                        <a class="btn-floating btn-large waves-effect waves-light teal darken-2" type="submit" id="send" ><i class="material-icons">send</i></a>
                                     </div>
                                 </div>
                             </form>
@@ -88,7 +81,7 @@
 
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="sos-upload.js"></script>
+        <script src="resources/js/sos-messages.js"></script>
         <script> function readURL(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();

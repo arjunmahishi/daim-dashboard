@@ -1,5 +1,5 @@
-var url = "https://daimler-backend.herokuapp.com/parts/?ordering=short_on,-status&shop=";
-var token = "3d35519e0f437d19e8f625c143bb63a7989753a8";
+var url = "https://daimler-backend.herokuapp.com/api/parts/?ordering=short_on,-status&shop=";
+var token = sessionStorage.tokenid;
 console.log(token);
 var json;
 var today = new Date();
@@ -29,14 +29,16 @@ var date = today;
 selection = selection.replace(/ /g,'%20');
 
 date = yyyy + '-' + mm + '-' + dd;
-
+// if(token==undefined) window.location="http://localhost:3000";
 $(function(){
 
-
- //get response from api
+   //get response from api
   getData();
 
-  //For storing a reference to the node that displays parts
+  $('#shop_type').html(shopType);
+
+
+//For storing a reference to the node that displays parts
       var tableContainer = document.getElementById('table');
       var childNodes = tableContainer.children;
       console.log(childNodes);
@@ -44,7 +46,6 @@ $(function(){
        tableRow = childNodes[1].childNodes[1];
 
 
-  $('#shop_type').html(shopType);
 
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -52,10 +53,23 @@ $(function(){
     today: 'Today',
     clear: 'Clear',
     close: 'Ok',
-    closeOnSelect: false // Close upon selecting a date,
+    closeOnSelect: true // Close upon selecting a date,
   });
 
-  //to select a date
+  // var picker = $input.pickadate('picker');
+  // date = picker.get('select', 'yyyy/mm/dd');
+  // console.log(date);
+
+  // $('.card.hoverable').on('click', function(e){
+  //   return false;
+  // });
+
+  // $('td.clickable').click(function(e){
+  //   e.stopPropagation();
+  //   alert(e.target.value);
+  // });
+
+//to select a date
 $('#sort-selection').click(function(){
 
   var sortsCard = document.getElementById('sort-choices');
@@ -92,6 +106,26 @@ $('#sort-selection').click(function(){
 });
 
 
+$('#next').click(function(){
+  var d= $('#date').text();
+  dd= parseInt(d.substr(8,9));
+  dd++;
+  if(dd==31) dd=1;
+  date = yyyy + '-' + mm + '-' + dd;
+
+  getData();
+});
+$('#prev').click(function(){
+  var d= $('#date').text();
+  dd= parseInt(d.substr(8,9));
+
+  dd--;
+  if(dd==0) dd=31;
+  date = yyyy + '-' + mm + '-' + dd;
+  getData();
+});
+
+
 });
 
 function getData(){
@@ -118,103 +152,87 @@ fetch(url + selection+"&short_on="+date, {
             });
         }
 
-function addItems(list){
-
-      var tableContainer = document.getElementById('table');
-      var childNodes = tableContainer.children;
-      var tableBody = childNodes[1];
-
-        while (tableBody.firstChild) {
-        tableBody.removeChild(tableBody.firstChild);
-      }
-      console.log(list.length);
-      if(list.length>0){
-        for( var i=0; i<list.length; i++) {
-          var newRow = tableRow.cloneNode(true);
-          var cells = newRow.children;
-          for(var j=0; j<cells.length; j++){
-            cells[j].onclick = editCell;
-          }
-
-          tableBody.appendChild(newRow);
-      }
-    }else{
-          var newRow = tableRow.cloneNode(true);
-          tableBody.appendChild(newRow);
-    }
-}
-
 function updateDisplay(json, date){
-
 $('#date').text(date);
-
-var card_ref = document.getElementById('card-cont');
-var no_data = document.getElementById('data-h');
 
 
 
 var container = document.getElementById('table');
 var children = container.children;
 
+
+
+
+
+// var partType = children[0].childNodes[1].childNodes[1].childNodes[1]; //card title
+// partType.innerHTML = selection.replace(/%20/g," ");
 var partContainer = children[1] //tbody
 var partDetails = partContainer.children;
 
 console.log(partDetails);
 
-if(json.length>0){
+var card_ref = document.getElementById('card-cont');
+var no_data = document.getElementById('data-h');
 
-    no_data.setAttribute('style','display: none;');
-    card_ref.removeAttribute('style','display: none;');
+if(json.length>0)
+{
+  no_data.setAttribute('style','display: none;');
+   card_ref.removeAttribute('style','display: none;');
+  for(var i=0; i<json.length; i++){
 
-    for(var i=0; i<json.length; i++){
 
-    for(var prop in json[i]){
+  var j=0;
+  for(var prop in json[i]){
 
-        var parts = json[i];
+    if(prop === "url")continue;
+
+    var parts = json[i];
 
     //traverse the DOM and get the td cell
     var cells = partDetails[i].children;
 
-    if(prop === 'part_number'){
-        cells[0].innerText = parts[prop];
-    }
-    else if(prop === 'starred'){
-
-        if(parts[prop]===true)
-        {
-          cells[1].innerHTML = "<img src='resources/images/filled_star.png' id='image' onClick='editCell'>";
-        }
-        else
-            {
-          cells[1].innerHTML = "<img src='resources/images/star2.png' id='image' onClick='editCell'>";
-            }
-        }
-
-
-    else if(prop === 'supplier_name'){
-        cells[2].innerText = parts[prop];
-        }
-    else if(prop === 'shop'){
-        cells[3].innerText = parts[prop];
-        }
-    else if(prop === "status"){
-
-        if(parts[prop] === 3){
+    //change color of item according to status level
+    if(prop === "status"){
+      if(parts[prop] === 3){
+        cells[j].innerText = "Critical";
         partDetails[i].setAttribute('class', 'red lighten-2');
-        }
-        else if(parts[prop] === 2){
+      }
+      else if(parts[prop] === 2){
+        cells[j].innerText = "Warning";
         partDetails[i].setAttribute('class', 'yellow lighten-2');
-        }
-        else {
+      }else {
+        cells[j].innerText = "Normal";
         partDetails[i].setAttribute('class', 'green lighten-2');
       }
 
     }
-   }
 
-  }
+      else if(prop === "starred")
+      {
+        if(parts[prop]===true)
+        {
+          cells[j].innerHTML = "<img src='resources/images/filled_star.png' id='image' onClick='demo'>";
+        }
+        else
+        {
+          cells[j].innerHTML = "<img src='resources/images/star2.png' id='image' onClick='demo'>";
+        }
+      }
+      else
+      {
+        cells[j].innerText = parts[prop];
+      }
+
+      j++;
+
+
+
+
 
  }
+  }
+
+}
 else
   {
      card_ref.setAttribute('style','display: none;');
@@ -222,62 +240,83 @@ else
   }
 
 
+
+
+
+}
+
+function addItems(list){
+
+
+
+      var tableContainer = document.getElementById('table');
+      var childNodes = tableContainer.children;
+      console.log(childNodes);
+
+      var tableBody = childNodes[1];
+
+        while (tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
+      }
+      console.log(list.length);
+      if(list.length>0){
+        for( var i=0; i<list.length; i++)
+      {
+          var newRow = tableRow.cloneNode(true);
+          var cells = newRow.children;
+          for(var j=0; j<cells.length; j++){
+            cells[j].onclick = editCell;
+
+
+            // cells[j].getElementsByTagName('img').onclick = demo;
+      }
+
+          tableBody.appendChild(newRow);
+      }
+    }else{
+
+          var newRow = tableRow.cloneNode(true);
+          tableBody.appendChild(newRow);
+
+    }
+
+
+
 }
 
 function editCell(event){
-
+  if(event.target.getElementsByTagName('img').length > 0){
 
         var rowIndex = event.target.parentNode.rowIndex;
-
-
-        var tableContainer = document.getElementById('table');
-        var childNodes = tableContainer.children;
-        var tableBody = childNodes[1];
-        var rows = tableBody.children;
-
-        console.log(rows);
-
-        var selectedRow = rows[rowIndex-1];
-        var cell = selectedRow.childNodes[1];
-        console.log(cell);
-
-        partNumber = cell.innerText;
-        // alert(partNumber);
-
-        sessionStorage.partNumber = partNumber;
-        window.location.replace('/part-detail.html');
-
-
-    // var images = event.target.getElementsByTagName('img');
-    // var imageSource = images[0].src;
-    // var fileName = imageSource.substr(imageSource.lastIndexOf('/') + 1);
-    // if(fileName === "star2.png"){
-    //   star(rowIndex);
-    //   images[0].src = "resources/images/filled_star.png";
-    // }
-    // else{
-    //   unStar(rowIndex);
-    //   images[0].src = "resources/images/star2.png";
-    // }
-
-    //alert(imageSource.substr(imageSource.lastIndexOf('/') + 1));
-   if(event.target.tagName === 'img'){
-
-    var imageSource = event.target.src;
+        rowIndex -= 1;
+    var images = event.target.getElementsByTagName('img');
+    var imageSource = images[0].src;
     var fileName = imageSource.substr(imageSource.lastIndexOf('/') + 1);
     if(fileName === "star2.png"){
       star(rowIndex);
-      event.target.src = "resources/images/filled_star.png";
+      images[0].src = "resources/images/filled_star.png";
 
     }
     else{
       unStar(rowIndex);
-      event.target.src = "resources/images/star2.png";
+      images[0].src = "resources/images/star2.png";
     }
 
+    //alert(imageSource.substr(imageSource.lastIndexOf('/') + 1));
+  }else{
+    event.target.setAttribute('class', 'modal-trigger');
+    event.target.setAttribute('href', '#modal1');
+
+    $('#field').val(event.target.innerText);
+    var columnNumber = event.target.cellIndex;
+    //alert(columnNumber);
+    var headings = document.getElementsByTagName('th');
+    console.log(headings);
+    $('#property_type').text(headings[columnNumber + 7].innerText);
 
   }
 }
+
 
 function star(rowIndex){
   var url = "https://daimler-backend.herokuapp.com/current_user/starred_parts/";
@@ -340,4 +379,9 @@ xhr.onload = function () {
 
 // Send the Data.
 xhr.send(formData);
+
+
 }
+
+
+
