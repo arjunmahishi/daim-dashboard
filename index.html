@@ -25,6 +25,7 @@
     <body style="display: flex; min-height: 100vh; flex-direction: column; background-color: #424242; margin-top: 50px;">
         <!--Import jQuery before materialize.js-->
         <!-- Modal Structure -->
+
         <div id="modal1" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <form id="edit-form" method="post" action="">
@@ -37,10 +38,11 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id= "done">Done</a>
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
             </div>
         </div>
+
         <h4 style="color: white; text-align: center; margin-bottom: 20px; font-family: myFirstFont;">Daimler Login</h4>
         <div class="container" style="vertical-align: middle;">
             <main>
@@ -80,6 +82,7 @@
 
                 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
                 <script src="/resources/js/index.js"></script>
+                
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
                 <script>$(document).ready(function(){
                         // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered

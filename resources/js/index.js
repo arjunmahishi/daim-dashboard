@@ -1,6 +1,9 @@
 var url = "https://daimler-backend.herokuapp.com/";
 var token = "";
+var url2="https://daimler-backend.herokuapp.com/rest-auth/password/reset/"
 
+var form = document.getElementById('edit-form');
+var json;
 $(function () {
 
     $('#login-form').submit(function (e) {
@@ -39,4 +42,23 @@ $(function () {
             }
         });
     });
+
+    $("#done").click(function(event){
+        
+        var formData= new FormData();
+        var email= $("#field").val();
+        formData.append("email",email);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url2, true);
+        
+        xhr.onload=function(){
+           if(xhr.status=200)
+           alert("password reset. Check your mail");
+        }
+        xhr.send(formData);
+
+    })
 });
+
+
+   
