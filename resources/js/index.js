@@ -30,6 +30,8 @@ $(function () {
                         if (response.ok) {
                             response.json().then(function (json) {
                                 sessionStorage.tokenid = token;
+                                sessionStorage.email=json.email;
+                                sessionStorage.name=json.username;
                                 console.log(sessionStorage.tokenid);
 
                                 window.location.replace("/select.html");

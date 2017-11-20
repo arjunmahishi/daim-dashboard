@@ -1,1 +1,1 @@
-//if (sessionStorage.tokenid == undefined) window.location.replace("/");
+if (sessionStorage.tokenid == undefined) window.location.replace("/");
