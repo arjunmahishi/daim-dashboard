@@ -27,7 +27,7 @@
                     <a href="#!email"><span id ="uemail" class="white-text email">jdandturk@gmail.com</span></a>
                 </div>
             </li>
-             <li><a href="#!" id= "sos-nav" >SOS</a></li>
+            <li><a href="#!" id= "sos-nav" >SOS</a></li>
             <li>
                 <div class="divider"></div>
             </li>
@@ -88,6 +88,11 @@
                 </button>
             </div>
         </div>
+        <div>
+            <div id="chartDiv" class="card teal lighten-2" style="cursor: pointer; margin-top: 10px;">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
 
 
 
@@ -128,6 +133,7 @@
         <script src="resources/js/parts.js"></script>
         <script src="/resources/js/navbar.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
         <script>
             $(document).ready(function() {
@@ -143,6 +149,52 @@
                 closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
                 draggable: true, // Choose whether you can drag to open on touch screens,
 
+            });
+        </script>
+        <script>
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["part 1","part 2","part 3","part4"],
+                    datasets: [{
+                            label: "Quantity Avl",
+                            backgroundColor: 'rgb(255, 99, 132)',
+                            borderColor: 'rgb(255, 99, 132)',
+                            data: [20,30,40,80],
+                        },
+                        {
+                            label: "Planned Vehile Qty",
+                            backgroundColor: 'rgb(200, 200, 136)',
+                            borderColor: 'rgb(200, 200, 136)',
+                            data: [20,30,40,30],
+                        },
+                        {
+                            label: "DICV",
+                            backgroundColor: 'rgb(105, 108, 136)',
+                            borderColor: 'rgb(105, 108, 136)',
+                            data: [20,30,40,50],
+                        }
+                    ],
+                },
+                options: {
+                    responsive: "true",
+                    layout: {
+                        padding: {
+                            left: 20,
+                            right: 20,
+                            top: 10,
+                            bottom: 10
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
             });
         </script>
 
