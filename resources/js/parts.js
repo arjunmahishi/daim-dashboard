@@ -146,6 +146,7 @@ fetch(url + selection+"&short_on="+date, {
 
                         //method to add individual parts under a part type
                           addItems(json);
+                          updateChart(json);
                           updateDisplay(json, date);
                  });
               }
@@ -248,8 +249,6 @@ else
 
 function addItems(list){
 
-
-
       var tableContainer = document.getElementById('table');
       var childNodes = tableContainer.children;
       console.log(childNodes);
@@ -278,19 +277,13 @@ function addItems(list){
 
           var newRow = tableRow.cloneNode(true);
           tableBody.appendChild(newRow);
-
     }
-
-
 
 }
 
 function editCell(event){
 
-
         var rowIndex = event.target.parentNode.rowIndex;
-
-
         var tableContainer = document.getElementById('table');
         var childNodes = tableContainer.children;
         var tableBody = childNodes[1];
@@ -321,10 +314,77 @@ function editCell(event){
       unStar(rowIndex);
       event.target.src = "resources/images/star2.png";
     }
-
-
   }
 }
+
+function updateChart(json) {
+            var partnumber = [];
+            var quantityAvailable = [];
+            var plannedVehicleQuantity = [];
+            var dicv = [];
+            for (var i = 0; i < json.length; i++) {
+                if(i==4) break;
+                for (var prop in json[i]) {
+                    if (prop == 'part_number')
+                        partnumber.push(json[i][prop]);
+
+                    else if (prop === 'quantity')
+                        quantityAvailable.push(json[i][prop]);
+
+                    else if (prop === 'eta_dicv')
+                        dicv.push(json[i][prop]);
+
+                    else if (prop === 'planned_vehicle_qty')
+                        plannedVehicleQuantity.push(json[i][prop]);
+                }
+                console.log(quantityAvailable);
+            }
+
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["part 1","part 2","part 3","part4"],
+                    datasets: [{
+                            label: "Quantity Avl",
+                            backgroundColor: 'rgb(255, 99, 132)',
+                            borderColor: 'rgb(255, 99, 132)',
+                            data: quantityAvailable
+                        },
+                        {
+                            label: "Planned Vehile Qty",
+                            backgroundColor: 'rgb(200, 200, 136)',
+                            borderColor: 'rgb(200, 200, 136)',
+                            data: plannedVehicleQuantity
+                        },
+                        {
+                            label: "DICV",
+                            backgroundColor: 'rgb(105, 108, 136)',
+                            borderColor: 'rgb(105, 108, 136)',
+                            data: dicv
+                        }
+                    ],
+                },
+                options: {
+                    responsive: "true",
+                    layout: {
+                        padding: {
+                            left: 20,
+                            right: 20,
+                            top: 10,
+                            bottom: 10
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
 
 
 
