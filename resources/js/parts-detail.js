@@ -1,4 +1,5 @@
 var url = "https://daimler-backend.herokuapp.com/api/parts/";
+
 var token = sessionStorage.tokenid || "83cc351e4ec002a30f5fbe3e768cc4874263e9dd";
 console.log(token);
 
@@ -324,6 +325,7 @@ function editCell(event){
     // alert(columnNumber);
 
     updateField(columnNumber, value);
+    event.target.innerText = value;
     });
 
   }
@@ -399,31 +401,36 @@ function updateField(cellIndex, value){
 var param;
 
 if(cellIndex === 0) param = 'part_number';
-if(cellIndex === 2) param = 'description';
-if(cellIndex === 3) param = 'supplier_name';
-if(cellIndex === 4) param = 'variants';
-if(cellIndex === 5) param = 'count';
-if(cellIndex === 6) param = 'reported_on';
-if(cellIndex === 7) param = 'short_on';
-if(cellIndex === 8) param = 'shop';
-if(cellIndex === 9) param = 'pmc';
-if(cellIndex === 10) param = 'team';
-if(cellIndex === 11) param = 'backlog';
-if(cellIndex === 12) param = 'region';
-if(cellIndex === 13) param = 'unloading_point';
-if(cellIndex === 14) param = 'p_q';
-if(cellIndex === 15) param = 'quantity';
-if(cellIndex === 16) param = 'quantity_expected';
-if(cellIndex === 17) param = 'planned_vehicle_qty';
-if(cellIndex === 18) param = 'eta_dicv';
-if(cellIndex === 19) param = 'truck_details';
-if(cellIndex === 20) param = 'shortage_reason';
-if(cellIndex === 21) param = 'status';
+else if(cellIndex === 2) param = 'description';
+else if(cellIndex === 3) param = 'supplier_name';
+else if(cellIndex === 4) param = 'variants';
+else if(cellIndex === 5) param = 'count';
+else if(cellIndex === 6) param = 'reported_on';
+else if(cellIndex === 7) param = 'short_on';
+else if(cellIndex === 8) param = 'shop';
+else if(cellIndex === 9) param = 'pmc';
+else if(cellIndex === 10) param = 'team';
+else if(cellIndex === 11) param = 'backlog';
+else if(cellIndex === 12) param = 'region';
+else if(cellIndex === 13) param = 'unloading_point';
+else if(cellIndex === 14) param = 'p_q';
+else if(cellIndex === 15) param = 'quantity';
+else if(cellIndex === 16) param = 'quantity_expected';
+else if(cellIndex === 17) param = 'planned_vehicle_qty';
+else if(cellIndex === 18) param = 'eta_dicv';
+else if(cellIndex === 19) param = 'truck_details';
+else if(cellIndex === 20) param = 'shortage_reason';
+else if(cellIndex === 21) param = 'status';
+
+var obj = {};
+obj[param] = value;
+
+console.log(JSON.stringify(obj));
 
 
   partNumber = json['part_number'];
 
-  var url = "https://daimler-backend.herokuapp.com/api/parts/" + partNumber;
+  var url = "https://daimler-backend.herokuapp.com/api/parts/" + partNumber + "/";
 
   var xhr = new XMLHttpRequest();
 
@@ -431,6 +438,7 @@ if(cellIndex === 21) param = 'status';
 xhr.open('PATCH', url, true);
 
 xhr.setRequestHeader('Authorization','Token '+token);
+xhr.setRequestHeader('Content-Type', 'application/json');
 
 // Set up a handler for when the request finishes.
 xhr.onload = function () {
@@ -444,7 +452,7 @@ xhr.onload = function () {
 };
 
 // Send the Data.
-xhr.send(formData);
+xhr.send(JSON.stringify(obj));
 }
 
 
