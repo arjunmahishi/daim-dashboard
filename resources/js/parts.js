@@ -202,20 +202,20 @@ if(json.length>0)
 
         if(parts[prop]===true)
         {
-          cells[1].innerHTML = "<img src='resources/images/filled_star.png' id='image' onClick='editCell'>";
+          cells[3].innerHTML = "<img src='resources/images/filled_star.png' id='image' onClick='editCell'>";
         }
          else
             {
-          cells[1].innerHTML = "<img src='resources/images/star2.png' id='image' onClick='editCell'>";
+          cells[3].innerHTML = "<img src='resources/images/star2.png' id='image' onClick='editCell'>";
             }
         }
 
 
     else if(prop === 'supplier_name'){
-        cells[2].innerText = parts[prop];
+        cells[1].innerText = parts[prop];
         }
     else if(prop === 'shop'){
-        cells[3].innerText = parts[prop];
+        cells[2].innerText = parts[prop];
         }
     else if(prop === "status"){
 
