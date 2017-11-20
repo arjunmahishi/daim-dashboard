@@ -1,7 +1,7 @@
 var urlnav="https://daimler-backend.herokuapp.com/rest-auth/logout/"
 $("#uname").text(sessionStorage.name);
 $("#uemail").text(sessionStorage.email);
-$("#sos").click(function(event){
+$("#sos-nav").click(function(event){
      window.location.replace("/sos-dashboard.html");
 });
 $('#hdt-nav').click(function () {
@@ -37,7 +37,7 @@ $('#casting-and-forging-nav').click(function () {
     window.location.replace("/critical-list-detail.html");
 });
 
-$('#logout').click(function(){
+$('#logout-nav').click(function(){
   var xhr = new XMLHttpRequest();
   xhr.open('POST', urlnav, true);
 
