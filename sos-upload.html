@@ -12,12 +12,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body style="background-color: #424242;">
+<body id="bod" style="background-color: #424242;">
     <!--Import jQuery before materialize.js-->
+    <ul id="slide-out" class="side-nav fixed">
+            <li>
+                <div class="user-view">
+                    <div class="background" style="background-color: #424242; ">
+                    </div>
+                    <img class="circle" src="resources/images/user.png">
+                    <a href="#!name"><span id= "uname" class="white-text name">John Doe</span></a>
+                    <a href="#!email"><span id ="uemail" class="white-text email">jdandturk@gmail.com</span></a>
+                </div>
+            </li>
+            <li><a href="#!" id= "sos-nav">SOS</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Critical List</a></li>
+            <li><a href="#!" id= "mdt-nav" >MDT</a></li>
+            <li><a href="#!" id= "hdt-nav" >HDT</a></li>
+            <li><a href="#!" id= "axle-nav">Axel</a></li>
+            <li><a href="#!" id= "casting-and-forging-nav">Casting and forging</a></li>
+            <li><a href="#!" id="transmission-nav" >Transmission</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Account</a></li>
+            <li><a class="waves-effect" href="#!" id= "logout-nav">Logout</a></li>
+        </ul>
     <script src="/resources/js/checktoken.js"></script>
     <nav>
         <div class="nav-wrapper" style="background-color: #00897b;">
             <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
     </nav>
     <div class=container>
@@ -66,6 +93,7 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="/resources/js/sos-upload.js"></script>
+    <script src="/resources/js/navbar.js"></script>
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -83,6 +111,19 @@
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>
+            $(document).ready(function() {
+                $(".button-collapse").sideNav();
+            });
+            $('.button-collapse').sideNav({
+                menuWidth: 230, // Default is 300
+                edge: 'left', // Choose the horizontal origin
+                closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                draggable: true, // Choose whether you can drag to open on touch screens,
+
+            });
+
+        </script>
 </body>
 
 </html>
