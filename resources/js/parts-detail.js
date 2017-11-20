@@ -1,6 +1,7 @@
 var url = "https://daimler-backend.herokuapp.com/api/parts/";
-var token = "3d35519e0f437d19e8f625c143bb63a7989753a8";
+var token = sessionStorage.tokenid || "83cc351e4ec002a30f5fbe3e768cc4874263e9dd";
 console.log(token);
+
 var json;
 var today = new Date();
 var dd = today.getDate();
@@ -209,11 +210,11 @@ var j=0;
       {
         if(parts[prop]===true)
         {
-          cells[j].innerHTML = "<img src='resources/images/filled_star.png' id='image' onClick='demo'>";
+          cells[j].innerHTML = "<img src='resources/images/filled_star.png' id='image'>";
         }
         else
         {
-          cells[j].innerHTML = "<img src='resources/images/star2.png' id='image' onClick='demo'>";
+          cells[j].innerHTML = "<img src='resources/images/star2.png' id='image'>";
         }
       }
       else
@@ -267,6 +268,7 @@ function addItems(list){
 }
 
 function editCell(event){
+
   if(event.target.getElementsByTagName('img').length > 0){
 
         var rowIndex = event.target.parentNode.rowIndex;
@@ -285,7 +287,28 @@ function editCell(event){
     }
 
     //alert(imageSource.substr(imageSource.lastIndexOf('/') + 1));
-  }else{
+  }else if(event.target.tagName === 'IMG'){
+      var rowIndex = event.target.parentNode.parentNode.rowIndex;
+      console.log(rowIndex);
+      rowIndex -= 1;
+      var imageSource = event.target.src;
+      var fileName = imageSource.substr(imageSource.lastIndexOf('/') + 1);
+      if(fileName === "star2.png"){
+      star(rowIndex);
+      event.target.src = "resources/images/filled_star.png";
+
+    }
+    else{
+      unStar(rowIndex);
+      event.target.src = "resources/images/star2.png";
+    }
+
+
+  }
+
+  else{
+
+
     event.target.setAttribute('class', 'modal-trigger');
     event.target.setAttribute('href', '#modal1');
 
@@ -295,6 +318,13 @@ function editCell(event){
     var headings = document.getElementsByTagName('th');
     console.log(headings);
     $('#property_type').text(headings[columnNumber + 7].innerText);
+
+    $('#done-btn').click(function(){
+    var value = $('#field').val();
+    // alert(columnNumber);
+
+    updateField(columnNumber, value);
+    });
 
   }
 }
@@ -362,7 +392,59 @@ xhr.onload = function () {
 // Send the Data.
 xhr.send(formData);
 
+}
 
+function updateField(cellIndex, value){
+
+var param;
+
+if(cellIndex === 0) param = 'part_number';
+if(cellIndex === 2) param = 'description';
+if(cellIndex === 3) param = 'supplier_name';
+if(cellIndex === 4) param = 'variants';
+if(cellIndex === 5) param = 'count';
+if(cellIndex === 6) param = 'reported_on';
+if(cellIndex === 7) param = 'short_on';
+if(cellIndex === 8) param = 'shop';
+if(cellIndex === 9) param = 'pmc';
+if(cellIndex === 10) param = 'team';
+if(cellIndex === 11) param = 'backlog';
+if(cellIndex === 12) param = 'region';
+if(cellIndex === 13) param = 'unloading_point';
+if(cellIndex === 14) param = 'p_q';
+if(cellIndex === 15) param = 'quantity';
+if(cellIndex === 16) param = 'quantity_expected';
+if(cellIndex === 17) param = 'planned_vehicle_qty';
+if(cellIndex === 18) param = 'eta_dicv';
+if(cellIndex === 19) param = 'truck_details';
+if(cellIndex === 20) param = 'shortage_reason';
+if(cellIndex === 21) param = 'status';
+
+
+  partNumber = json['part_number'];
+
+  var url = "https://daimler-backend.herokuapp.com/api/parts/" + partNumber;
+
+  var xhr = new XMLHttpRequest();
+
+// Open the connection.
+xhr.open('PATCH', url, true);
+
+xhr.setRequestHeader('Authorization','Token '+token);
+
+// Set up a handler for when the request finishes.
+xhr.onload = function () {
+  console.log(xhr.status);
+  if (xhr.status === 200) {
+    alert('successful');
+  }
+  else {
+    alert('An error occurred!');
+  }
+};
+
+// Send the Data.
+xhr.send(formData);
 }
 
 

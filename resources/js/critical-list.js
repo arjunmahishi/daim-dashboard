@@ -1,4 +1,3 @@
-//var url = "https://daimler-backend.herokuapp.com/critical_list/";
 
 
 

@@ -1,6 +1,6 @@
 var url = "https://daimler-backend.herokuapp.com/api/parts/?ordering=short_on,-status&shop=";
 
-var token = sessionStorage.tokenid || "3d35519e0f437d19e8f625c143bb63a7989753a8";
+var token = sessionStorage.tokenid || "83cc351e4ec002a30f5fbe3e768cc4874263e9dd";
 console.log(token);
 var json;
 var today = new Date();
@@ -107,7 +107,7 @@ $('#sort-selection').click(function(){
 });
 
 
-$('#next').click(function(){
+$('#next').click(function(e){
   var d= $('#date').text();
   dd= parseInt(d.substr(8,9));
   dd++;
@@ -115,8 +115,9 @@ $('#next').click(function(){
   date = yyyy + '-' + mm + '-' + dd;
 
   getData();
+  e.stopPropagation();
 });
-$('#prev').click(function(){
+$('#prev').click(function(e){
   var d= $('#date').text();
   dd= parseInt(d.substr(8,9));
 
@@ -124,6 +125,7 @@ $('#prev').click(function(){
   if(dd==0) dd=31;
   date = yyyy + '-' + mm + '-' + dd;
   getData();
+  e.stopPropagation();
 });
 
 

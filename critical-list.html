@@ -29,11 +29,11 @@
             <div class="divider"></div>
         </li>
         <li><a class="subheader">Critical List</a></li>
-            <li><a href="#!" id= "mdt" >MDT</a></li>
-            <li><a href="#!" id= "hdt" >HDT</a></li>
-            <li><a href="#!" id= "axel">Axel</a></li>
-            <li><a href="#!" id= "casting-and-forging">Casting and forging</a></li>
-            <li><a href="#!" id="transmission" >Transmission</a></li>
+            <li><a href="#!" id= "mdt-nav" >MDT</a></li>
+            <li><a href="#!" id= "hdt-nav" >HDT</a></li>
+            <li><a href="#!" id= "axle-nav">Axel</a></li>
+            <li><a href="#!" id= "casting-and-forging-nav">Casting and forging</a></li>
+            <li><a href="#!" id="transmission-nav" >Transmission</a></li>
             <li>
             <div class="divider"></div>
         </li>
@@ -56,7 +56,7 @@
     <div class="container" id="card-cont">
         <div class="col s12 m6">
             <div class="card hoverable">
-                
+
                 <table class="table centered" id="table">
                     <thead>
                         <tr>
@@ -138,7 +138,7 @@
         var data = [];
         var json;
 
-        var token = sessionStorage.tokenid;
+        var token = sessionStorage.tokenid || "83cc351e4ec002a30f5fbe3e768cc4874263e9dd";
 
         var today = new Date();
         var dd = today.getDate();
@@ -194,6 +194,8 @@
             var dicv = [];
 
             for (var i = 0; i < json.length; i++) {
+
+                if(i==4) break;
 
                 for (var prop in json[i]) {
                     if (prop == 'part_number')
