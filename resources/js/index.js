@@ -7,6 +7,7 @@ var json;
 $(function () {
 
     $('#login-form').submit(function (e) {
+        $('#login-card').attr("display","none");
         e.preventDefault();
         var formBody = $('#login-form').serialize();
         fetch(url + "api-token-auth/", {

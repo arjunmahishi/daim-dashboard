@@ -43,11 +43,26 @@
             </div>
         </div>
 
+
         <h4 style="color: white; text-align: center; margin-bottom: 20px; font-family: myFirstFont;">Daimler Login</h4>
+        <div style="text-align: center; display: none;">
+            <div class="preloader-wrapper active" style="align-items: center;">
+                <div class="spinner-layer spinner-red-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                    <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container" style="vertical-align: middle;">
             <main>
                 <div class="container">
                     <div class="card hoverable" style="margin: auto;">
+
                         <form id="login-form" method="post" action="">
                             <div class="row">
                                 <div class="input-field col s12" style="padding-right: 20px;">
@@ -82,7 +97,7 @@
 
                 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
                 <script src="/resources/js/index.js"></script>
-                
+
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
                 <script>$(document).ready(function(){
                         // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
