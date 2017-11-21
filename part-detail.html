@@ -240,5 +240,15 @@ $('.collapsible').collapsible();
 
             });
         </script>
+        <script>
+            $(document).ready(function () {
+                window.history.pushState('https://daimler-frontend.netlify.com/critical-list-detail.html','back page','https://daimler-frontend.netlify.com/critical-list-detail.html');
+                window.history.pushState('https://daimler-frontend.netlify.com/part-detail.html','back page','https://daimler-frontend.netlify.com/part-detail.html');
+                window.addEventListener("popstate", function(e){
+                    if(document.URL.indexOf("https://daimler-frontend.netlify.com/critical-list-detail.html")>=0){document.location.href=document.location}
+
+                });
+            });
+        </script>
     </body>
 </html>
