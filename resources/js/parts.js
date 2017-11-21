@@ -343,6 +343,7 @@ function updateChart(json) {
             var ctx = document.getElementById("myChart").getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
+                scaleFontColor: '#fffffff',
                 data: {
                     labels: ["part 1","part 2","part 3","part4"],
                     datasets: [{
@@ -366,6 +367,7 @@ function updateChart(json) {
                     ],
                 },
                 options: {
+                    scaleFontColor: '#ffffff',
                     responsive: "true",
                     layout: {
                         padding: {
@@ -375,9 +377,20 @@ function updateChart(json) {
                             bottom: 10
                         }
                     },
+                    legend: {
+                            labels: {
+                                fontColor: "#ffffff",
+                            }
+                        },
                     scales: {
+                        xAxes: [{
+                                ticks: {
+                                    fontColor: "#ffffff",
+                                }
+                            }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "#ffffff",
                                 beginAtZero: true
                             }
                         }]
