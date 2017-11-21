@@ -119,3 +119,9 @@
  }
  //PUB:BJZy3aVYrxbEKeEEqRReRPs_239ZUxj5LCm_E-LRiMrz47IA51VmCyC8A4XpvuaoY5hjYhJ8TT5eA5dEq7F0BZ8
  //PRIV:5tOi9dKR77pqY0uQ5H2PqQbR6YMG1c75A2XgR7izOcA
+
+
+
+self.addEventListener("fetch", (event)=>{
+	console.log(event);
+})

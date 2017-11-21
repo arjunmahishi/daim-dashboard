@@ -53,3 +53,18 @@ main {
     max-height: inherit;
     max-width: inherit;
 }
+
+.sub-head{
+    color: #fff;
+}
+
+.black-text {
+    color: #fff !important;
+    background: #00677f;
+}
+
+.card .card-title {
+    font-size: 24px;
+    font-weight: 300;
+    color: #fff;
+}
