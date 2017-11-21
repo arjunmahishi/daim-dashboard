@@ -56,7 +56,7 @@ $(function () {
         
         xhr.onload=function(){
            if(xhr.status=200)
-           alert("password reset. Check your mail");
+           alert("Password is sucessfully resetted. Check your mail");
         }
         xhr.send(formData);
 
