@@ -192,6 +192,9 @@
             var data = [];
             var json;
 
+            //global variable that holds a reference to the node that displays parts
+            var tableRow;
+
             var token = sessionStorage.tokenid || "83cc351e4ec002a30f5fbe3e768cc4874263e9dd";
 
             var today = new Date();
@@ -213,8 +216,84 @@
             getData();
 
 
+            $(function(){
+
+                $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 15, // Creates a dropdown of 15 years to control year,
+                today: 'Today',
+                clear: 'Clear',
+                close: 'Ok',
+                closeOnSelect: true // Close upon selecting a date,
+              });
+
+                //For storing a reference to the node that displays parts
+                  var tableContainer = document.getElementById('table');
+                  var childNodes = tableContainer.children;
+                  console.log(childNodes);
+
+                   tableRow = childNodes[1].childNodes[1];
+
+
+            //to select a date
+            $('#sort-selection').click(function(){
+
+              var sortsCard = document.getElementById('sort-choices');
+
+              if($('#sort-choices').css('display') == 'none') {
+                sortsCard.style.removeProperty('display');
+                  console.log(sortsCard.children);
+
+              }
+              else{
+                $('#sort-choices').css('display','none');
+
+              }
+
+              $('#apply-btn').click(function(){
+                  sortsCard.setAttribute('style','display: none;');
+
+                  var sortSelected = $('input[name=dates]:checked').next().text();
+                  console.log(sortSelected);
+
+                  var year = $('.datepicker').pickadate('picker').get('highlight', 'yyyy');
+                  var month = $('.datepicker').pickadate('picker').get('highlight', 'mm');
+                  var day = $('.datepicker').pickadate('picker').get('highlight', 'dd');
+                  date = year + '-' + month + '-' + day;
+                  sessionStorage.date = date;
+
+
+
+                  getData();
+              });
+            });
+
+            $('#next').click(function(e){
+              var d= $('#date').text();
+              dd= parseInt(d.substr(8,9));
+              dd++;
+              if(dd==31) dd=1;
+              date = yyyy + '-' + mm + '-' + dd;
+
+              getData();
+              e.stopPropagation();
+            });
+            $('#prev').click(function(e){
+              var d= $('#date').text();
+              dd= parseInt(d.substr(8,9));
+
+              dd--;
+              if(dd==0) dd=31;
+              date = yyyy + '-' + mm + '-' + dd;
+              getData();
+              e.stopPropagation();
+            });
+        });
+
+
+
             function getData() {
-                fetch(url + "&short_on=" + date + "&status=3", {
+                fetch(url + "&short_on=" + date, {
                     method: "get",
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -227,7 +306,7 @@
                             console.log(json);
                             dataForChart(json);
                             addItems(json);
-                            updateDisplay(json);
+                            updateDisplay(json,date);
 
                         });
                     } else {
@@ -322,7 +401,10 @@
                 });
             }
 
-            function updateDisplay(json) {
+            function updateDisplay(json, date) {
+
+                $('#date').text(date);
+
                 var container = document.getElementById('table');
                 var children = container.children;
                 var partContainer = children[1] //tbody
@@ -379,7 +461,6 @@
 
                 var tableContainer = document.getElementById('table');
                 var childNodes = tableContainer.children;
-                var tableRow = childNodes[1].childNodes[1];
                 console.log(childNodes);
 
                 var tableBody = childNodes[1];

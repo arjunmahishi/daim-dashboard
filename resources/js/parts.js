@@ -26,7 +26,7 @@ if(mm<10) {
 var selection = sessionStorage.selection || "MDT ENGINE";
 console.log(selection);
 var shopType = selection; // For card Title
-var date = today;
+var date = sessionStorage.date || today;
 selection = selection.replace(/ /g,'%20');
 
 date = yyyy + '-' + mm + '-' + dd;
