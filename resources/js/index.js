@@ -7,7 +7,9 @@ var json;
 $(function () {
 
     $('#login-form').submit(function (e) {
-        $('#login-card').attr("display","none");
+        $("#loginlabel").hide();
+        $("#login-card").hide();
+        $("#loader").show();
         e.preventDefault();
         var formBody = $('#login-form').serialize();
         fetch(url + "api-token-auth/", {
@@ -30,18 +32,21 @@ $(function () {
                     }).then(function (response) {
                         if (response.ok) {
                             response.json().then(function (json) {
+                                
                                 sessionStorage.tokenid = token;
                                 sessionStorage.email=json.email;
                                 sessionStorage.name=json.username;
                                 console.log(sessionStorage.tokenid);
-
+                                $("#loader").hide();
                                 window.location.replace("/select.html");
                             });
                         }
                     });
                 });
             } else {
-                console.log('Network request failed with response ' + response.status + ': ' + response.statusText);
+                $("#loader").hide();
+                alert("Wrong Credentials");
+                window.location.replace("/");
             }
         });
     });

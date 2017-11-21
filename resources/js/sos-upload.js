@@ -5,12 +5,15 @@ $(function () {
     var form = document.getElementById('file-form');
     var fileSelect = document.getElementById('file-select');
     var uploadButton = document.getElementById('upload-button');
-
+      
     form.onsubmit = function (event) {
-        event.preventDefault();
 
+        event.preventDefault();
+        $("#loader").show();
+        $("#upimage").hide();
+        $("#urpicture").hide();
         // Update button text.
-        uploadButton.innerHTML = 'Uploading...';
+        
 
         // Get the selected files from the input.
         var files = fileSelect.files;
@@ -55,8 +58,15 @@ $(function () {
             if (xhr.status === 201) {
                 // File(s) uploaded.
                 uploadButton.innerHTML = 'Upload';
+                $("#loader").hide();
+                
                 window.location.replace("/sos-dashboard.html");
+                alert("Upload Successful");
             } else {
+                $("#loader").hide();
+                
+
+                window.location.replace("/sos-upload.html");
                 alert('An error occurred!');
             }
         };
