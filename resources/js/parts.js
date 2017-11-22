@@ -554,7 +554,6 @@ $('#done-btn').click(function(){
     obj['shop'] = $('#shop').val();
 
     updateField(rowIndex, obj);
-    location.reload(true);
 });
 
 
@@ -582,7 +581,9 @@ xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.onload = function () {
   console.log(xhr.status);
   if (xhr.status === 200) {
-    alert('successful');
+    //alert('successful');
+    location.reload(true);
+
   }
   else {
     alert('An error occurred!');
