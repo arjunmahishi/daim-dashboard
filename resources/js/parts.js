@@ -504,7 +504,6 @@ function populateAndEditModal(rowIndex){
 // populate the input fields with values from the api response.
     $('#part_name').text(shopType);
     $('#part_number').val(json[rowIndex-1]['part_number']);
-    $('#starred').val(json[rowIndex-1]['starred']);
     $('#description').val(json[rowIndex-1]['description']);
     $('#supplier_name').val(json[rowIndex-1]['supplier_name']);
     $('#variants').val(json[rowIndex-1]['variants']);
@@ -525,6 +524,17 @@ function populateAndEditModal(rowIndex){
     $('#truck_details').val(json[rowIndex-1]['truck_details']);
     $('#shortage_reason').val(json[rowIndex-1]['shortage_reason']);
     $('#status').val(json[rowIndex-1]['status']);
+
+    if(json[rowIndex-1]['status'] === 3)
+        $('#critical-radio-btn').attr('checked','checked');
+    else if(json[rowIndex-1]['status'] === 2)
+        $('#warning-radio-btn').attr('checked','checked');
+        else
+            $('#normal-radio-btn').attr('checked','checked');
+
+
+
+
 
 //get the values from the fields
 var obj = {};
@@ -550,8 +560,27 @@ $('#done-btn').click(function(){
     obj['eta_dicv'] = $('#eta_dicv').val();
     obj['truck_details'] = $('#truck_details').val();
     obj['shortage_reason'] = $('#shortage_reason').val();
-    obj['status'] = $('#status').val();
     obj['shop'] = $('#shop').val();
+
+    // var warning = $('warning-radio-btn').isChecked();
+    // var critical = $('critical-radio-btn').isChecked();
+    // var normal = $('normal-radio-btn').isChecked();
+
+    // if(warning === true)
+    //     obj['status'] = 2;
+    // if(critical === true)
+    //     obj['status'] = 3;
+    // if(normal === true)
+    //     obj['status'] = 1;
+    var status = $('input[name=status]:checked').next().text();
+    if(status === "Warning")
+        obj['status'] = 2;
+    else if(status === 'Critical')
+        obj['status'] = 3;
+    else if(status === 'Normal')
+        obj['status'] = 1;
+
+
 
     updateField(rowIndex, obj);
 });

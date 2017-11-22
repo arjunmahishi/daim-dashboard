@@ -29,13 +29,6 @@
                     </div>
                     <div class="row" style="margin-bottom: 0px;">
                         <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="starred" type="text" name="username" class="validate">
-                            <label for="field">Starred</label>
-
-                                                            </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
                             <input placeholder="Placeholder" id="description" type="text" name="username" class="validate">
                             <label for="field">Description</label>
 
@@ -167,12 +160,20 @@
 
                                                             </div>
                     </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="status" type="text" name="username" class="validate">
-                            <label for="field">Status</label>
-
-                                                            </div>
+                    <div><p>Status:</p></div>
+                    <div>
+                    <p>
+                      <input class="with-gap" name="status" type="radio" id="critical-radio-btn" />
+                      <label for="critical-radio-btn">Critical</label>
+                    </p>
+                    <p>
+                      <input class="with-gap" name="status" type="radio" id="normal-radio-btn" />
+                      <label for="normal-radio-btn">Normal</label>
+                    </p>
+                    <p>
+                      <input class="with-gap" name="status" type="radio" id="warning-radio-btn"  />
+                      <label for="warning-radio-btn">Warning</label>
+                    </p>
                     </div>
 
                 </form>
@@ -246,17 +247,16 @@
             <div class="card-content white-text">
                 <div class="row" style="margin-bottom: 0px;">
                     <div class="col s3 m3">
-                        <i class="material-icons prefix" style=" margin-top: 35px;" id="prev">arrow_back</i>
+                        <i class="material-icons prefix" style=" margin-top: 20px;" id="prev">arrow_back</i>
                     </div>
                     <div class="col s6 m6">
                         <div>
                             <span class="card-title" style="text-align: center;" id="shop_type">Part Type</span>
-                            <span class="card-title" style="text-align: center;" id="day">Today</span>
                         </div>
                         <p style="text-align: center" id="date">10/19/2017</p>
                     </div>
                     <div class="col s3 m3">
-                        <i class="material-icons prefix" style="float: right; margin-top: 35px;" id="next">arrow_forward</i>
+                        <i class="material-icons prefix" style="float: right; margin-top: 20px;" id="next">arrow_forward</i>
                     </div>
                 </div>
             </div>
