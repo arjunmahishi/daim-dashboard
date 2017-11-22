@@ -42,7 +42,7 @@
         </ul>
         <script src="/resources/js/checktoken.js"></script>
         <nav>
-            <div class="nav-wrapper" style="background-color: #00897b;">
+            <div class="nav-wrapper" style="background-color: #00677F;">
                 <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
                 <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
@@ -77,21 +77,33 @@
         </div>
         <div class="container" id= "urpicture">
 
-            <div class="row">
+            <div class="row" style="margin-bottom: 0px;">
                 <div class="col s12 m6">
                     <div class="card white hoverable" style="margin: auto;">
                         <div class="card-content black-text">
                             <span class="card-title">Your file:</span>
                             <img src="http://placehold.it/180" alt="your image" id="blah" class="responsive-img">
                             <br/>
-                            <div class="row">
+                            <div class="row" style="margin-bottom: 0px;">
                                 <form class="col s12" method="POST" id="file-form">
-                                    <div class="row">
+                                    <div class="row" style="margin-bottom: 0px;">
                                         <div class="input-field col s12">
                                             <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                            <label for="textarea1" style="text-decoration-color: aliceblue">Enter description here!</label>
+                                            <label for="textarea1" style="color: white;">Enter description here!</label>
                                         </div>
                                     </div>
+                                    <div class="row" style="margin-bottom: 0px;">
+                                        <div class="input-field col s12" style="color: white;">
+                                            <select multiple>
+                                                <option value="" disabled selected >Choose users</option>
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                            </select>
+                                            <label style="color: white;">Subscription for users</label>
+                                        </div>
+                                    </div>
+                                    <br/>
                                     <div>
                                         <button type="submit" id="upload-button" class="btn" style="margin-top: 5px;">Upload</button>
                                     </div>
@@ -129,6 +141,7 @@
         <script>
             $(document).ready(function() {
                 $(".button-collapse").sideNav();
+                $('select').material_select();
             });
             $('.button-collapse').sideNav({
                 menuWidth: 230, // Default is 300
