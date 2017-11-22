@@ -283,6 +283,50 @@ function addItems(list){
 
 function editCell(event){
 
+    if(event.target.getElementsByTagName('img').length > 0){
+
+        event.stopPropagation();
+
+        var rowIndex = event.target.parentNode.rowIndex;
+        rowIndex -= 1;
+    var images = event.target.getElementsByTagName('img');
+    var imageSource = images[0].src;
+    var fileName = imageSource.substr(imageSource.lastIndexOf('/') + 1);
+    if(fileName === "star2.png"){
+      star(rowIndex);
+      images[0].src = "resources/images/filled_star.png";
+
+    }
+    else{
+      unStar(rowIndex);
+      images[0].src = "resources/images/star2.png";
+    }
+
+    //alert(imageSource.substr(imageSource.lastIndexOf('/') + 1));
+  }else if(event.target.tagName === 'IMG'){
+    event.stopPropagation();
+      var rowIndex = event.target.parentNode.parentNode.rowIndex;
+      console.log(rowIndex);
+      rowIndex -= 1;
+      var imageSource = event.target.src;
+      var fileName = imageSource.substr(imageSource.lastIndexOf('/') + 1);
+      if(fileName === "star2.png"){
+      star(rowIndex);
+      event.target.src = "resources/images/filled_star.png";
+
+    }
+    else{
+      unStar(rowIndex);
+      event.target.src = "resources/images/star2.png";
+    }
+
+
+  }
+else{
+        event.target.setAttribute('class', 'modal-trigger');
+        event.target.setAttribute('href', '#modal1');
+
+
         var rowIndex = event.target.parentNode.rowIndex;
         var tableContainer = document.getElementById('table');
         var childNodes = tableContainer.children;
@@ -290,6 +334,9 @@ function editCell(event){
         var rows = tableBody.children;
 
         console.log(rows);
+
+        populateAndEditModal(rowIndex);
+
 
         var selectedRow = rows[rowIndex-1];
         var cell = selectedRow.childNodes[1];
@@ -299,22 +346,11 @@ function editCell(event){
         // alert(partNumber);
 
         sessionStorage.partNumber = partNumber;
-        window.location.replace('/part-detail.html');
 
-   if(event.target.tagName === 'img'){
+}
 
-    var imageSource = event.target.src;
-    var fileName = imageSource.substr(imageSource.lastIndexOf('/') + 1);
-    if(fileName === "star2.png"){
-      star(rowIndex);
-      event.target.src = "resources/images/filled_star.png";
+        //window.location.replace('/part-detail.html');
 
-    }
-    else{
-      unStar(rowIndex);
-      event.target.src = "resources/images/star2.png";
-    }
-  }
 }
 
 function updateChart(json) {
@@ -398,6 +434,165 @@ function updateChart(json) {
                 }
             });
         }
+
+function star(rowIndex){
+  var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
+
+  var formData = new FormData();
+
+  partNumber = json[rowIndex]['part_number'];
+
+  formData.append('part_number', partNumber);
+
+  var xhr = new XMLHttpRequest();
+
+// Open the connection.
+xhr.open('PATCH', url, true);
+
+xhr.setRequestHeader('Authorization','Token '+token);
+
+// Set up a handler for when the request finishes.
+xhr.onload = function () {
+  console.log(xhr.status);
+  if (xhr.status === 200) {
+    alert('successful');
+  }
+  else {
+    alert('An error occurred!');
+  }
+};
+
+// Send the Data.
+xhr.send(formData);
+}
+
+function unStar(rowIndex){
+
+  var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
+
+  var formData = new FormData();
+
+  partNumber = json[rowIndex]['part_number'];
+
+  formData.append('part_number', partNumber);
+
+  var xhr = new XMLHttpRequest();
+
+// Open the connection.
+xhr.open('DELETE', url, true);
+
+xhr.setRequestHeader('Authorization','Token '+token);
+
+// Set up a handler for when the request finishes.
+xhr.onload = function () {
+  console.log(xhr.status);
+  if (xhr.status === 200) {
+    alert('successful');
+  }
+  else {
+    alert('An error occurred!');
+  }
+};
+
+// Send the Data.
+xhr.send(formData);
+
+}
+
+function populateAndEditModal(rowIndex){
+
+// populate the input fields with values from the api response.
+    $('#part_name').text(shopType);
+    $('#part_number').val(json[rowIndex-1]['part_number']);
+    $('#starred').val(json[rowIndex-1]['starred']);
+    $('#description').val(json[rowIndex-1]['description']);
+    $('#supplier_name').val(json[rowIndex-1]['supplier_name']);
+    $('#variants').val(json[rowIndex-1]['variants']);
+    $('#count').val(json[rowIndex-1]['count']);
+    $('#reported_on').val(json[rowIndex-1]['reported_on']);
+    $('#short_on').val(json[rowIndex-1]['short_on']);
+    $('#shop').val(json[rowIndex-1]['shop']);
+    $('#pmc').val(json[rowIndex-1]['pmc']);
+    $('#team').val(json[rowIndex-1]['team']);
+    $('#backlog').val(json[rowIndex-1]['backlog']);
+    $('#region').val(json[rowIndex-1]['region']);
+    $('#unloading_point').val(json[rowIndex-1]['unloading_point']);
+    $('#p_q').val(json[rowIndex-1]['p_q']);
+    $('#quantity').val(json[rowIndex-1]['quantity']);
+    $('#quantity_expected').val(json[rowIndex-1]['quantity_expected']);
+    $('#planned_vehicle_qty').val(json[rowIndex-1]['planned_vehicle_qty']);
+    $('#eta_dicv').val(json[rowIndex-1]['eta_dicv']);
+    $('#truck_details').val(json[rowIndex-1]['truck_details']);
+    $('#shortage_reason').val(json[rowIndex-1]['shortage_reason']);
+    $('#status').val(json[rowIndex-1]['status']);
+
+//get the values from the fields
+var obj = {};
+
+$('#done-btn').click(function(){
+    obj['part_number'] = $('#part_number').val();
+    obj['starred'] = $('#starred').val();
+    obj['description'] = $('#description').val();
+    obj['supplier_name'] = $('#supplier_name').val();
+    obj['variants'] = $('#variants').val();
+    obj['count'] = $('#count').val();
+    obj['reported_on'] = $('#reported_on').val();
+    obj['short_on'] = $('#short_on').val();
+    obj['pmc'] = $('#pmc').val();
+    obj['team'] = $('#team').val();
+    obj['backlog'] = $('#backlog').val();
+    obj['region'] = $('#region').val();
+    obj['unloading_point'] = $('#unloading_point').val();
+    obj['p_q'] = $('#p_q').val();
+    obj['quantity'] = $('#quantity').val();
+    obj['quantity_expected'] = $('#quantity_expected').val();
+    obj['planned_vehicle_qty'] = $('#planned_vehicle_qty').val();
+    obj['eta_dicv'] = $('#eta_dicv').val();
+    obj['truck_details'] = $('#truck_details').val();
+    obj['shortage_reason'] = $('#shortage_reason').val();
+    obj['status'] = $('#status').val();
+    obj['shop'] = $('#shop').val();
+
+    updateField(rowIndex, obj);
+    location.reload(true);
+});
+
+
+}
+
+function updateField(rowIndex,obj){
+
+console.log(JSON.stringify(obj));
+
+
+  partNumber = json[rowIndex-1]['part_number'];
+  console.log(partNumber);
+
+  var url = "https://daimler-backend.herokuapp.com/api/parts/" + partNumber + "/";
+
+  var xhr = new XMLHttpRequest();
+
+// Open the connection.
+xhr.open('PATCH', url, true);
+
+xhr.setRequestHeader('Authorization','Token '+token);
+xhr.setRequestHeader('Content-Type', 'application/json');
+
+// Set up a handler for when the request finishes.
+xhr.onload = function () {
+  console.log(xhr.status);
+  if (xhr.status === 200) {
+    alert('successful');
+  }
+  else {
+    alert('An error occurred!');
+  }
+};
+
+// Send the Data.
+xhr.send(JSON.stringify(obj));
+}
+
 
 
 
