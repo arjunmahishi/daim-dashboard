@@ -1,5 +1,5 @@
 var urlnav="https://daimler-backend.herokuapp.com/rest-auth/logout/"
-$("#uname").text(sessionStorage.name);
+$("#uname").text(sessionStorage.username);
 $("#uemail").text(sessionStorage.email);
 $("#sos-nav").click(function(event){
      window.location.replace("/sos-dashboard.html");
