@@ -2,8 +2,12 @@ var token = sessionStorage.tokenid;
 var json;
 var url = "https://daimler-backend.herokuapp.com/api/comments/?posted_by=&sosid=" + sessionStorage.sosid + "&date=&partid=";
 var urlpost = "https://daimler-backend.herokuapp.com/api/comments/";
+var urlsos="https://daimler-backend.herokuapp.com/api/sos/"+sessionStorage.sosid+"/";
 $(function () {
     $("#description").text(sessionStorage.desc);
+    console.log(sessionStorage.status);
+    if(sessionStorage.status=="true")
+        $("#status").prop('checked',true);
     fetch(url, {
         method: "get",
         headers: {
@@ -52,7 +56,28 @@ $(function () {
     $("#blah").click(function(event){
   	if(sessionStorage.file!=undefined)
   	window.open(sessionStorage.file);
-  })
+  });
+    $("#status").change(function(){
+       var formData= new FormData();
+       formData.append("name",sessionStorage.name);
+       formData.append("content",sessionStorage.desc);
+       formData.append("level",sessionStorage.level);
+       formData.append("status",this.checked);
+       var xhrsos= new XMLHttpRequest();
+       xhrsos.open('PUT',urlsos,true);
+       //xhrsos.setRequestHeader('Content-Type','multipart/form-data');
+       xhrsos.setRequestHeader('Authorization', 'Token ' + token);
+        xhrsos.onload = function () {
+            console.log(xhrsos.status);
+            if (xhrsos.status === 200) {
+                window.location.replace("/sos-dashboard.html");
+                alert("Thread status changed");
+            } else {
+                alert('An error occurred!');
+            }
+        };
+        xhrsos.send(formData);
+    });
     $("#send").click(function (event) {
         event.preventDefault();
         var text = $("#icon_prefix").val();
