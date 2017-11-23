@@ -5,7 +5,7 @@ var urlpost = "https://daimler-backend.herokuapp.com/api/comments/";
 var urlsos="https://daimler-backend.herokuapp.com/api/sos/"+sessionStorage.sosid+"/";
 $(function () {
     console.log(sessionStorage.choice);
-    console.log(sessionStorage.username)
+    
     if(sessionStorage.choice!="ShowToggle")
         $("#toggle").hide();
     $("#description").text(sessionStorage.desc);
@@ -44,7 +44,7 @@ $(function () {
 
     function addItems(json) {
         
-        for (var i = json.length - 1; i != 0; i--) {
+        for (var i = 0; i <json.length-1; i++) {
 
             $("#message").text(json[i].content);
             $("#user").text(json[i].posted_by);
