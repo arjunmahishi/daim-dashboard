@@ -57,7 +57,7 @@
                             <img src="http://placehold.it/180" alt="your image" id="blah" class="responsive-img">
                             <br/>
 <!--                            Card to make the thread closed or open-->
-                            <div class="card blue-grey darken-1">
+                            <div id="toggle" class="card blue-grey darken-1">
                                 <div class="card-content white-text">
                                     <p >This thread is now:</p>
                                     <div class="switch" style="align-content: center; margin-top: 10px;">
@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" id="messageContainer" style="min-width: 100px; margin-bottom: 0px;">
+                            <div hidden class="row" id="messageContainer" style="min-width: 100px; margin-bottom: 0px;">
                                 <div class="col s12 m12">
                                     <div class="card blue-grey darken-1">
                                         <div class="card-content white-text">
@@ -99,7 +99,7 @@
                         </div>
 
                     </div>
-                    <div class="card">
+                    <div hidden id= "input" class="card">
                         <div class="row" style="margin-bottom: 0px position: fixed; bottom: 0px;">
                             <form class="col s12" method="POST" id="message-form">
                                 <div class="input-field col s12">
@@ -117,6 +117,7 @@
                             </form>
                         </div>
                     </div>
+                    <h3 hidden id="data-h">Thread is closed</h3>
                 </div>
             </div>
         </div>

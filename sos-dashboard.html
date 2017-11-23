@@ -49,7 +49,23 @@
     <div style="text-align: center; color: white;">
         <h4><b>SOS dashboard:</b></h4>
     </div>
-    <div class="container" id="container">
+    <h3 hidden id="data-h">No Data</h3>
+    <div style="text-align: center; display: none;" id="loader">
+        <div class="preloader-wrapper active" style="align-items: center;">
+            <div class="spinner-layer spinner-red-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div hidden class="container" id="container">
         <div class="card hoverable" style="margin: auto; margin-top: 20px; cursor: pointer;">
             <form id="login-form" method="post" action="">
                 <div class="row" style="margin-bottom: 0px;">
@@ -60,7 +76,9 @@
                     </div>
                     <div class="col s9" style="padding: 5px;">
                         <b>Description:</b><br/>
+                        <p hidden id="index"></p>
                         <p hidden id="hidden"></p>
+
                         <p id="para" style="margin-right: 10px;">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec diam egestas, venenatis augue quis, rutrum lacus. Curabitur ultricies neque ornare laoreet vulputate. Sed ut odio pharetra, auctor nunc id, sodales purus. Nunc lobortis consequat sodales. Vestibulum cursus dolor quiss nulla efficitur, in dictum nisl ullamcorper.
                         </p>

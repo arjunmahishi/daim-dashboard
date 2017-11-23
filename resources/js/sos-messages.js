@@ -4,10 +4,18 @@ var url = "https://daimler-backend.herokuapp.com/api/comments/?posted_by=&sosid=
 var urlpost = "https://daimler-backend.herokuapp.com/api/comments/";
 var urlsos="https://daimler-backend.herokuapp.com/api/sos/"+sessionStorage.sosid+"/";
 $(function () {
+    console.log(sessionStorage.choice);
+    console.log(sessionStorage.username)
+    if(sessionStorage.choice!="ShowToggle")
+        $("#toggle").hide();
     $("#description").text(sessionStorage.desc);
     console.log(sessionStorage.status);
     if(sessionStorage.status=="true")
+    {
         $("#status").prop('checked',true);
+        $("#input").show();
+    }
+    
     fetch(url, {
         method: "get",
         headers: {
@@ -35,21 +43,32 @@ $(function () {
     })
 
     function addItems(json) {
+        
         for (var i = json.length - 1; i != 0; i--) {
+
             $("#message").text(json[i].content);
             $("#user").text(json[i].posted_by);
+            $("#messageContainer").show();
              if(json[i].media!= undefined)
            {
            	openlink(json[i].media);
            }
+            
             $("#messageContainer").clone().insertAfter("#messageContainer");
 
         }
+         $("#messageContainer").show();
         $("#message").text(json[i].content);
         $("#user").text(json[i].posted_by);
          if(json[i].media!= undefined)
            {
            	openlink(json[i].media);
+           }
+           if(sessionStorage.status=="false")
+           {
+                
+                $('#data-h').show();
+    
            }
 
     }
@@ -71,6 +90,8 @@ $(function () {
             console.log(xhrsos.status);
             if (xhrsos.status === 200) {
                 window.location.replace("/sos-dashboard.html");
+                $("#input").hide();
+                $('#data-h').show();
                 alert("Thread status changed");
             } else {
                 alert('An error occurred!');
