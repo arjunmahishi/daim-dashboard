@@ -1,4 +1,4 @@
-var url = "https://daimler-backend.herokuapp.com/api/critical_list/critical_parts/?";
+var url = "https://daimler-backend.herokuapp.com/api/critical_list/critical_parts/";
 
 var data = [];
 var json;
@@ -142,7 +142,7 @@ $(function () {
 });
 
 function getData() {
-                fetch(url + "&short_on=" + date, {
+                fetch(url, {
                     method: "get",
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -338,6 +338,8 @@ if (list.length > 0) {
 function editCell(event){
 
     if(event.target.tagName === 'IMG'){
+
+        var cell = event.target.parentNode;
       event.stopPropagation();
       var rowIndex = event.target.parentNode.parentNode.rowIndex;
       console.log(rowIndex);
@@ -345,19 +347,21 @@ function editCell(event){
       var imageSource = event.target.src;
       var fileName = imageSource.substr(imageSource.lastIndexOf('/') + 1);
       if(fileName === "star2.png"){
-      star(rowIndex);
-      event.target.src = "resources/images/filled_star.png";
+      star(cell,rowIndex);
+      // event.target.src= "resources/images/filled_star.png";
+      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
     }
     else{
-      unStar(rowIndex);
-      event.target.src = "resources/images/star2.png";
+      unStar(cell,rowIndex);
+      // event.target.src = "resources/images/star2.png";
+      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
     }
 
 
   }
 }
 
-function star(rowIndex){
+function star(cell,rowIndex){
   var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
 
   var formData = new FormData();
@@ -377,7 +381,8 @@ xhr.setRequestHeader('Authorization','Token '+token);
 xhr.onload = function () {
   console.log(xhr.status);
   if (xhr.status === 200) {
-    alert('successful');
+    //alert('successful');
+    cell.innerHTML = "<img src='resources/images/filled_star.png' id='image' onClick='editCell'>";
   }
   else {
     alert('An error occurred!');
@@ -388,7 +393,7 @@ xhr.onload = function () {
 xhr.send(formData);
 }
 
-function unStar(rowIndex){
+function unStar(cell,rowIndex){
 
   var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
 
@@ -409,7 +414,9 @@ xhr.setRequestHeader('Authorization','Token '+token);
 xhr.onload = function () {
   console.log(xhr.status);
   if (xhr.status === 200) {
-    alert('successful');
+    //alert('successful');
+    cell.innerHTML = "<img src='resources/images/star2.png' id='image' onClick='editCell'>";
+
   }
   else {
     alert('An error occurred!');
@@ -420,3 +427,5 @@ xhr.onload = function () {
 xhr.send(formData);
 
 }
+
+//<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>
