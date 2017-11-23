@@ -159,14 +159,8 @@ fetch(url + selection+"&short_on="+date, {
 function updateDisplay(json, date){
 $('#date').text(date);
 
-
-
 var container = document.getElementById('table');
 var children = container.children;
-
-
-
-
 
 // var partType = children[0].childNodes[1].childNodes[1].childNodes[1]; //card title
 // partType.innerHTML = selection.replace(/%20/g," ");
@@ -241,10 +235,6 @@ else
      no_data.removeAttribute('style','display: none;');
   }
 
-
-
-
-
 }
 
 function addItems(list){
@@ -266,9 +256,6 @@ function addItems(list){
           var cells = newRow.children;
           for(var j=0; j<cells.length; j++){
             cells[j].onclick = editCell;
-
-
-            // cells[j].getElementsByTagName('img').onclick = demo;
       }
 
           tableBody.appendChild(newRow);
@@ -381,7 +368,7 @@ function updateChart(json) {
                 type: 'bar',
                 scaleFontColor: '#fffffff',
                 data: {
-                    labels: ["part 1","part 2","part 3","part4"],
+                    labels: partnumber,
                     datasets: [{
                             label: "Quantity Avl",
                             backgroundColor: 'rgb(255, 99, 132)',
