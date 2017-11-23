@@ -380,12 +380,6 @@ function updateChart(json) {
                             backgroundColor: 'rgb(200, 200, 136)',
                             borderColor: 'rgb(200, 200, 136)',
                             data: plannedVehicleQuantity
-                        },
-                        {
-                            label: "DICV",
-                            backgroundColor: 'rgb(105, 108, 136)',
-                            borderColor: 'rgb(105, 108, 136)',
-                            data: dicv
                         }
                     ],
                 },
