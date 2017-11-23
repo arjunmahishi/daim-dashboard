@@ -17,11 +17,11 @@
         <ul id="slide-out" class="side-nav fixed">
             <li>
                 <div class="user-view">
-                    <div class="background" style="background-color: #424242; ">
+                    <div class="background" style="background-color: #c0c0c0;">
                     </div>
                     <img class="circle" src="resources/images/user.png">
-                    <a href="#!name"><span id= "uname" class="white-text name">John Doe</span></a>
-                    <a href="#!email"><span id ="uemail" class="white-text email">jdandturk@gmail.com</span></a>
+                    <a href="#!name"><span id= "uname" class="name">John Doe</span></a>
+                    <a href="#!email"><span id ="uemail" class="email">jdandturk@gmail.com</span></a>
                 </div>
             </li>
             <li><a href="#!" id= "sos-nav">SOS</a></li>
@@ -159,6 +159,16 @@
 
             });
 
+        </script>
+        <script>
+            $(document).ready(function () {
+                window.history.pushState('https://daimler-frontend.netlify.com/sos-dashboard.html','back page','https://daimler-frontend.netlify.com/sos-dashboard.html');
+                window.history.pushState('https://daimler-frontend.netlify.com/sos-messages.html','back page','https://daimler-frontend.netlify.com/sos-messages.html');
+                window.addEventListener("popstate", function(e){
+                    if(document.URL.indexOf("https://daimler-frontend.netlify.com/sos-dashboard.html")>=0){document.location.href=document.location}
+
+                });
+            });
         </script>
     </body>
 
