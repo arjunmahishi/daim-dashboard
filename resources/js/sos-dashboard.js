@@ -35,7 +35,7 @@ $(function () {
         	
             
             $("#para").text("" + json[i].content);
-            $("#hidden").text(json[i].id);
+            
             $('#index').text(json.length-i);
             $("#comments").text(json[i].comments_count + " comments");
             console.log(json[i].status);
@@ -44,6 +44,12 @@ $(function () {
 
                 $("#status").text("[OPEN]");
                 $("#status").css('color','green');
+            }
+            else
+            { 
+                $("#status").text("[CLOSED]");
+                $("#status").css('color','red');
+
             }
              $("#container").show();
             
@@ -58,14 +64,20 @@ $(function () {
         }
         
         $("#para").text("" + json[i].content);
-        $("#hidden").text(json[i].id);
+        console.log(json[i].status);
         $('#index').text(json.length-i);
         $("#comments").text(json[i].comments_count + " comments");
         $("#container").show();
-         if(json[i].status=='true')
+         if(json[i].status)
             {
                 $("#status").text("[OPEN]");
                 $("#status").css('color','green');
+            }
+            else
+            { 
+                $("#status").text("[CLOSED]");
+                $("#status").css('color','red');
+
             }
          if(sessionStorage.username==json[i].posted_by)
                  $("#posted_by").text("you posted this "  + jQuery.timeago(json[i].date));
