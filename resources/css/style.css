@@ -32,7 +32,7 @@ main {
     flex: 1 0 auto;
 }
 
-.radio-white[type="radio"].filled-in:checked + label:after {
+.radio-white.with-gap[type="radio"].filled-in:checked + label:after {
     border: 2px solid #ffffff;
     background-color: #ffffff;
 }
