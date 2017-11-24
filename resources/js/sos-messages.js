@@ -8,6 +8,8 @@ $(function () {
     
     if(sessionStorage.choice!="ShowToggle")
         $("#toggle").hide();
+    else
+        $('#data-h').show();
     $("#description").text(sessionStorage.desc);
     console.log(sessionStorage.status);
     if(sessionStorage.status=="true")
@@ -67,7 +69,7 @@ $(function () {
            if(sessionStorage.status=="false")
            {
                 
-                $('#data-h').show();
+                
     
            }
 

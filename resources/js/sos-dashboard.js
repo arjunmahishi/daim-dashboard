@@ -33,12 +33,20 @@ $(function () {
         $("#loader").hide();
         for (var i = json.length - 1; i != 0; i--) {
         	
-            console.log(json[i].status);
+            
             $("#para").text("" + json[i].content);
             $("#hidden").text(json[i].id);
             $('#index').text(json.length-i);
             $("#comments").text(json[i].comments_count + " comments");
+            console.log(json[i].status);
+            if(json[i].status)
+            {
+
+                $("#status").text("[OPEN]");
+                $("#status").css('color','green');
+            }
              $("#container").show();
+            
             if(sessionStorage.username==json[i].posted_by)
                  $("#posted_by").text("you posted this "  + jQuery.timeago(json[i].date));
              else
@@ -54,6 +62,11 @@ $(function () {
         $('#index').text(json.length-i);
         $("#comments").text(json[i].comments_count + " comments");
         $("#container").show();
+         if(json[i].status=='true')
+            {
+                $("#status").text("[OPEN]");
+                $("#status").css('color','green');
+            }
          if(sessionStorage.username==json[i].posted_by)
                  $("#posted_by").text("you posted this "  + jQuery.timeago(json[i].date));
              else
@@ -62,8 +75,8 @@ $(function () {
     }
 
     $("#container").click(function (e) {
-        var position = jQuery("p:first", this).text();
-        console.log(sessionStorage.username);
+        var position = jQuery("p:nth-child(2)", this).text();
+        
         if(sessionStorage.username==json[json.length-position].posted_by)
             sessionStorage.choice="ShowToggle";
         sessionStorage.sosid = json[json.length-position].id;
