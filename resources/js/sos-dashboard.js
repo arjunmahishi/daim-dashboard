@@ -50,7 +50,7 @@ $(function () {
             if(sessionStorage.username==json[i].posted_by)
                  $("#posted_by").text("you posted this "  + jQuery.timeago(json[i].date));
              else
-                $("#posted_by").text("By " + json[i].posted_by + ", " + jQuery.timeago(json[i].date));
+                $("#posted_by").text(json[i].posted_by + ", " + jQuery.timeago(json[i].date));
            
                  $("#container").clone(true, true).insertAfter("#container");
         
