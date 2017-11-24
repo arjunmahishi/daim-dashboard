@@ -7,9 +7,11 @@ $(function () {
     console.log(sessionStorage.choice);
     
     if(sessionStorage.choice!="ShowToggle")
+    {
         $("#toggle").hide();
-    else
         $('#data-h').show();
+    }
+
     $("#description").text(sessionStorage.desc);
     console.log(sessionStorage.status);
     if(sessionStorage.status=="true")
