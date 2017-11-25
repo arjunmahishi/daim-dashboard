@@ -97,10 +97,19 @@ $('#sort-selection').click(function(){
       date = year + '-' + month + '-' + day;
 
 
-
-      getData();
-
-      updateDisplay(json, date);
+      var sort = $('input[name=sort]:checked').next().text();
+      if(sort === 'Critical'){
+          getData();
+          updateDisplay(json, date);
+      }
+      else if(sort==='Starred'){
+        //getData();
+        starSort();
+      }
+      else if(sort === 'All'){
+        getData();
+        updateDisplay(json, date);
+      }
 
   });
 
@@ -147,7 +156,7 @@ fetch(url + selection+"&short_on="+date, {
                         //method to add individual parts under a part type
                           addItems(json);
                           updateChart(json);
-                          updateDisplay(json, date);
+                          updateDisplay(data, date);
                  });
               }
               else {
@@ -156,7 +165,9 @@ fetch(url + selection+"&short_on="+date, {
             });
         }
 
-function updateDisplay(json, date){
+function updateDisplay(jsonResponse, date){
+
+  json = jsonResponse;
 $('#date').text(date);
 
 var container = document.getElementById('table');
@@ -180,11 +191,11 @@ if(json.length>0)
 
 
   var j=0;
-  for(var prop in json[i]){
+  for(var prop in jsonResponse[i]){
 
     if(prop === "url")continue;
 
-    var parts = json[i];
+    var parts = jsonResponse[i];
 
 
     //traverse the DOM and get the td cell
@@ -295,17 +306,19 @@ function editCell(event){
     event.stopPropagation();
       var rowIndex = event.target.parentNode.parentNode.rowIndex;
       console.log(rowIndex);
+      var partNumber = event.target.parentNode.parentNode.childNodes[1].innerText;
+      console.log(partNumber);
       rowIndex -= 1;
       var imageSource = event.target.src;
       var fileName = imageSource.substr(imageSource.lastIndexOf('/') + 1);
       if(fileName === "star2.png"){
-      star(cell, rowIndex);
-      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
+      star(cell, rowIndex, partNumber);
+      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle-loader' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
 
     }
     else{
-      unStar(cell, rowIndex);
-      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
+      unStar(cell, rowIndex, partNumber);
+      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle-loader' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
     }
 
 
@@ -335,10 +348,7 @@ else{
 
         sessionStorage.partNumber = partNumber;
 
-}
-
-        //window.location.replace('/part-detail.html');
-
+ }
 }
 
 function updateChart(json) {
@@ -417,12 +427,10 @@ function updateChart(json) {
             });
         }
 
-function star(cell,rowIndex){
+function star(cell,rowIndex, partNumber){
   var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
 
   var formData = new FormData();
-
-  partNumber = json[rowIndex]['part_number'];
 
   formData.append('part_number', partNumber);
 
@@ -450,13 +458,11 @@ xhr.onload = function () {
 xhr.send(formData);
 }
 
-function unStar(cell,rowIndex){
+function unStar(cell,rowIndex, partNumber){
 
   var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
 
   var formData = new FormData();
-
-  partNumber = json[rowIndex]['part_number'];
 
   formData.append('part_number', partNumber);
 
@@ -606,6 +612,51 @@ xhr.onload = function () {
 
 // Send the Data.
 xhr.send(JSON.stringify(obj));
+}
+
+function starSort(){
+
+      var tableContainer = document.getElementById('table');
+      var childNodes = tableContainer.children;
+      console.log(childNodes);
+
+      var tableBody = childNodes[1];
+      var rows = tableBody.children;
+      console.log(rows);
+
+      //converting HTML collection to array.
+      var rowsArray = Array.from(rows);
+
+      //extracting index and image file path for each element
+      var mapped = rowsArray.map(function(el, i) {
+    return { index: i, value: el.childNodes[7].childNodes[0].src };
+  });
+
+
+      mapped.sort(function(a, b) {
+      if (a.value > b.value) {
+        return 1;
+      }
+      if (a.value < b.value) {
+        return -1;
+      }
+      return 0;
+});
+      console.log(mapped);
+
+      // container for the resulting order
+    //   var result = mapped.map(function(el){
+    //     return rowsArray[el.index];
+    //   });
+    // console.log(result);
+
+// arranging the data according to the sorted values of HTMLcollection array.
+      var jsonResponse = mapped.map(function(el){
+        return json[el.index];
+          });
+        console.log(jsonResponse);
+        updateDisplay(jsonResponse,date);
+
 }
 
 
