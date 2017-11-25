@@ -1,5 +1,5 @@
 var token = sessionStorage.tokenid;
-var url = "https://daimler-backend.herokuapp.com/api/sos/";
+var url = "https://daimler-backend.herokuapp.com/api/sos/?ordering=-status";
 var url2 = "https://daimler-backend.herokuapp.com/api/comments/";
 var json1, json;
 $(function () {
