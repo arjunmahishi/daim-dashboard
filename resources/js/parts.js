@@ -57,6 +57,42 @@ $(function(){
     closeOnSelect: true // Close upon selecting a date,
   });
 
+  $(".dropdown-content > li").click(function(){
+    $(".dropdown-content > li").find('input[type="radio"]').removeAttr('checked');
+    $(this).find('input[type="radio"]').attr('checked','checked');
+
+    var label = $(this).find('label');
+    console.log(label);
+    if(label[0].innerText === 'All'){
+      getData();
+      updateDisplay(json,date);
+    }
+    else if(label[0].innerText === 'Critical'){
+      getData();
+      updateDisplay(json,date);
+    }
+    else if(label[0].innerText === 'Starred'){
+      starSort();
+    }
+
+});
+
+  $('#critical-sort-radio-btn').click(function(){
+    getData();
+    updateDisplay(json,date);
+  });
+
+  $('#starred-radio-btn').click(function(){
+    starSort();
+  });
+
+  $('#all-radio-btn').click(function(){
+    getData();
+    updateDisplay(json,date);
+  });
+
+
+
   // var picker = $input.pickadate('picker');
   // date = picker.get('select', 'yyyy/mm/dd');
   // console.log(date);
@@ -96,21 +132,7 @@ $('#sort-selection').click(function(){
       var day = $('.datepicker').pickadate('picker').get('highlight', 'dd');
       date = year + '-' + month + '-' + day;
 
-
-      var sort = $('input[name=sort]:checked').next().text();
-      if(sort === 'Critical'){
-          getData();
-          updateDisplay(json, date);
-      }
-      else if(sort==='Starred'){
-        //getData();
-        starSort();
-      }
-      else if(sort === 'All'){
-        getData();
-        updateDisplay(json, date);
-      }
-
+      getData();
   });
 
 });

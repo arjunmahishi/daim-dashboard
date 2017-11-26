@@ -267,21 +267,6 @@
                         <label for="icon_prefix">Date</label>
                     </div>
                 </div>
-                <p style="color: white; margin-top: 0px; margin-left: 5px;">Sort by:</p>
-                <div style="margin-left: 10px;">
-                    <p>
-                        <input class="with-gap radio-white" name="sort" type="radio" id="all-radio-btn" />
-                        <label for="all-radio-btn" style="color: white;">All</label>
-                    </p>
-                    <p>
-                        <input class="with-gap radio-white" name="sort" type="radio" id="critical-sort-radio-btn" />
-                        <label for="critical-sort-radio-btn" style="color: white;">Critical</label>
-                    </p>
-                    <p>
-                        <input class="with-gap radio-white" name="sort" type="radio" id="starred-radio-btn"  />
-                        <label for="starred-radio-btn" style="color: white;">Starred</label>
-                    </p>
-                </div>
                 <button class="btn waves-effect waves-light" style="background-color: #1F778C;" id="apply-btn">
                     <a href="#" style="color: white;">Apply</a>
                 </button>
@@ -363,22 +348,15 @@
                     inDuration: 300,
                     outDuration: 225,
                     constrainWidth: false, // Does not change width of dropdown to that of the activator
-                    hover: true, // Activate on hover
+                    hover: false, // Activate on hover
                     gutter: 0, // Spacing from edge
                     belowOrigin: true, // Displays dropdown below the button
                     alignment: 'center', // Displays dropdown with edge aligned to the left of button
                     stopPropagation: false,// Stops event propagation
                     width: 5000
-                }
-                                                             );
+                });
             });
 
         </script>
-        <!-- <script>
-var ctx = document.getElementById("myChart").getContext('2d');
-
-</script>
--->
     </body>
-
 </html>
