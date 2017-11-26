@@ -349,14 +349,27 @@ function editCell(event){
       if(fileName === "star2.png"){
       star(cell,rowIndex);
       // event.target.src= "resources/images/filled_star.png";
-      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
+      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle-loader' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
     }
     else{
       unStar(cell,rowIndex);
       // event.target.src = "resources/images/star2.png";
-      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
+      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle-loader' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
     }
+  }
+  else {
+        event.target.setAttribute('class', 'modal-trigger');
+        event.target.setAttribute('href', '#modal1');
 
+        var rowIndex = event.target.parentNode.rowIndex;
+        var tableContainer = document.getElementById('table');
+        var childNodes = tableContainer.children;
+        var tableBody = childNodes[1];
+        var rows = tableBody.children;
+
+        console.log(rows);
+
+        populateAndEditModal(rowIndex);
 
   }
 }
@@ -428,4 +441,37 @@ xhr.send(formData);
 
 }
 
-//<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>
+function populateAndEditModal(rowIndex){
+
+// populate the input fields with values from the api response.
+    $('#part_name').text(json[rowIndex-1]['shop']);
+    $('#part_number').val(json[rowIndex-1]['part_number']);
+    $('#description').val(json[rowIndex-1]['description']);
+    $('#supplier_name').val(json[rowIndex-1]['supplier_name']);
+    $('#variants').val(json[rowIndex-1]['variants']);
+    $('#count').val(json[rowIndex-1]['count']);
+    $('#reported_on').val(json[rowIndex-1]['reported_on']);
+    $('#short_on').val(json[rowIndex-1]['short_on']);
+    $('#shop').val(json[rowIndex-1]['shop']);
+    $('#pmc').val(json[rowIndex-1]['pmc']);
+    $('#team').val(json[rowIndex-1]['team']);
+    $('#backlog').val(json[rowIndex-1]['backlog']);
+    $('#region').val(json[rowIndex-1]['region']);
+    $('#unloading_point').val(json[rowIndex-1]['unloading_point']);
+    $('#p_q').val(json[rowIndex-1]['p_q']);
+    $('#quantity').val(json[rowIndex-1]['quantity']);
+    $('#quantity_expected').val(json[rowIndex-1]['quantity_expected']);
+    $('#planned_vehicle_qty').val(json[rowIndex-1]['planned_vehicle_qty']);
+    $('#eta_dicv').val(json[rowIndex-1]['eta_dicv']);
+    $('#truck_details').val(json[rowIndex-1]['truck_details']);
+    $('#shortage_reason').val(json[rowIndex-1]['shortage_reason']);
+    $('#status').val(json[rowIndex-1]['status']);
+
+    if(json[rowIndex-1]['status'] === 3)
+        $('#critical-radio-btn').attr('checked','checked');
+    else if(json[rowIndex-1]['status'] === 2)
+        $('#warning-radio-btn').attr('checked','checked');
+        else
+            $('#normal-radio-btn').attr('checked','checked');
+
+}
