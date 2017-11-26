@@ -72,6 +72,7 @@ $(function(){
       updateDisplay(json,date);
     }
     else if(label[0].innerText === 'Starred'){
+      //getData();
       starSort();
     }
 
@@ -83,6 +84,7 @@ $(function(){
   });
 
   $('#starred-radio-btn').click(function(){
+    getData();
     starSort();
   });
 
@@ -172,12 +174,12 @@ fetch(url + selection+"&short_on="+date, {
             }).then(function(response){
               if(response.ok){
                 response.json().then(function(data){
-                    json = data;
+                    //json = data;
                     console.log(json);
 
                         //method to add individual parts under a part type
-                          addItems(json);
-                          updateChart(json);
+                          addItems(data);
+                          updateChart(data);
                           updateDisplay(data, date);
                  });
               }
