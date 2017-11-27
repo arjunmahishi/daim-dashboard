@@ -14,6 +14,19 @@
 
     <body id="bod" style="background: url(resources/images/background.png);">
         <!--Import jQuery before materialize.js-->
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <p>Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
+            </div>
+        </div>
+
+
         <ul id="slide-out" class="side-nav fixed">
             <li>
                 <div class="user-view">
@@ -56,7 +69,7 @@
                             <span class="card-title">Title:</span>
                             <img src="http://placehold.it/180" alt="your image" id="blah" class="responsive-img">
                             <br/>
-<!--                            Card to make the thread closed or open-->
+                            <!--                            Card to make the thread closed or open-->
                             <div id="toggle" class="card blue-grey darken-1">
                                 <div class="card-content white-text">
                                     <p >This thread is now:</p>
@@ -93,14 +106,16 @@
                                 </div>
                             </div>
 
+                            <a class="waves-effect waves-light btn red modal-trigger"  href="#modal1"><i class="material-icons left">cancel</i>DELETE THREAD</a>
+
 
 
 
                         </div>
 
                     </div>
-                    <div hidden id= "input" class="card">
-                        <div class="row" style="margin-bottom: 0px position: fixed; bottom: 0px;">
+                    <div id= "input" class="card">
+                        <div hidden class="row" style="margin-bottom: 0px position: fixed; bottom: 0px;">
                             <form class="col s12" method="POST" id="message-form">
                                 <div class="input-field col s12">
                                     <div class="row">
@@ -150,6 +165,7 @@
         <script>
             $(document).ready(function() {
                 $(".button-collapse").sideNav();
+                $('.modal').modal();
             });
             $('.button-collapse').sideNav({
                 menuWidth: 230, // Default is 300

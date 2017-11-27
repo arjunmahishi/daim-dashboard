@@ -207,7 +207,7 @@ function getData() {
                             data: quantityAvailable,
                         },
                                    {
-                                       label: "Planned Vehile Qty",
+                                       label: "Planned Vehicle Qty",
                                        backgroundColor: 'rgb(200, 200, 136)',
                                        borderColor: 'rgb(200, 200, 136)',
                                        data: plannedVehicleQuantity,
