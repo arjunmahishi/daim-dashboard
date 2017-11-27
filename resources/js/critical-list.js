@@ -279,12 +279,14 @@ function updateDisplay(json, date) {
         } else if (prop === 'starred') {
 
             if (parts[prop] === true) {
-                cells[3].innerHTML =
+                cells[4].innerHTML =
                     "<img src='resources/images/filled_star.png' id='image' onClick='editCell'>";
             } else {
-                cells[3].innerHTML =
+                cells[4].innerHTML =
                     "<img src='resources/images/star2.png' id='image' onClick='editCell'>";
             }
+        }else if (prop ==='pmc'){
+          cells[3].innerText = parts[prop];
         } else if (prop === 'supplier_name') {
             cells[1].innerText = parts[prop];
         } else if (prop === 'shop') {

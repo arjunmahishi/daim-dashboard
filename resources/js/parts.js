@@ -1,4 +1,4 @@
-var url = "https://daimler-backend.herokuapp.com/api/parts/?ordering=short_on,-status&shop=";
+var url = "https://daimler-backend.herokuapp.com/api/parts/?ordering=short_on,-status&pmc=";
 
 var token = sessionStorage.tokenid || "83cc351e4ec002a30f5fbe3e768cc4874263e9dd";
 console.log(token);
@@ -57,6 +57,7 @@ $(function(){
     closeOnSelect: true // Close upon selecting a date,
   });
 
+  // select the radio button when list item is clicked.
   $(".dropdown-content > li").click(function(){
     $(".dropdown-content > li").find('input[type="radio"]').removeAttr('checked');
     $(this).find('input[type="radio"]').attr('checked','checked');
