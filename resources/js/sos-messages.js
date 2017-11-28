@@ -10,6 +10,7 @@ $(function () {
     {
         $("#toggle").hide();
         $('#data-h').show();
+        $("#del").hide();
     }
 
     $("#description").text(sessionStorage.desc);
@@ -103,6 +104,27 @@ $(function () {
         };
         xhrsos.send(formData);
     });
+    $("#delete").click(function(event){
+        event.preventDefault();
+
+        var xhr= new XMLHttpRequest();
+        
+        xhr.open('DELETE',urlsos, true);
+        xhr.setRequestHeader('Authorization', 'Token ' + token);
+        xhr.onload= function () {
+           if(xhr.status==204)
+           {
+            alert("Thread deleted succesfully")
+            window.location.replace("/sos-dashboard.html");
+           }
+           else
+           {
+            alert("Error occured!");
+           }
+        }
+        xhr.send();
+        
+    })
     $("#send").click(function (event) {
         event.preventDefault();
         var text = $("#icon_prefix").val();
