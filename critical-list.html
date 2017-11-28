@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-</head>
+        <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+    </head>
 
-<body id="bod" style="background: url(resources/images/background.png);">
-    <script src="/resources/js/checktoken.js"></script>
+    <body id="bod" style="background: url(resources/images/background.png);">
+        <script src="/resources/js/checktoken.js"></script>
 
-    <!-- Modal Structure -->
+        <!-- Modal Structure -->
         <div id="modal1" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <form id="edit-form" method="post" action="">
@@ -175,7 +175,7 @@
                             <label for="warning-radio-btn">Warning</label>
                         </p>
                     </div>
-                    </form>
+                </form>
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="done-btn">Done</a>
@@ -183,7 +183,7 @@
             </div>
         </div>
 
-    <ul id="slide-out" class="side-nav fixed">
+        <ul id="slide-out" class="side-nav fixed">
             <li>
                 <div class="user-view">
                     <div class="background" style="background-color: #c0c0c0;">
@@ -216,6 +216,9 @@
                 <a href="#" data-activates="slide-out" class="button-collapse">
                     <i class="material-icons">menu</i>
                 </a>
+                <ul class="right">
+                    <li><i class="material-icons dropdown-button"  data-beloworigin="true" href='#' data-activates='dropdown1' style="margin-right: 15px;">notifications</i></li>
+                </ul>
             </div>
         </nav>
         <div id="sort-selection">
@@ -238,93 +241,96 @@
             </div>
         </div>
         <div class="col s12 m6" style="display: none;" id="sort-choices">
-        <div class="card" style="background-color: #00677F;">
-            <div class="card-content white-text">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">event</i>
-                    <input type="text" class="datepicker date-color">
-                    <label for="icon_prefix">Date</label>
+            <div class="card" style="background-color: #00677F;">
+                <div class="card-content white-text">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">event</i>
+                        <input type="text" class="datepicker date-color">
+                        <label for="icon_prefix">Date</label>
+                    </div>
                 </div>
+                <button class="btn waves-effect waves-light" style="background-color: #1F778C;" id="apply-btn">
+                    <a href="#" style="color: white;">Apply</a>
+                </button>
             </div>
-            <button class="btn waves-effect waves-light" style="background-color: #1F778C;" id="apply-btn">
-                <a href="#" style="color: white;">Apply</a>
-            </button>
         </div>
-    </div>
         <div>
             <div id="chartDiv" class="card" style="cursor: pointer; background-color: #00677F; margin-top: 10px;">
                 <canvas id="myChart"></canvas>
             </div>
         </div>
-    <h4 class="sub-head" style="text-align: center;
-    margin-bottom: 0px;">CRITICAL PARTS</h4>
-    <div class="container" id="card-cont">
-        <div class="col s12 m6">
-            <div class="card hoverable">
+        <h4 class="sub-head" style="text-align: center;
+                                    margin-bottom: 0px;">CRITICAL PARTS</h4>
+        <div class="container" id="card-cont">
+            <div class="col s12 m6">
+                <div class="card hoverable">
 
-                <table class="table centered" id="table">
-                    <thead>
-                        <tr>
-                            <th>Part Number</th>
-                            <th>Supplier Name</th>
-                            <th>Shop Value</th>
-                            <th>PMC</th>
-                            <th>Starred</th>
-                        </tr>
-                    </thead>
+                    <table class="table centered" id="table">
+                        <thead>
+                            <tr>
+                                <th>Part Number</th>
+                                <th>Supplier Name</th>
+                                <th>Shop Value</th>
+                                <th>PMC</th>
+                                <th>Starred</th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-    <h4 class="sub-head" style="text-align: center;">PART TYPES</h4>
-    <div class="container">
-        <div class="row" style="margin-bottom: 0px;">
-            <div class="col s12 m6" id="mdt">
-                <div class="card white" style="cursor: pointer;">
-                    <div class="card-content black-text">
-                        <span class="card-title" style="text-align: center;">MDT</span>
+        <h4 class="sub-head" style="text-align: center;">PART TYPES</h4>
+        <div class="container">
+            <div class="row" style="margin-bottom: 0px;">
+                <div class="col s12 m6" id="mdt">
+                    <div class="card white" style="cursor: pointer;">
+                        <div class="card-content black-text">
+                            <span class="card-title" style="text-align: center;">MDT</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col s12 m6" id="hdt">
-                <div class="card white" style="cursor: pointer;">
-                    <div class="card-content black-text">
-                        <span class="card-title" style="text-align: center;">HDT</span>
+                <div class="col s12 m6" id="hdt">
+                    <div class="card white" style="cursor: pointer;">
+                        <div class="card-content black-text">
+                            <span class="card-title" style="text-align: center;">HDT</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col s12 m6" id="axle">
-                <div class="card white" style="cursor: pointer;">
-                    <div class="card-content black-text">
-                        <span class="card-title" style="text-align: center;">Axle</span>
+                <div class="col s12 m6" id="axle">
+                    <div class="card white" style="cursor: pointer;">
+                        <div class="card-content black-text">
+                            <span class="card-title" style="text-align: center;">Axle</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col s12 m6" id="casting-and-forging">
-                <div class="card white" style="cursor: pointer;">
-                    <div class="card-content black-text">
-                        <span class="card-title" style="text-align: center;">Casting and Forging</span>
+                <div class="col s12 m6" id="casting-and-forging">
+                    <div class="card white" style="cursor: pointer;">
+                        <div class="card-content black-text">
+                            <span class="card-title" style="text-align: center;">Casting and Forging</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col s12 m6" id="transmission">
-                <div class="card white" style="cursor: pointer;">
-                    <div class="card-content black-text">
-                        <span class="card-title" style="text-align: center;">Transmission</span>
+                <div class="col s12 m6" id="transmission">
+                    <div class="card white" style="cursor: pointer;">
+                        <div class="card-content black-text">
+                            <span class="card-title" style="text-align: center;">Transmission</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="/resources/js/critical-list.js"></script>
