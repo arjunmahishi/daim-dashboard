@@ -34,18 +34,18 @@ $(function () {
     getData();
 
     $('#mdt').click(function () {
-        sessionStorage.selection = "MDT ENGINE";
+        sessionStorage.selection = "Giftson";
         window.location.replace("/critical-list-detail.html");
 
     });
     $('#hdt').click(function () {
-        sessionStorage.selection = "HDT ENGINE";
+        sessionStorage.selection = "Arulselvan";
         window.location.replace("/critical-list-detail.html");
     });
     $('#axle').click(function () {
 
         var cardTitle = "AXLE";
-        sessionStorage.selection = cardTitle;
+        sessionStorage.selection = "Joshna";
         console.log(cardTitle);
         window.location.replace("/critical-list-detail.html");
 
@@ -53,7 +53,7 @@ $(function () {
     $('#casting-and-forging').click(function () {
 
         var cardTitle = "CASTING AND FORGING";
-        sessionStorage.selection = cardTitle;
+        sessionStorage.selection = "Premkumar";
         console.log(cardTitle);
         window.location.replace("/critical-list-detail.html");
 
@@ -61,7 +61,7 @@ $(function () {
     $('#transmission').click(function () {
 
                 var cardTitle = "TRANSMISSION";
-                sessionStorage.selection = cardTitle;
+                sessionStorage.selection = "Balaji";
                 console.log(cardTitle);
                 window.location.replace("/critical-list-detail.html");
 
