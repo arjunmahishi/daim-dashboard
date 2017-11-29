@@ -22,10 +22,16 @@ if(mm<10) {
     mm = '0'+mm
 }
 
-
+var pmcvalues = {
+            'Arulselvan': 'HDT ENGINE',
+            'Balaji': 'TRANSMISSION',
+            'Joshna': 'AXLE',
+            'Giftson': 'MDT ENGINE',
+            'Premkumar': 'CASTING AND FORGING',
+        };
 var selection = sessionStorage.selection || "MDT ENGINE";
 console.log(selection);
-var shopType = selection; // For card Title
+var shopType = pmcvalues[selection]; // For card Title
 var date = sessionStorage.date || today;
 selection = selection.replace(/ /g,'%20');
 
