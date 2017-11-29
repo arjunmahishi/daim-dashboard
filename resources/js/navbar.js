@@ -10,18 +10,18 @@ $('#critical-list-nav').click(function () {
 
 });
 $('#mdt-nav').click(function () {
-    sessionStorage.selection = "MDT ENGINE";
+    sessionStorage.selection = "Giftson";
     window.location.replace("/critical-list-detail.html");
 
 });
 $('#hdt-nav').click(function () {
-        sessionStorage.selection = "HDT ENGINE";
+        sessionStorage.selection = "Arulselvan";
         window.location.replace("/critical-list-detail.html");
 });
 $('#axle-nav').click(function () {
 
     var cardTitle = "AXLE";
-    sessionStorage.selection = cardTitle;
+    sessionStorage.selection = "Joshna";
     console.log(cardTitle);
     window.location.replace("/critical-list-detail.html");
 
@@ -29,14 +29,14 @@ $('#axle-nav').click(function () {
 $('#casting-and-forging-nav').click(function () {
 
     var cardTitle = "CASTING AND FORGING";
-    sessionStorage.selection = cardTitle;
+    sessionStorage.selection = "Premkumar";
     console.log(cardTitle);
     window.location.replace("/critical-list-detail.html");
 });
 $('#transmission-nav').click(function () {
     
         var cardTitle = "TRANSMISSION";
-        sessionStorage.selection = cardTitle;
+        sessionStorage.selection = "Balaji";
         console.log(cardTitle);
         window.location.replace("/critical-list-detail.html");
     
