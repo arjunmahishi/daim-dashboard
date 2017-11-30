@@ -32,7 +32,7 @@ var ctx = document.getElementById('myChart').getContext('2d');
 $(function () {
 
     getData();
-
+   
     $('#mdt').click(function () {
         sessionStorage.selection = "Giftson";
         window.location.replace("/critical-list-detail.html");

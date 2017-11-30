@@ -14,6 +14,9 @@ $('#mdt-nav').click(function () {
     window.location.replace("/critical-list-detail.html");
 
 });
+$("#not").click(function(){
+    window.location.replace("/notifications.html");
+ });
 $('#hdt-nav').click(function () {
         sessionStorage.selection = "Arulselvan";
         window.location.replace("/critical-list-detail.html");

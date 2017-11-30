@@ -62,38 +62,18 @@
         </nav>
         
         <h4 style="color: white; text-align: center;">Notifications</h4>
-
+         <h3 hidden id="data-h">No Notifactions</h3>
         <ul class="collection">
-            <li class="collection-item avatar dismissable">
-                <i class="material-icons circle red">edit</i>
-                <span class="title">New edit</span>
-                <p>The following part has been editted!<br>
-                </p>
-                
-            </li>
-            <li class="collection-item avatar dismissable">
+        
+            <li hidden id="item" class="collection-item avatar dismissable">
                 <i class="material-icons circle red">comment</i>
                 <span class="title">New comment</span>
-                <p>A new comment by Mr Rick has been added to the following issue"<br>
+                <p id="content">A new comment by Mr Rick has been added to the following issue"<br>
                 </p>
                 
             </li>
-            <li class="collection-item avatar dismissable">
-                <i class="material-icons circle green">insert_chart</i>
-                <span class="title">New </span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                
-            </li>
-            <li class="collection-item avatar dismissable">
-                <i class="material-icons circle red">play_arrow</i>
-                <span class="title">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                
-            </li>
+         
+           
         </ul>
 
 
@@ -101,7 +81,7 @@
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="resources/vendors/jquery/jquery.timeago.js" type="text/javascript"></script>
-        <script src="resources/js/sos-messages.js"></script>
+        <script src="resources/js/notifications.js"></script>
         <script src="/resources/js/navbar.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
