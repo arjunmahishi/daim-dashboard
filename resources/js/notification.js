@@ -1,6 +1,19 @@
 const applicationServerPublicKey = 'BJZy3aVYrxbEKeEEqRReRPs_239ZUxj5LCm_E-LRiMrz47IA51VmCyC8A4XpvuaoY5hjYhJ8TT5eA5dEq7F0BZ8';
 let isSubscribed = false;
 let swRegistration = null;
+let fcm_token = null;
+
+var config = {
+    apiKey: "AIzaSyB9t-wtDoOVgJpYS4Z0lCYHt-twsLBCVtk",
+    authDomain: "daimler-notify.firebaseapp.com",
+    databaseURL: "https://daimler-notify.firebaseio.com",
+    projectId: "daimler-notify",
+    storageBucket: "daimler-notify.appspot.com",
+    messagingSenderId: "423946699965"
+};
+
+
+firebase.initializeApp(config);
 
 function urlB64ToUint8Array(base64String) {
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -73,6 +86,8 @@ function initializeNotifications() {
             }
         });
 }
+
+
 if ('serviceWorker' in navigator && 'PushManager' in window) {
     console.log('Service Worker and Push is supported');
 
@@ -82,7 +97,8 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 
             swRegistration = swReg;
             subscribeUser();
-            initializeNotifications()
+            initializeNotifications();
+            requestPermission();
         })
         .catch(function (error) {
             console.error('Service Worker Error', error);
@@ -93,3 +109,32 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 }
 //PUB:BJZy3aVYrxbEKeEEqRReRPs_239ZUxj5LCm_E-LRiMrz47IA51VmCyC8A4XpvuaoY5hjYhJ8TT5eA5dEq7F0BZ8
 //PRIV:5tOi9dKR77pqY0uQ5H2PqQbR6YMG1c75A2XgR7izOcA
+
+
+const messaging = firebase.messaging();
+
+function requestPermission(){
+    messaging.requestPermission()
+    .then(function() {
+        console.log('Notification permission granted.');
+        console.log(messaging.getToken())
+        fcm_token = messaging.getToken();
+    })
+    .catch(function(err) {
+        console.log('Unable to get permission to notify.', err);
+    });
+}
+
+
+function sendFCMToken(){
+    let payload = {
+        userID: "",
+        fcm_token: fcm_token
+    };
+
+    if(fcm_token != null){
+        $.post(endpoint, payload, (res)=>{
+            console.log(res);
+        })
+    }
+}

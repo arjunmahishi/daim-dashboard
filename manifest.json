@@ -27,5 +27,6 @@
     "display": "standalone",
     "orientation": "portrait",
     "theme_color": "#191818",
-    "gcm_sender_id": "883432763386"
+    // "gcm_sender_id": "883432763386",
+    "gcm_sender_id": "103953800507"
 }
