@@ -1,4 +1,4 @@
-var url = "https://daimler-backend.herokuapp.com/api/comments/?userid="+sessionStorage.username;
+var url = "https://daimler-backend.herokuapp.com/api/comments/?userid="+sessionStorage.userid;
 var token= sessionStorage.tokenid;
 $(function(){
 	fetch(url, {
@@ -34,6 +34,7 @@ $(function(){
      	$("#item").show();
      	$("#item").clone(true,true).insertAfter("#content");
      }
+     $("#item").show();
      $("#content").text(json[i].content);
   }
 })

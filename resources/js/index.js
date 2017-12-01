@@ -36,6 +36,7 @@ $(function () {
                                 sessionStorage.tokenid = token;
                                 sessionStorage.email=json.email;
                                 sessionStorage.username=json.username;
+                                sessionStorage.userid=json.id;
                                 console.log(sessionStorage.tokenid);
                                 $("#loader").hide();
                                 window.location.replace("/select.html");
