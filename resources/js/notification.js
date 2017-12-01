@@ -3,6 +3,8 @@ let isSubscribed = false;
 let swRegistration = null;
 let fcm_token = null;
 
+var token = sessionStorage.tokenid;
+
 var config = {
     apiKey: "AIzaSyB9t-wtDoOVgJpYS4Z0lCYHt-twsLBCVtk",
     authDomain: "daimler-notify.firebaseapp.com",
@@ -14,6 +16,8 @@ var config = {
 
 
 firebase.initializeApp(config);
+
+const messaging = firebase.messaging();
 
 function urlB64ToUint8Array(base64String) {
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -110,31 +114,54 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 //PUB:BJZy3aVYrxbEKeEEqRReRPs_239ZUxj5LCm_E-LRiMrz47IA51VmCyC8A4XpvuaoY5hjYhJ8TT5eA5dEq7F0BZ8
 //PRIV:5tOi9dKR77pqY0uQ5H2PqQbR6YMG1c75A2XgR7izOcA
 
-
-const messaging = firebase.messaging();
-
 function requestPermission(){
     messaging.requestPermission()
     .then(function() {
         console.log('Notification permission granted.');
-        console.log(messaging.getToken())
-        fcm_token = messaging.getToken();
     })
     .catch(function(err) {
         console.log('Unable to get permission to notify.', err);
     });
 }
 
+function getFCMToken(onsuccess){
+    messaging.getToken().then((res)=>{
+        onsuccess(res);
+    });
+}
 
 function sendFCMToken(){
-    let payload = {
-        userID: "",
-        fcm_token: fcm_token
-    };
+    const getEndpoint = "http://daimler-backend.herokuapp.com/api/current_user/";
+    const postEndpoint = "http://daimler-backend.herokuapp.com/api/device/gcm/";
+    let payload = {};
 
-    if(fcm_token != null){
-        $.post(endpoint, payload, (res)=>{
-            console.log(res);
-        })
-    }
+    fetch(getEndpoint, {
+        method: "get",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Token ' + token
+        }
+    }).then((res)=>{
+        if (res.ok) {
+            res.json().then(function (data) {
+                payload.userID = data.id;
+                payload.username = data.username;
+                console.log("Getting FCM token...");
+                getFCMToken((token)=>{
+                    payload.fcm_token = token;
+                    console.log("Sending FCM stoken...")
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', postEndpoint, true);
+                    xhr.setRequestHeader('Authorization', 'Token ' + token);
+                    xhr.onload = function () {
+                        console.log(xhr.status);
+                    };
+                    xhr.send(payload);
+                })
+            });
+        } else {
+            console.log('Network request failed with res ' + res.status + ': ' + res.statusText);
+        }
+    });
 }
