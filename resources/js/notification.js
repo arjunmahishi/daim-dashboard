@@ -92,28 +92,6 @@ function initializeNotifications() {
 }
 
 
-if ('serviceWorker' in navigator && 'PushManager' in window) {
-    console.log('Service Worker and Push is supported');
-
-    navigator.serviceWorker.register('firebase-messaging-sw.js')
-        .then(function (swReg) {
-            console.log('Service Worker is registered', swReg);
-
-            swRegistration = swReg;
-            subscribeUser();
-            initializeNotifications();
-            requestPermission();
-        })
-        .catch(function (error) {
-            console.error('Service Worker Error', error);
-        });
-} else {
-    console.warn('Push messaging is not supported');
-    pushButton.textContent = 'Push Not Supported';
-}
-//PUB:BJZy3aVYrxbEKeEEqRReRPs_239ZUxj5LCm_E-LRiMrz47IA51VmCyC8A4XpvuaoY5hjYhJ8TT5eA5dEq7F0BZ8
-//PRIV:5tOi9dKR77pqY0uQ5H2PqQbR6YMG1c75A2XgR7izOcA
-
 function requestPermission(){
     messaging.requestPermission()
     .then(function() {
@@ -164,4 +142,33 @@ function sendFCMToken(){
             console.log('Network request failed with res ' + res.status + ': ' + res.statusText);
         }
     });
+}
+
+
+
+if ('serviceWorker' in navigator && 'PushManager' in window) {
+    console.log('Service Worker and Push is supported');
+
+    navigator.serviceWorker.register('firebase-messaging-sw.js')
+        .then(function (swReg) {
+            console.log('Service Worker is registered', swReg);
+
+            swRegistration = swReg;
+            subscribeUser();
+            initializeNotifications();
+            requestPermission();
+        })
+        .catch(function (error) {
+            console.error('Service Worker Error', error);
+        });
+} else {
+    console.warn('Push messaging is not supported');
+    pushButton.textContent = 'Push Not Supported';
+}
+//PUB:BJZy3aVYrxbEKeEEqRReRPs_239ZUxj5LCm_E-LRiMrz47IA51VmCyC8A4XpvuaoY5hjYhJ8TT5eA5dEq7F0BZ8
+//PRIV:5tOi9dKR77pqY0uQ5H2PqQbR6YMG1c75A2XgR7izOcA
+
+
+if(location.protocol == "http:" && location.href.split(":")[1] != "//localhost"){
+    location.protocol = "https:";
 }
