@@ -32,7 +32,7 @@ var ctx = document.getElementById('myChart').getContext('2d');
 $(function () {
 
     getData();
-   
+
     $('#mdt').click(function () {
         sessionStorage.selection = "Giftson";
         window.location.replace("/critical-list-detail.html");
@@ -302,6 +302,7 @@ function updateDisplay(json, date) {
             }
 
         }
+        cells[5].innerHTML = "<i class='material-icons' href='modal_notify modal-trigger'>send</i>";
     }
         }
     }
