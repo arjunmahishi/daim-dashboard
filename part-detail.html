@@ -1,255 +1,267 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!--Import Google Icon Font-->
-        <link rel="stylesheet" href="resources/css/style.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Import materialize.css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+<head>
+    <!--Import Google Icon Font-->
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <meta name="theme-color" content="#191818" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
 
-    <body id="bod" style="background: url(resources/images/background.png);">
-        <!--Import jQuery before materialize.js-->
+<body id="bod" style="background: url(resources/images/background.png);">
+    <!--Import jQuery before materialize.js-->
 
-        <script src="resources/js/checktoken.js"></script>
+    <script src="resources/js/checktoken.js"></script>
 
-        <!-- Modal Structure -->
-        <div id="modal1" class="modal modal-fixed-footer">
-            <div class="modal-content">
-                <form id="edit-form" method="post" action="">
-                    <div style="text-align: center;"><h3 id="property_type">Edit Part Attribute</h3></div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix" style="margin-top:10px; margin-left: 5px;">edit</i>
-                            <input id="field" type="text" name="username" class="validate">                                </div>
-                    </div>
-                </form>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <form id="edit-form" method="post" action="">
+                <div style="text-align: center;">
+                    <h3 id="property_type">Edit Part Attribute</h3>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix" style="margin-top:10px; margin-left: 5px;">edit</i>
+                        <input id="field" type="text" name="username" class="validate"> </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="done-btn">Done</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        </div>
+    </div>
+    <ul id="slide-out" class="side-nav fixed">
+        <li>
+            <div class="user-view">
+                <div class="background" style="background-color: #424242; ">
+                </div>
+                <img class="circle" src="resources/images/user.png">
+                <a href="#!name"><span id= "uname" class="white-text name">Your Name</span></a>
+                <a href="#!email"><span id ="uemail" class="white-text email">default@yourdomain.com</span></a>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="done-btn">Done</a>
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        </li>
+        <li><a href="#!" id="sos-nav">SOS</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader" href="#!" id="critical-list-nav">Critical List</a></li>
+        <li><a href="#!" id="mdt-nav">MDT</a></li>
+        <li><a href="#!" id="hdt-nav">HDT</a></li>
+        <li><a href="#!" id="axle-nav">Axel</a></li>
+        <li><a href="#!" id="casting-and-forging-nav">Casting and Forging</a></li>
+        <li><a href="#!" id="transmission-nav">Transmission</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Account</a></li>
+        <li><a class="waves-effect" href="#!" id="logout-nav">Logout</a></li>
+    </ul>
+
+
+
+    <nav>
+        <div class="nav-wrapper" style="background-color: #00897b;">
+            <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+
+
+    <div class="col s12 m6" id="sort-selection">
+        <div class="card teal lighten-2" style="cursor: pointer;">
+            <div class="card-content white-text">
+                <div>
+                    <span class="card-title" style="text-align: center;" id="shop_type">Shop Type</span>
+                </div>
+                <p style="text-align: center" id="date">10/19/2017</p>
             </div>
         </div>
-        <ul id="slide-out" class="side-nav fixed">
-            <li>
-                <div class="user-view">
-                    <div class="background" style="background-color: #424242; ">
-                    </div>
-                    <img class="circle" src="resources/images/user.png">
-                    <a href="#!name"><span id= "uname" class="white-text name">Your Name</span></a>
-                    <a href="#!email"><span id ="uemail" class="white-text email">default@yourdomain.com</span></a>
-                </div>
-            </li>
-            <li><a href="#!" id= "sos-nav">SOS</a></li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a class="subheader" href="#!" id= "critical-list-nav" >Critical List</a></li>
-            <li><a href="#!" id= "mdt-nav" >MDT</a></li>
-            <li><a href="#!" id= "hdt-nav" >HDT</a></li>
-            <li><a href="#!" id= "axle-nav">Axel</a></li>
-            <li><a href="#!" id= "casting-and-forging-nav">Casting and Forging</a></li>
-            <li><a href="#!" id="transmission-nav" >Transmission</a></li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a class="subheader">Account</a></li>
-            <li><a class="waves-effect" href="#!" id= "logout-nav">Logout</a></li>
-        </ul>
+    </div>
 
 
-
-        <nav>
-            <div class="nav-wrapper" style="background-color: #00897b;">
-                <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
-                <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-            </div>
-        </nav>
-
-
-        <div class="col s12 m6" id="sort-selection">
-            <div class="card teal lighten-2" style="cursor: pointer;">
-                <div class="card-content white-text">
-                    <div>
-                        <span class="card-title" style="text-align: center;" id="shop_type">Shop Type</span>
-                    </div>
-                    <p style="text-align: center" id="date">10/19/2017</p>
+    <div class="col s12 m6" style="display: none;" id="sort-choices">
+        <div class="card teal lighten-2">
+            <div class="card-content white-text">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">event</i>
+                    <input type="text" class="datepicker date-color">
+                    <label for="icon_prefix">Date</label>
                 </div>
             </div>
-        </div>
-
-
-        <div class="col s12 m6" style="display: none;" id="sort-choices">
-            <div class="card teal lighten-2">
-                <div class="card-content white-text">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">event</i>
-                        <input type="text" class="datepicker date-color">
-                        <label for="icon_prefix">Date</label>
-                    </div>
-                </div>
-                <button class="btn waves-effect waves-light" style="background-color: #00897b;" id="apply-btn">
+            <button class="btn waves-effect waves-light" style="background-color: #00897b;" id="apply-btn">
                     <a href="#" style="color: white;">Apply</a>
                 </button>
+        </div>
+    </div>
+    <div>
+        <div id="chartDiv" class="card teal lighten-2" style="cursor: pointer;">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+
+    <h3 id="data-h" style="display: none;">No Data</h3>
+
+
+    <div class="container" id="card-cont">
+        <div class="col s12 m6">
+            <div class="card hoverable">
+                <table class="responsive-table centered" id="table">
+                    <thead>
+                        <tr>
+                            <th>Part Number</th>
+                            <th>Starred</th>
+                            <th>description</th>
+                            <th>Supplier Name</th>
+                            <th>Variants</th>
+                            <th>Count</th>
+                            <th>Reported on</th>
+                            <th>Short on</th>
+                            <th>Shop</th>
+                            <th>pmc</th>
+                            <th>team</th>
+                            <th>backlog</th>
+                            <th>region</th>
+                            <th>Unloading point</th>
+                            <th>pq</th>
+                            <th>quantity</th>
+                            <th>quantity expected</th>
+                            <th>planned vehicle quantity</th>
+                            <th>eta dicv</th>
+                            <th>truck details</th>
+                            <th>shortage reason</th>
+                            <th>status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div>
-            <div id="chartDiv" class="card teal lighten-2" style="cursor: pointer;">
-                <canvas id="myChart"></canvas>
-            </div>
-        </div>
-
-
-        <h3 id="data-h" style="display: none;">No Data</h3>
-
-
-        <div class="container" id="card-cont">
-            <div class="col s12 m6">
-                <div class="card hoverable">
-                    <table class="responsive-table centered" id="table">
-                        <thead>
-                            <tr>
-                                <th>Part Number</th>
-                                <th>Starred</th>
-                                <th>description</th>
-                                <th>Supplier Name</th>
-                                <th>Variants</th>
-                                <th>Count</th>
-                                <th>Reported on</th>
-                                <th>Short on</th>
-                                <th>Shop</th>
-                                <th>pmc</th>
-                                <th>team</th>
-                                <th>backlog</th>
-                                <th>region</th>
-                                <th>Unloading point</th>
-                                <th>pq</th>
-                                <th>quantity</th>
-                                <th>quantity expected</th>
-                                <th>planned vehicle quantity</th>
-                                <th>eta dicv</th>
-                                <th>truck details</th>
-                                <th>shortage reason</th>
-                                <th>status</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        
+    </div>
 
 
 
-        <script type="text/javascript" src="resources/vendors/jquery/jquery-3.2.1.min.js"></script>
-        <script src="resources/js/parts-detail.js"></script>
-        <script src="/resources/js/navbar.js"></script>
-        <!-- <script>
+
+    <script type="text/javascript" src="resources/vendors/jquery/jquery-3.2.1.min.js"></script>
+    <script src="resources/js/parts-detail.js"></script>
+    <script src="/resources/js/navbar.js"></script>
+    <!-- <script>
 $(document).ready(function(){
 $('.collapsible').collapsible();
 });
 </script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-        <script>
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var chart = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'bar',
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'bar',
 
-                // The data for our dataset
-                data: {
-                    labels: ["10-11-17", "11-11-17", "12-11-17", "13-11-17"],
-                    datasets: [{
+            // The data for our dataset
+            data: {
+                labels: ["10-11-17", "11-11-17", "12-11-17", "13-11-17"],
+                datasets: [{
                         label: "Count",
                         backgroundColor: 'rgb(255, 99, 132)',
                         borderColor: 'rgb(255, 99, 132)',
                         data: [0, 10, 5, 2],
                     },
-                               {
-                                   label: "Quantity",
-                                   backgroundColor: 'rgb(105, 108, 136)',
-                                   borderColor: 'rgb(105, 108, 136)',
-                                   data: [5, 3, 12, 14],
-                               },
-                               {
-                                   label: "Quantity expected",
-                                   backgroundColor: 'rgb(200, 200, 136)',
-                                   borderColor: 'rgb(200, 200, 136)',
-                                   data: [23, 15, 5, 6],
-                               }],
-                },
+                    {
+                        label: "Quantity",
+                        backgroundColor: 'rgb(105, 108, 136)',
+                        borderColor: 'rgb(105, 108, 136)',
+                        data: [5, 3, 12, 14],
+                    },
+                    {
+                        label: "Quantity expected",
+                        backgroundColor: 'rgb(200, 200, 136)',
+                        borderColor: 'rgb(200, 200, 136)',
+                        data: [23, 15, 5, 6],
+                    }
+                ],
+            },
 
-                // Configuration options go here
-                options: {
-                    responsive: "true",
-                    layout: {
-                        padding: {
-                            left: 20,
-                            right: 20,
-                            top: 10,
-                            bottom: 10
-                        }
+            // Configuration options go here
+            options: {
+                responsive: "true",
+                layout: {
+                    padding: {
+                        left: 20,
+                        right: 20,
+                        top: 10,
+                        bottom: 10
                     }
                 }
-            });
+            }
+        });
 
-        </script>
-        <script>
-            $(document).ready(function(){
-                // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-                $('.modal').modal();
-            });
-        </script>
-        <script>
-            $(document).ready(function(){$(".button-collapse").sideNav();});
-            $('.button-collapse').sideNav({
-                menuWidth: 230, // Default is 300
-                edge: 'left', // Choose the horizontal origin
-                closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-                draggable: true, // Choose whether you can drag to open on touch screens,
+    </script>
+    <script>
+        $(document).ready(function() {
+            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+        });
+
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(".button-collapse").sideNav();
+        });
+        $('.button-collapse').sideNav({
+            menuWidth: 230, // Default is 300
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true, // Choose whether you can drag to open on touch screens,
+
+        });
+
+    </script>
+    <script>
+        $(document).ready(function() {
+            window.history.pushState('https://daimler-frontend.netlify.com/critical-list-detail.html', 'back page', 'https://daimler-frontend.netlify.com/critical-list-detail.html');
+            window.history.pushState('https://daimler-frontend.netlify.com/part-detail.html', 'back page', 'https://daimler-frontend.netlify.com/part-detail.html');
+            window.addEventListener("popstate", function(e) {
+                if (document.URL.indexOf("https://daimler-frontend.netlify.com/critical-list-detail.html") >= 0) {
+                    document.location.href = document.location
+                }
 
             });
-        </script>
-        <script>
-            $(document).ready(function () {
-                window.history.pushState('https://daimler-frontend.netlify.com/critical-list-detail.html','back page','https://daimler-frontend.netlify.com/critical-list-detail.html');
-                window.history.pushState('https://daimler-frontend.netlify.com/part-detail.html','back page','https://daimler-frontend.netlify.com/part-detail.html');
-                window.addEventListener("popstate", function(e){
-                    if(document.URL.indexOf("https://daimler-frontend.netlify.com/critical-list-detail.html")>=0){document.location.href=document.location}
+        });
 
-                });
-            });
-        </script>
-    </body>
+    </script>
+</body>
+
 </html>

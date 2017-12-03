@@ -1,104 +1,104 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <!--Import Google Icon Font-->
-        <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Import materialize.css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<head>
+    <!--Import Google Icon Font-->
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <meta name="theme-color" content="#191818" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
 
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
+<body id="bod" style="background: url(resources/images/background.png);">
+    <!--Import jQuery before materialize.js-->
 
-    <body id="bod" style="background: url(resources/images/background.png);">
-        <!--Import jQuery before materialize.js-->
-
-        <!-- Modal Structure -->
-        <div id="modal1" class="modal">
-            <div class="modal-content">
-                <p>Are you sure?</p>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="delete">Yes</a>
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
-            </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <p>Are you sure?</p>
         </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="delete">Yes</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
+        </div>
+    </div>
 
 
-        <ul id="slide-out" class="side-nav fixed">
-            <li>
-                <div class="user-view">
-                    <div class="background" style="background-color: #c0c0c0;">
-                    </div>
-                    <img class="circle" src="resources/images/user.png">
-                    <a href="#!name"><span id= "uname" class="name">John Doe</span></a>
-                    <a href="#!email"><span id ="uemail" class="email">jdandturk@gmail.com</span></a>
+    <ul id="slide-out" class="side-nav fixed">
+        <li>
+            <div class="user-view">
+                <div class="background" style="background-color: #c0c0c0;">
                 </div>
-            </li>
-            <li><a href="#!" id= "sos-nav">SOS</a></li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a href="#!" id= "critical-list-nav" >Critical List</a></li>
-            <li><a href="#!" id= "mdt-nav" >MDT</a></li>
-            <li><a href="#!" id= "hdt-nav" >HDT</a></li>
-            <li><a href="#!" id= "axle-nav">Axle</a></li>
-            <li><a href="#!" id= "casting-and-forging-nav">Casting and forging</a></li>
-            <li><a href="#!" id="transmission-nav" >Transmission</a></li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a class="subheader">Account</a></li>
-            <li><a class="waves-effect" href="#!" id= "logout-nav">Logout</a></li>
-        </ul>
-        <!-- <script src="resources/js/checktoken.js"></script> -->
-        <nav>
-            <div class="nav-wrapper" style="background-color: #00677F;">
-                <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
-                <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+                <img class="circle" src="resources/images/user.png">
+                <a href="#!name"><span id= "uname" class="name">John Doe</span></a>
+                <a href="#!email"><span id ="uemail" class="email">jdandturk@gmail.com</span></a>
             </div>
-        </nav>
-        
-        <h4 style="color: white; text-align: center;">Notifications</h4>
-         <h3 hidden id="data-h">No Notifications</h3>
-        <ul class="collection">
-        
-            <li hidden id="item" class="collection-item avatar dismissable">
-                <i class="material-icons circle red">comment</i>
-                <span class="title">New comment</span>
-                <p id="content">A new comment by Mr Rick has been added to the following issue"<br>
-                </p>
-                
-            </li>
-         
-           
-        </ul>
+        </li>
+        <li><a href="#!" id="sos-nav">SOS</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a href="#!" id="critical-list-nav">Critical List</a></li>
+        <li><a href="#!" id="mdt-nav">MDT</a></li>
+        <li><a href="#!" id="hdt-nav">HDT</a></li>
+        <li><a href="#!" id="axle-nav">Axle</a></li>
+        <li><a href="#!" id="casting-and-forging-nav">Casting and forging</a></li>
+        <li><a href="#!" id="transmission-nav">Transmission</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Account</a></li>
+        <li><a class="waves-effect" href="#!" id="logout-nav">Logout</a></li>
+    </ul>
+    <!-- <script src="resources/js/checktoken.js"></script> -->
+    <nav>
+        <div class="nav-wrapper" style="background-color: #00677F;">
+            <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+
+    <h4 style="color: white; text-align: center;">Notifications</h4>
+    <h3 hidden id="data-h">No Notifications</h3>
+    <ul class="collection">
+
+        <li hidden id="item" class="collection-item avatar dismissable">
+            <i class="material-icons circle red">comment</i>
+            <span class="title">New comment</span>
+            <p id="content">A new comment by Mr Rick has been added to the following issue"<br>
+            </p>
+
+        </li>
+
+
+    </ul>
 
 
 
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="resources/vendors/jquery/jquery.timeago.js" type="text/javascript"></script>
-        <script src="resources/js/notifications.js"></script>
-        <script src="/resources/js/navbar.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="resources/vendors/jquery/jquery.timeago.js" type="text/javascript"></script>
+    <script src="resources/js/notifications.js"></script>
+    <script src="/resources/js/navbar.js"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $(".button-collapse").sideNav();
-                $('.modal').modal();
-            });
-            $('.button-collapse').sideNav({
-                menuWidth: 230, // Default is 300
-                edge: 'left', // Choose the horizontal origin
-                closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-                draggable: true, // Choose whether you can drag to open on touch screens,
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".button-collapse").sideNav();
+            $('.modal').modal();
+        });
+        $('.button-collapse').sideNav({
+            menuWidth: 230, // Default is 300
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true, // Choose whether you can drag to open on touch screens,
 
-            });
+        });
 
-        </script>
-    </body>
+    </script>
+</body>
 
 </html>
