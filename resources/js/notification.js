@@ -95,7 +95,7 @@ function initializeNotifications() {
 if ('serviceWorker' in navigator && 'PushManager' in window) {
     console.log('Service Worker and Push is supported');
 
-    navigator.serviceWorker.register('service-worker.js')
+    navigator.serviceWorker.register('firebase-messaging-sw.js')
         .then(function (swReg) {
             console.log('Service Worker is registered', swReg);
 
@@ -138,18 +138,18 @@ function sendFCMToken(){
     fetch(getEndpoint, {
         method: "get",
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Token ' + token
         }
     }).then((res)=>{
         if (res.ok) {
             res.json().then(function (data) {
-                payload.userID = data.id;
-                payload.username = data.username;
+                // payload.userID = data.id;
+                // payload.username = data.username;
                 console.log("Getting FCM token...");
-                getFCMToken((token)=>{
-                    payload.fcm_token = token;
-                    console.log("Sending FCM stoken...")
+                getFCMToken((FCM_token)=>{
+                    payload.registration_id = FCM_token;
+                    console.log("Sending FCM stoken...[" + FCM_token + "]")
 
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', postEndpoint, true);
