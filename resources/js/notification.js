@@ -96,6 +96,7 @@ function requestPermission(){
     messaging.requestPermission()
     .then(function() {
         console.log('Notification permission granted.');
+        sendFCMToken();
     })
     .catch(function(err) {
         console.log('Unable to get permission to notify.', err);
@@ -126,16 +127,23 @@ function sendFCMToken(){
                 // payload.username = data.username;
                 console.log("Getting FCM token...");
                 getFCMToken((FCM_token)=>{
-                    payload.registration_id = FCM_token;
-                    console.log("Sending FCM stoken...[" + FCM_token + "]")
+                    // payload.registration_id = FCM_token;
+
+                    var formData = new FormData();
+                    formData.append('registration_id', FCM_token);
+                    formData.append('userID', data.id);
+                    formData.append('name', data.username);
+                    formData.append('active', true);
+                    formData.append('cloud_message_type', 'FCM');
 
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', postEndpoint, true);
+                    console.log(token);
                     xhr.setRequestHeader('Authorization', 'Token ' + token);
                     xhr.onload = function () {
-                        console.log(xhr.status);
+                        console.log(xhr);
                     };
-                    xhr.send(payload);
+                    xhr.send(formData);
                 })
             });
         } else {
@@ -149,7 +157,8 @@ function sendFCMToken(){
 if ('serviceWorker' in navigator && 'PushManager' in window) {
     console.log('Service Worker and Push is supported');
 
-    navigator.serviceWorker.register('firebase-messaging-sw.js')
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('firebase-messaging-sw.js')
         .then(function (swReg) {
             console.log('Service Worker is registered', swReg);
 
@@ -161,6 +170,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
         .catch(function (error) {
             console.error('Service Worker Error', error);
         });
+    });
 } else {
     console.warn('Push messaging is not supported');
     pushButton.textContent = 'Push Not Supported';
