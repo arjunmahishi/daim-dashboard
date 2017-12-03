@@ -110,8 +110,8 @@ function getFCMToken(onsuccess){
 }
 
 function sendFCMToken(){
-    const getEndpoint = "http://daimler-backend.herokuapp.com/api/current_user/";
-    const postEndpoint = "http://daimler-backend.herokuapp.com/api/device/gcm/";
+    const getEndpoint = "https://daimler-backend.herokuapp.com/api/current_user/";
+    const postEndpoint = "https://daimler-backend.herokuapp.com/api/device/gcm/";
     let payload = {};
 
     fetch(getEndpoint, {
