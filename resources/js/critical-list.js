@@ -151,7 +151,9 @@ function getData() {
                 }).then(function (response) {
                     if (response.ok) {
                         response.json().then(function (data) {
+                            
                             json = data;
+                            alert(json);
                             console.log(json);
                             dataForChart(json);
                             addItems(json);
