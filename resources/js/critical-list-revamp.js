@@ -122,6 +122,7 @@ $(function () {
         e.stopPropagation();
     });
 
+
 });
 
 function getData() {
@@ -156,14 +157,20 @@ function addItems(jsonPart) {
         $("#status").addClass("red");
         $("#status").text("Critical");
     } else if (jsonPart.status == 2) {
-        $("#status").addClass("yellow");
+        $("#status").addClass("orange");
         $("#status").text("Warning");
     } else {
         $("#status").addClass("green");
         $("#status").text("Normal");
     }
-    $("#shop").text(jsonPart.shop);
-    $('#details').html("<b>Supplier: </b>" + jsonPart.supplier_name + "<br><b>PMC:</b>" + jsonPart.pmc);
+    console.log(jsonPart.shop);
+    $('#shop-text').text(jsonPart.shop);
+    //     Object.entries(jsonPart).forEach(([key, value]) => {
+    //        tableHtml += `<tr><th>${key}</th><td>${value}</td></tr>`;
+    //    });
+    $('#details').html("<tr><th>Supplier</th><td>" + jsonPart.supplier_name + "</td></tr>" +
+        "<tr><th>PMC</th><td>" + jsonPart.pmc + "</td></tr>");
+
     $("#collection").clone(true, true).insertAfter("#collection");
 
 }
