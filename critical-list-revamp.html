@@ -1,297 +1,297 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <!--Import Google Icon Font-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Import materialize.css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#191818" />
-        <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    </head>
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#191818" />
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+</head>
 
-    <body id="bod" style="background: url(resources/images/background.png);">
-        <script src="resources/js/checktoken.js"></script>
+<body id="bod" style="background: url(resources/images/background.png);">
+    <script src="resources/js/checktoken.js"></script>
 
-        <!-- Modal Structure -->
-        <div id="modal1" class="modal modal-fixed-footer">
-            <div class="modal-content">
-                <form id="edit-form" method="post" action="">
-                    <div style="text-align: center;">
-                        <h3 id="part_name">1234</h3>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="part_number" type="text" name="username" class="validate">
-                            <label for="field">Part Number</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="description" type="text" name="username" class="validate">
-                            <label for="field">Description</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="supplier_name" type="text" name="username" class="validate">
-                            <label for="field">Supplier Name</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="variants" type="text" name="username" class="validate">
-                            <label for="field">Variants</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="count" type="text" name="username" class="validate">
-                            <label for="field">Count</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="reported_on" type="text" name="username" class="validate">
-                            <label for="field">Reported On</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="short_on" type="text" name="username" class="validate">
-                            <label for="field">Short on</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="shop" type="text" name="username" class="validate">
-                            <label for="field">Shop</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="pmc" type="text" name="username" class="validate">
-                            <label for="field">PMC</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="team" type="text" name="username" class="validate">
-                            <label for="field">Team</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="backlog" type="text" name="username" class="validate">
-                            <label for="field">Backlog</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="region" type="text" name="username" class="validate">
-                            <label for="field">Region</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="unloading_point" type="text" name="username" class="validate">
-                            <label for="field">Unloading Point</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="p_q" type="text" name="username" class="validate">
-                            <label for="field">Pq</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="quantity" type="text" name="username" class="validate">
-                            <label for="field">Quantity</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="quantity_expected" type="text" name="username" class="validate">
-                            <label for="field">Quantity expected</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="planned_vehicle_qty" type="text" name="username" class="validate">
-                            <label for="field">Planned Vehicle Quantity</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="eta_dicv" type="text" name="username" class="validate">
-                            <label for="field">ETA dicv</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="truck_details" type="text" name="username" class="validate">
-                            <label for="field">Truck Details</label>
-
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="shortage_reason" type="text" name="username" class="validate">
-                            <label for="field">Shortage Reason</label>
-
-                        </div>
-                    </div>
-                    <div>
-                        <p>Status:</p>
-                    </div>
-                    <div>
-                        <p>
-                            <input class="with-gap" name="status" type="radio" id="critical-radio-btn" />
-                            <label for="critical-radio-btn">Critical</label>
-                        </p>
-                        <p>
-                            <input class="with-gap" name="status" type="radio" id="normal-radio-btn" />
-                            <label for="normal-radio-btn">Normal</label>
-                        </p>
-                        <p>
-                            <input class="with-gap" name="status" type="radio" id="warning-radio-btn" />
-                            <label for="warning-radio-btn">Warning</label>
-                        </p>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="done-btn">Done</a>
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
-            </div>
-        </div>
-        <div id="modal_notify" class="modal modal-fixed-footer">
-            <div class="modal-content">
-                <form id="edit-form" method="post" action="">
-                    <div style="text-align: center;">
-                        <h3 id="number_notify">1234</h3>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="comment" type="text" name="message" class="validate">
-                            <label for="field">Message</label>
-
-                        </div>
-                    </div>
-                    <div class="chips chips-autocomplete"></div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="notify-btn">Notify</a>
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
-            </div>
-        </div>
-
-        <ul id="slide-out" class="side-nav fixed">
-            <li>
-                <div class="user-view">
-                    <div class="background" style="background-color: #c0c0c0;">
-                    </div>
-                    <img class="circle" src="resources/images/user.png">
-                    <a href="#!name"><span id= "uname" class="name">John Doe</span></a>
-                    <a href="#!email"><span id ="uemail" class="email">jdandturk@gmail.com</span></a>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <form id="edit-form" method="post" action="">
+                <div style="text-align: center;">
+                    <h3 id="part_name">1234</h3>
                 </div>
-            </li>
-            <li><a href="#!" id="sos-nav">SOS</a></li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a href="#!" id="critical-list-nav">Critical List</a></li>
-            <li><a href="#!" id="mdt-nav">MDT</a></li>
-            <li><a href="#!" id="hdt-nav">HDT</a></li>
-            <li><a href="#!" id="axle-nav">Axle</a></li>
-            <li><a href="#!" id="casting-and-forging-nav">Casting and forging</a></li>
-            <li><a href="#!" id="transmission-nav">Transmission</a></li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a class="subheader">Account</a></li>
-            <li><a class="waves-effect" href="#!" id="logout-nav">Logout</a></li>
-        </ul>
-        <!--Import jQuery before materialize.js-->
-        <nav>
-            <div class="nav-wrapper" style="background-color: #00677F;">
-                <a href="select.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
-                <a href="#" data-activates="slide-out" class="button-collapse">
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="part_number" type="text" name="username" class="validate">
+                        <label for="field">Part Number</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="description" type="text" name="username" class="validate">
+                        <label for="field">Description</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="supplier_name" type="text" name="username" class="validate">
+                        <label for="field">Supplier Name</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="variants" type="text" name="username" class="validate">
+                        <label for="field">Variants</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="count" type="text" name="username" class="validate">
+                        <label for="field">Count</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="reported_on" type="text" name="username" class="validate">
+                        <label for="field">Reported On</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="short_on" type="text" name="username" class="validate">
+                        <label for="field">Short on</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="shop" type="text" name="username" class="validate">
+                        <label for="field">Shop</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="pmc" type="text" name="username" class="validate">
+                        <label for="field">PMC</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="team" type="text" name="username" class="validate">
+                        <label for="field">Team</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="backlog" type="text" name="username" class="validate">
+                        <label for="field">Backlog</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="region" type="text" name="username" class="validate">
+                        <label for="field">Region</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="unloading_point" type="text" name="username" class="validate">
+                        <label for="field">Unloading Point</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="p_q" type="text" name="username" class="validate">
+                        <label for="field">Pq</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="quantity" type="text" name="username" class="validate">
+                        <label for="field">Quantity</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="quantity_expected" type="text" name="username" class="validate">
+                        <label for="field">Quantity expected</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="planned_vehicle_qty" type="text" name="username" class="validate">
+                        <label for="field">Planned Vehicle Quantity</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="eta_dicv" type="text" name="username" class="validate">
+                        <label for="field">ETA dicv</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="truck_details" type="text" name="username" class="validate">
+                        <label for="field">Truck Details</label>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="shortage_reason" type="text" name="username" class="validate">
+                        <label for="field">Shortage Reason</label>
+
+                    </div>
+                </div>
+                <div>
+                    <p>Status:</p>
+                </div>
+                <div>
+                    <p>
+                        <input class="with-gap" name="status" type="radio" id="critical-radio-btn" />
+                        <label for="critical-radio-btn">Critical</label>
+                    </p>
+                    <p>
+                        <input class="with-gap" name="status" type="radio" id="normal-radio-btn" />
+                        <label for="normal-radio-btn">Normal</label>
+                    </p>
+                    <p>
+                        <input class="with-gap" name="status" type="radio" id="warning-radio-btn" />
+                        <label for="warning-radio-btn">Warning</label>
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="done-btn">Done</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        </div>
+    </div>
+    <div id="modal_notify" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <form id="edit-form" method="post" action="">
+                <div style="text-align: center;">
+                    <h3 id="number_notify">1234</h3>
+                </div>
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="comment" type="text" name="message" class="validate">
+                        <label for="field">Message</label>
+
+                    </div>
+                </div>
+                <div class="chips chips-autocomplete"></div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="notify-btn">Notify</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        </div>
+    </div>
+
+    <ul id="slide-out" class="side-nav fixed">
+        <li>
+            <div class="user-view">
+                <div class="background" style="background-color: #c0c0c0;">
+                </div>
+                <img class="circle" src="resources/images/user.png">
+                <a href="#!name"><span id= "uname" class="name">John Doe</span></a>
+                <a href="#!email"><span id ="uemail" class="email">jdandturk@gmail.com</span></a>
+            </div>
+        </li>
+        <li><a href="#!" id="sos-nav">SOS</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a href="#!" id="critical-list-nav">Critical List</a></li>
+        <li><a href="#!" id="mdt-nav">MDT</a></li>
+        <li><a href="#!" id="hdt-nav">HDT</a></li>
+        <li><a href="#!" id="axle-nav">Axle</a></li>
+        <li><a href="#!" id="casting-and-forging-nav">Casting and forging</a></li>
+        <li><a href="#!" id="transmission-nav">Transmission</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Account</a></li>
+        <li><a class="waves-effect" href="#!" id="logout-nav">Logout</a></li>
+    </ul>
+    <!--Import jQuery before materialize.js-->
+    <nav>
+        <div class="nav-wrapper" style="background-color: #00677F;">
+            <a href="select.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
+            <a href="#" data-activates="slide-out" class="button-collapse">
                     <i class="material-icons">menu</i>
                 </a>
-                <ul class="right">
-                    <li><i class="material-icons dropdown-button" data-beloworigin="true" href='#' id="not" data-activates='dropdown1' style="margin-right: 15px;">notifications</i></li>
-                </ul>
-            </div>
-        </nav>
-        <div id="sort-selection">
-            <div class="card m12 s12" style="cursor: pointer; background-color: #00677F;">
-                <div class="card-content white-text">
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="col s3 m3">
-                            <i class="material-icons prefix" style="margin-top: 5px;" id="prev">arrow_back</i>
+            <ul class="right">
+                <li><i class="material-icons dropdown-button" data-beloworigin="true" href='#' id="not" data-activates='dropdown1' style="margin-right: 15px;">notifications</i></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="sort-selection">
+        <div class="card m12 s12" style="cursor: pointer; background-color: #00677F;">
+            <div class="card-content white-text">
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="col s3 m3">
+                        <i class="material-icons prefix" style="margin-top: 5px;" id="prev">arrow_back</i>
+                    </div>
+                    <div class="col s6 m6">
+                        <div>
+                            <span class="card-title" style="text-align: center;" id="date">10/19/2017</span>
                         </div>
-                        <div class="col s6 m6">
-                            <div>
-                                <span class="card-title" style="text-align: center;" id="date">10/19/2017</span>
-                            </div>
-                        </div>
-                        <div class="col s3 m3">
-                            <i class="material-icons prefix" style="float: right; margin-top: 5px;" id="next">arrow_forward</i>
-                        </div>
+                    </div>
+                    <div class="col s3 m3">
+                        <i class="material-icons prefix" style="float: right; margin-top: 5px;" id="next">arrow_forward</i>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col s12 m6" style="display: none;" id="sort-choices">
-            <div class="card" style="background-color: #00677F;">
-                <div class="card-content white-text">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">event</i>
-                        <input type="text" class="datepicker date-color">
-                        <label for="icon_prefix">Date</label>
-                    </div>
+    </div>
+    <div class="col s12 m6" style="display: none;" id="sort-choices">
+        <div class="card" style="background-color: #00677F;">
+            <div class="card-content white-text">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">event</i>
+                    <input type="text" class="datepicker date-color">
+                    <label for="icon_prefix">Date</label>
                 </div>
-                <button class="btn waves-effect waves-light" style="background-color: #1F778C;" id="apply-btn">
+            </div>
+            <button class="btn waves-effect waves-light" style="background-color: #1F778C;" id="apply-btn">
                     <a href="#" style="color: white;">Apply</a>
                 </button>
-            </div>
         </div>
-        <div>
-            <div id="chartDiv" class="card" style="cursor: pointer; background-color: #00677F; margin-top: 10px;">
-                <canvas id="myChart"></canvas>
-            </div>
+    </div>
+    <div>
+        <div id="chartDiv" class="card" style="cursor: pointer; background-color: #00677F; margin-top: 10px;">
+            <canvas id="myChart"></canvas>
         </div>
-        <h4 class="sub-head" style="text-align: center;
+    </div>
+    <h4 class="sub-head" style="text-align: center;
                                     margin-bottom: 0px;">CRITICAL PARTS</h4>
 
-        <div class="container">
-            <div class="row" style="margin-bottom: 0px;">
-                <div class="col s12 m12" id="mdt">
-                    <div class="card" style="cursor: pointer;">
-                        <!--
+    <div class="container">
+        <div class="row" style="margin-bottom: 0px;">
+            <div class="col s12 m12" id="mdt">
+                <div class="card" style="cursor: pointer;">
+                    <!--
 <div class="card-content black-text">
 <div class="row" style="margin-bottom: 0px;">
 <span class="card-title" style="text-align: center;">A4008100510A0</span>
@@ -329,119 +329,120 @@
 </div>
 </div>
 -->
-                        <ul class="collection">
-                            <li class="collection-item" id="collection">
-                                <div class="row" style="margin-bottom: 0px;">
-                                    <div class="col s8 m8">
-                                        <h5 id="part_number_re">A400810051</h5>
-                                    </div>
-                                    <div class="col s4 m4">
-                                        <span id="status" class="badge red" style="color: white; margin-top: 10px;">critical</span>
-                                    </div>
+                    <ul class="collection">
+                        <li class="collection-item" id="collection">
+                            <div class="row" style="margin-bottom: 0px;">
+                                <div class="col s8 m8">
+                                    <h5 id="part_number_re">A400810051</h5>
                                 </div>
-                                <p id="details"><b>Supplier:</b> ZB SUN VISOR RH BLACK<br>
-                                    <b>PMC:</b> Giftson
-                                </p>
-                                <div class="row" style="margin-bottom: 0px;">
-                                    <div class="col s3 m3 center-align">
-                                        <i class="material-icons prefix">edit</i>
-                                    </div>
-                                    <div class="col s3 m3 center-align">
-                                        <i class="material-icons prefix">send</i>
-                                    </div>
-                                    <div class="col s3 m3 center-align">
-                                        <i class="material-icons prefix">message</i>
-                                    </div>
-                                    <div class="col s3 m3 center-align">
-                                        <i class="material-icons prefix">star</i>
-                                    </div>
+                                <div class="col s4 m4">
+                                    <span id="status" class="badge s2 m2" style="color: white;margin-top: 4px;">Critical</span>
+                                    <span id="shop" class="badge cyan darken-2 s2 m2" style="color: white;margin-top: 4px;">MDT</span>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                            <p id="details"><b>Supplier:</b> ZB SUN VISOR RH BLACK<br>
+                                <b>PMC:</b> Giftson
+                            </p>
+                            <div class="row" style="margin-bottom: 0px;">
+                                <div class="col s3 m3 center-align">
+                                    <i class="material-icons prefix">edit</i>
+                                </div>
+                                <div class="col s3 m3 center-align">
+                                    <i class="material-icons prefix">send</i>
+                                </div>
+                                <div class="col s3 m3 center-align">
+                                    <i class="material-icons prefix">message</i>
+                                </div>
+                                <div class="col s3 m3 center-align">
+                                    <i class="material-icons prefix">star</i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4 class="sub-head" style="text-align: center;">PART TYPES</h4>
+    <div class="container">
+        <div class="row" style="margin-bottom: 0px;">
+            <div class="col s12 m6" id="mdt">
+                <div class="card white" style="cursor: pointer;">
+                    <div class="card-content black-text">
+                        <span class="card-title" style="text-align: center;">MDT</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6" id="hdt">
+                <div class="card white" style="cursor: pointer;">
+                    <div class="card-content black-text">
+                        <span class="card-title" style="text-align: center;">HDT</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6" id="axle">
+                <div class="card white" style="cursor: pointer;">
+                    <div class="card-content black-text">
+                        <span class="card-title" style="text-align: center;">Axle</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6" id="casting-and-forging">
+                <div class="card white" style="cursor: pointer;">
+                    <div class="card-content black-text">
+                        <span class="card-title" style="text-align: center;">Casting and Forging</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6" id="transmission">
+                <div class="card white" style="cursor: pointer;">
+                    <div class="card-content black-text">
+                        <span class="card-title" style="text-align: center;">Transmission</span>
                     </div>
                 </div>
             </div>
         </div>
-
-        <h4 class="sub-head" style="text-align: center;">PART TYPES</h4>
-        <div class="container">
-            <div class="row" style="margin-bottom: 0px;">
-                <div class="col s12 m6" id="mdt">
-                    <div class="card white" style="cursor: pointer;">
-                        <div class="card-content black-text">
-                            <span class="card-title" style="text-align: center;">MDT</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6" id="hdt">
-                    <div class="card white" style="cursor: pointer;">
-                        <div class="card-content black-text">
-                            <span class="card-title" style="text-align: center;">HDT</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6" id="axle">
-                    <div class="card white" style="cursor: pointer;">
-                        <div class="card-content black-text">
-                            <span class="card-title" style="text-align: center;">Axle</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6" id="casting-and-forging">
-                    <div class="card white" style="cursor: pointer;">
-                        <div class="card-content black-text">
-                            <span class="card-title" style="text-align: center;">Casting and Forging</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6" id="transmission">
-                    <div class="card white" style="cursor: pointer;">
-                        <div class="card-content black-text">
-                            <span class="card-title" style="text-align: center;">Transmission</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
 
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="resources/js/critical-list-revamp.js"></script>
-        <script src="resources/js/navbar.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-                $('.modal').modal();
-                $('.chips').material_chip();
-                $('.chips-autocomplete').material_chip({
-                    autocompleteOptions: {
-                        data: {
-                            'Apple': null,
-                            'Microsoft': null,
-                            'Google': null
-                        },
-                        limit: Infinity,
-                        minLength: 1
-                    }
-                });
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="resources/js/critical-list-revamp.js"></script>
+    <script src="resources/js/navbar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+            $('.chips').material_chip();
+            $('.chips-autocomplete').material_chip({
+                autocompleteOptions: {
+                    data: {
+                        'Apple': null,
+                        'Microsoft': null,
+                        'Google': null
+                    },
+                    limit: Infinity,
+                    minLength: 1
+                }
             });
+        });
 
-        </script>
-        <script>
-            $(document).ready(function() {
-                $(".button-collapse").sideNav();
-            });
-            $('.button-collapse').sideNav({
-                menuWidth: 230, // Default is 300
-                edge: 'left', // Choose the horizontal origin
-                closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-                draggable: true, // Choose whether you can drag to open on touch screens,
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(".button-collapse").sideNav();
+        });
+        $('.button-collapse').sideNav({
+            menuWidth: 230, // Default is 300
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true, // Choose whether you can drag to open on touch screens,
 
-            });
+        });
 
-        </script>
-    </body>
+    </script>
+</body>
 
 </html>

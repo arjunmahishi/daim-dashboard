@@ -18,7 +18,7 @@ if (mm < 10) {
     mm = '0' + mm
 }
 
-date = yyyy + '-' + mm + '-' + dd;
+var date = yyyy + '-' + mm + '-' + dd;
 
 //main function
 $(function () {
@@ -66,31 +66,25 @@ $(function () {
         closeOnSelect: true // Close upon selecting a date,
     });
 
-    //For storing a reference to the node that displays parts
-    var tableContainer = document.getElementById('table');
-    var childNodes = tableContainer.children;
-    console.log(childNodes);
 
-    tableRow = childNodes[1].childNodes[1];
 
 
     //to select a date
-    $('#sort-selection').click(function(){
+    $('#sort-selection').click(function () {
 
         var sortsCard = document.getElementById('sort-choices');
 
-        if($('#sort-choices').css('display') == 'none') {
+        if ($('#sort-choices').css('display') == 'none') {
             sortsCard.style.removeProperty('display');
             console.log(sortsCard.children);
 
-        }
-        else{
-            $('#sort-choices').css('display','none');
+        } else {
+            $('#sort-choices').css('display', 'none');
 
         }
 
-        $('#apply-btn').click(function(){
-            sortsCard.setAttribute('style','display: none;');
+        $('#apply-btn').click(function () {
+            sortsCard.setAttribute('style', 'display: none;');
 
             var sortSelected = $('input[name=dates]:checked').next().text();
             console.log(sortSelected);
@@ -107,22 +101,22 @@ $(function () {
         });
     });
 
-    $('#next').click(function(e){
-        var d= $('#date').text();
-        dd= parseInt(d.substr(8,9));
+    $('#next').click(function (e) {
+        var d = $('#date').text();
+        dd = parseInt(d.substr(8, 9));
         dd++;
-        if(dd==31) dd=1;
+        if (dd == 31) dd = 1;
         date = yyyy + '-' + mm + '-' + dd;
 
         getData();
         e.stopPropagation();
     });
-    $('#prev').click(function(e){
-        var d= $('#date').text();
-        dd= parseInt(d.substr(8,9));
+    $('#prev').click(function (e) {
+        var d = $('#date').text();
+        dd = parseInt(d.substr(8, 9));
 
         dd--;
-        if(dd==0) dd=31;
+        if (dd == 0) dd = 31;
         date = yyyy + '-' + mm + '-' + dd;
         getData();
         e.stopPropagation();
@@ -130,8 +124,7 @@ $(function () {
 
 });
 
-function getData() 
-{
+function getData() {
     fetch(url, {
         method: "get",
         headers: {
@@ -144,9 +137,11 @@ function getData()
 
                 json = data;
                 console.log(json);
-                addItems(json);
+                json.forEach(addItems);
+                $("#collection").remove();
                 dataForChart(json);
-                updateDisplay(json,date);
+                $('#date').text(date);
+
 
             });
         } else {
@@ -155,25 +150,24 @@ function getData()
     });
 }
 
-function addItems(json) {
-    for (var i = 0; i < json.length; i++) {
-
-
-        $("#part_number_re").text("" + json[i].part_number);
-        if(json[i].status==3)
-            $("#status").text("critical");
-        else
-            $("#status").text("normal");
-        $('#details').html("<b>Supplier: </b>"+json[i].supplier_name+"<br><b>PMC:</b>"+json[i].pmc);
-
-        $("#collection").clone(true, true).insertAfter("#collection");
-
-
-
+function addItems(jsonPart) {
+    $("#part_number_re").text("" + jsonPart.part_number);
+    if (jsonPart.status == 3) {
+        $("#status").addClass("red");
+        $("#status").text("Critical");
+    } else if (jsonPart.status == 2) {
+        $("#status").addClass("yellow");
+        $("#status").text("Warning");
+    } else {
+        $("#status").addClass("green");
+        $("#status").text("Normal");
     }
-
+    $("#shop").text(jsonPart.shop);
+    $('#details').html("<b>Supplier: </b>" + jsonPart.supplier_name + "<br><b>PMC:</b>" + jsonPart.pmc);
+    $("#collection").clone(true, true).insertAfter("#collection");
 
 }
+
 function dataForChart(json) {
     var partnumber = [];
     var quantityAvailable = [];
@@ -211,16 +205,16 @@ function dataForChart(json) {
         data: {
             labels: partnumber,
             datasets: [{
-                label: "Quantity Avl",
-                backgroundColor: 'rgb(210, 48, 48)',
-                borderColor: 'rgb(210, 48, 48)',
-                data: quantityAvailable,
+                    label: "Quantity Avl",
+                    backgroundColor: 'rgb(210, 48, 48)',
+                    borderColor: 'rgb(210, 48, 48)',
+                    data: quantityAvailable,
             },
-                       {
-                           label: "Planned Vehicle Qty",
-                           backgroundColor: 'rgb(200, 200, 136)',
-                           borderColor: 'rgb(200, 200, 136)',
-                           data: plannedVehicleQuantity,
+                {
+                    label: "Planned Vehicle Qty",
+                    backgroundColor: 'rgb(200, 200, 136)',
+                    borderColor: 'rgb(200, 200, 136)',
+                    data: plannedVehicleQuantity,
                        },
                       ],
         },
