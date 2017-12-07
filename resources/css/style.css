@@ -179,13 +179,13 @@ svg:nth-child(1) {
     stroke: #e51c23;
 }
 
-table {
+table#details {
 
     margin: 4px 0;
 }
 
-td,
-th {
+table#details td,
+table#details th {
     margin: 0 0;
     padding: 0 0;
 }
