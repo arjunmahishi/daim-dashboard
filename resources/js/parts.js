@@ -29,8 +29,9 @@ var pmcvalues = {
             'Giftson': 'MDT ENGINE',
             'Premkumar': 'CASTING AND FORGING',
         };
-var selection = sessionStorage.selection || "MDT ENGINE";
+var selection = sessionStorage.selection || "Arulselvan";
 console.log(selection);
+url=url+selection;
 var shopType = pmcvalues[selection]; // For card Title
 var date = sessionStorage.date || today;
 selection = selection.replace(/ /g,'%20');
@@ -301,6 +302,9 @@ else
 
 function addItems(jsonPart) {
     $("#part_name").text("" + jsonPart.part_number);
+    $("#status").removeClass("red");
+    $("#status").removeClass("orange");
+    $("#status").removeClass("green");
     if (jsonPart.status == 3) {
         $("#status").addClass("red");
         $("#status").text("Critical");
