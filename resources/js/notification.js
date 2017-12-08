@@ -182,3 +182,5 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 if(location.protocol == "http:" && location.href.split(":")[1] != "//localhost"){
     location.protocol = "https:";
 }
+
+
