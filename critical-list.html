@@ -9,11 +9,11 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#191818" />
-    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 </head>
 
 <body id="bod" style="background: url(resources/images/background.png);">
-    <script src="/resources/js/checktoken.js"></script>
+    <script src="resources/js/checktoken.js"></script>
 
     <!-- Modal Structure -->
     <div id="modal1" class="modal modal-fixed-footer">
@@ -21,13 +21,6 @@
             <form id="edit-form" method="post" action="">
                 <div style="text-align: center;">
                     <h3 id="part_name">1234</h3>
-                </div>
-                <div class="row" style="margin-bottom: 0px;">
-                    <div class="input-field col s12">
-                        <input placeholder="Placeholder" id="part_number" type="text" name="username" class="validate">
-                        <label for="field">Part Number</label>
-
-                    </div>
                 </div>
                 <div class="row" style="margin-bottom: 0px;">
                     <div class="input-field col s12">
@@ -286,32 +279,87 @@
     </div>
     <h4 class="sub-head" style="text-align: center;
                                     margin-bottom: 0px;">CRITICAL PARTS</h4>
-    <div class="container" id="card-cont">
-        <div class="col s12 m6">
-            <div class="card hoverable">
-                <table class="table centered" id="table">
-                    <thead>
-                        <tr>
-                            <th>Part Number</th>
-                            <th>Supplier Name</th>
-                            <th>Shop Value</th>
-                            <th>PMC</th>
-                            <th>Starred</th>
-                            <th>Notify</th>
-                        </tr>
-                    </thead>
 
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="container">
+        <div class="row" style="margin-bottom: 0px;">
+            <div class="col s12 m12">
+                <div class="card" style="cursor: pointer;">
+                    <!--
+<div class="card-content black-text">
+<div class="row" style="margin-bottom: 0px;">
+<span class="card-title" style="text-align: center;">A4008100510A0</span>
+</div>
+<div class="row" style="margin-bottom: 0px;">
+<div class="col s6 m6 center-align">
+<i class="material-icons prefix">edit</i>
+</div>
+<div class="col s6 m3 center-align">
+<i class="material-icons prefix">edit</i>
+</div>
+</div>
+<div class="row" style="margin-bottom: 0px;">
+<p style="text-align: center; color: white;">Supplier Name: ZB SUN VISOR RH BLACK</p>
+</div>
+<div class="row" style="margin-bottom: 0px;">
+<p style="text-align: center; color: white;">Shop: HDT</p>
+</div>
+<div class="row" style="margin-bottom: 0px;">
+<p style="text-align: center; color: white;">PMC: Giftson</p>
+</div>
+<div class="row" style="margin-bottom: 0px; margin-top: 20px;">
+<div class="col s3 m3 center-align">
+<i class="material-icons prefix">edit</i>
+</div>
+<div class="col s3 m3 center-align">
+<i class="material-icons prefix">send</i>
+</div>
+<div class="col s3 m3 center-align">
+<i class="material-icons prefix">message</i>
+</div>
+<div class="col s3 m3 center-align">
+<i class="material-icons prefix">star</i>
+</div>
+</div>
+</div>
+-->
+                    <ul class="collection">
+                        <li class="collection-item" id="collection">
+                            <div class="row" style="margin-bottom: 0px;">
+                                <div class="col s8 m8">
+                                    <h5 id="part_number_re">A400810051</h5>
+                                </div>
+                                <div class="col s4 m4">
+                                    <span id="status" class="badge s2 m2" style="color: white;margin-top: 4px;">Critical</span>
+                                    <span id="shop-text" class="badge cyan darken-2 s2 m2" style="color: white;margin-top: 4px;">MDT</span>
+                                </div>
+                            </div>
+                            <table id="details">
+                                <tr>
+                                    <th>Supplier:</th>
+                                    <td>ZB SUN VISOR RH BLACK</td>
+                                </tr>
+                                <tr>
+                                    <th>PMC:</th>
+                                    <td>Giftson</td>
+                                </tr>
+                            </table>
+                            <div class="row" style="margin-bottom: 0px;">
+                                <div class="col s3 m3 center-align edit" id="edit_area">
+                                    <i class="material-icons prefix">edit</i>
+                                </div>
+                                <div class="col s3 m3 center-align">
+                                    <i class="material-icons prefix">send</i>
+                                </div>
+                                <div class="col s3 m3 center-align">
+                                    <i class="material-icons prefix">message</i>
+                                </div>
+                                <div class="col s3 m3 center-align ">
+                                    <i class="material-icons prefix star" id="star_status">star</i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -359,8 +407,8 @@
 
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="/resources/js/critical-list.js"></script>
-    <script src="/resources/js/navbar.js"></script>
+    <script src="resources/js/critical-list-revamp.js"></script>
+    <script src="resources/js/navbar.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script>
