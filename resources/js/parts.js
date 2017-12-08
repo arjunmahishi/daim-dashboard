@@ -45,12 +45,6 @@ $(function(){
   $('#shop_type').html(shopType);
 
 
-//For storing a reference to the node that displays parts
-      var tableContainer = document.getElementById('table');
-      var childNodes = tableContainer.children;
-      console.log(childNodes);
-
-       tableRow = childNodes[1].childNodes[1];
 
 
 
@@ -171,30 +165,56 @@ $('#prev').click(function(e){
 
 });
 
-function getData(){
-fetch(url + selection+"&short_on="+date, {
-   method: "get",
-                headers: {
-                    'Content-Type' : 'application/x-www-form-urlencoded',
-                    'Authorization' : 'Token '+token
-                }
-            }).then(function(response){
-              if(response.ok){
-                response.json().then(function(data){
-                    //json = data;
-                    console.log(json);
+function getData() {
 
-                        //method to add individual parts under a part type
-                          addItems(data);
-                          updateChart(data);
-                          updateDisplay(data, date);
-                 });
-              }
-              else {
-                 console.log('Network request failed with response ' + response.status + ': ' + response.statusText);
-              }
-            });
+    fetch(url, {
+        method: "get",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Token ' + token
         }
+    }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+
+                json = data;
+                console.log(json);
+                json.forEach(addItems);
+                $("#collection").remove();
+
+                $('.edit').click(function(event){
+        position=$(".edit").index(this);
+                     console.log(json[json.length-position-1].part_number);
+                    event.target.setAttribute('class', 'modal-trigger material-icons prefix');
+        event.target.setAttribute('href', '#modal1');
+
+
+
+        populateAndEditModal(json.length-position);
+
+    });
+                $('.star').click(function(event){
+                   var clickedPosition=$(".star").index(this);
+                    if($(this).text()=='star'){
+                        unStar($(this),clickedPosition);
+                    }
+                        else{
+                            star($(this),clickedPosition);
+                        }
+
+
+
+    });
+                dataForChart(json);
+                $('#date').text(date);
+
+
+            });
+        } else {
+            console.log('Network request failed with response ' + response.status + ': ' + response.statusText);
+        }
+    });
+}
 
 function updateDisplay(jsonResponse, date){
 
@@ -279,110 +299,39 @@ else
 
 }
 
-function addItems(list){
-
-      var tableContainer = document.getElementById('table');
-      var childNodes = tableContainer.children;
-      console.log(childNodes);
-
-      var tableBody = childNodes[1];
-
-        while (tableBody.firstChild) {
-        tableBody.removeChild(tableBody.firstChild);
-      }
-      console.log(list.length);
-      if(list.length>0){
-        for( var i=0; i<list.length; i++)
-      {
-          var newRow = tableRow.cloneNode(true);
-          var cells = newRow.children;
-          for(var j=0; j<cells.length; j++){
-            cells[j].onclick = editCell;
-      }
-
-          tableBody.appendChild(newRow);
-      }
-    }else{
-
-          var newRow = tableRow.cloneNode(true);
-          tableBody.appendChild(newRow);
+function addItems(jsonPart) {
+    $("#part_name").text("" + jsonPart.part_number);
+    if (jsonPart.status == 3) {
+        $("#status").addClass("red");
+        $("#status").text("Critical");
+    } else if (jsonPart.status == 2) {
+        $("#status").addClass("orange");
+        $("#status").text("Warning");
+    } else {
+        $("#status").addClass("green");
+        $("#status").text("Normal");
     }
+    console.log(jsonPart.shop);
+    $('#shop-text').text(jsonPart.shop);
+
+
+    //     Object.entries(jsonPart).forEach(([key, value]) => {
+    //        tableHtml += `<tr><th>${key}</th><td>${value}</td></tr>`;
+    //    });
+    $('#details').html("<tr><th>Supplier</th><td>" + jsonPart.supplier_name + "</td></tr>" +
+        "<tr><th>PMC</th><td>" + jsonPart.pmc + "</td></tr>");
+    if(jsonPart.starred){
+        $('#star_status').text('star')
+    }
+    else{
+                $('#star_status').text('star_border')
+    }
+
+    $("#collection").clone(true, true).insertAfter("#collection");
 
 }
 
-function editCell(event){
-
-    if(event.target.getElementsByTagName('img').length > 0){
-
-        event.stopPropagation();
-
-        var rowIndex = event.target.parentNode.rowIndex;
-        rowIndex -= 1;
-    var images = event.target.getElementsByTagName('img');
-    var imageSource = images[0].src;
-    var fileName = imageSource.substr(imageSource.lastIndexOf('/') + 1);
-    if(fileName === "star2.png"){
-      star(rowIndex);
-      images[0].src = "resources/images/filled_star.png";
-
-    }
-    else{
-      unStar(rowIndex);
-      images[0].src = "resources/images/star2.png";
-    }
-
-    //alert(imageSource.substr(imageSource.lastIndexOf('/') + 1));
-  }else if(event.target.tagName === 'IMG'){
-    var cell = event.target.parentNode;
-    event.stopPropagation();
-      var rowIndex = event.target.parentNode.parentNode.rowIndex;
-      console.log(rowIndex);
-      var partNumber = event.target.parentNode.parentNode.childNodes[1].innerText;
-      console.log(partNumber);
-      rowIndex -= 1;
-      var imageSource = event.target.src;
-      var fileName = imageSource.substr(imageSource.lastIndexOf('/') + 1);
-      if(fileName === "star2.png"){
-      star(cell, rowIndex, partNumber);
-      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle-loader' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
-
-    }
-    else{
-      unStar(cell, rowIndex, partNumber);
-      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle-loader' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
-    }
-
-
-  }
-else{
-        event.target.setAttribute('class', 'modal-trigger');
-        event.target.setAttribute('href', '#modal1');
-
-
-        var rowIndex = event.target.parentNode.rowIndex;
-        var tableContainer = document.getElementById('table');
-        var childNodes = tableContainer.children;
-        var tableBody = childNodes[1];
-        var rows = tableBody.children;
-
-        console.log(rows);
-
-        populateAndEditModal(rowIndex);
-
-
-        var selectedRow = rows[rowIndex-1];
-        var cell = selectedRow.childNodes[1];
-        console.log(cell);
-
-        partNumber = cell.innerText;
-        // alert(partNumber);
-
-        sessionStorage.partNumber = partNumber;
-
- }
-}
-
-function updateChart(json) {
+function dataForChart(json) {
             var partnumber = [];
             var quantityAvailable = [];
             var plannedVehicleQuantity = [];
@@ -458,12 +407,12 @@ function updateChart(json) {
             });
         }
 
-function star(cell,rowIndex, partNumber){
+function star(cell,rowIndex){
   var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
 
   var formData = new FormData();
 
-  formData.append('part_number', partNumber);
+  formData.append('part_number', json[json.length-rowIndex-1].part_number);
 
   var xhr = new XMLHttpRequest();
 
@@ -477,7 +426,7 @@ xhr.onload = function () {
   console.log(xhr.status);
   if (xhr.status === 200) {
     //alert('successful');
-    cell.innerHTML = "<img src='resources/images/filled_star.png' id='image' onClick='editCell'>";
+    cell.text('star');
 
   }
   else {
@@ -489,13 +438,13 @@ xhr.onload = function () {
 xhr.send(formData);
 }
 
-function unStar(cell,rowIndex, partNumber){
+function unStar(cell,rowIndex){
 
   var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
 
   var formData = new FormData();
 
-  formData.append('part_number', partNumber);
+  formData.append('part_number', json[json.length-rowIndex-1].part_number);
 
   var xhr = new XMLHttpRequest();
 
@@ -509,7 +458,7 @@ xhr.onload = function () {
   console.log(xhr.status);
   if (xhr.status === 200) {
     //alert('successful');
-    cell.innerHTML = "<img src='resources/images/star2.png' id='image' onClick='editCell'>";
+    cell.text('star_border');
   }
   else {
     alert('An error occurred!');

@@ -301,26 +301,44 @@
     <div class="container" id="card-cont">
         <div class="col s12 m6">
             <div class="card hoverable">
-                <table class="table centered" id="table">
-                    <thead>
-                        <tr>
-                            <th>Part Number</th>
-                            <th>Supplier Name</th>
-                            <th>Part Name</th>
-                            <th>Starred</th>
-                        </tr>
-                    </thead>
 
-                    <tbody>
-                        <tr href="#modal1" class="modal-trigger">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                    <ul class="collection">
+                        <li class="collection-item" id="collection">
+                            <div class="row" style="margin-bottom: 0px;">
+                                <div class="col s8 m8">
+                                    <h5 id="part_number_re">A400810051</h5>
+                                </div>
+                                <div class="col s4 m4">
+                                    <span id="status" class="badge s2 m2" style="color: white;margin-top: 4px;">Critical</span>
+                                    <span id="shop-text" class="badge cyan darken-2 s2 m2" style="color: white;margin-top: 4px;">MDT</span>
+                                </div>
+                            </div>
+                            <table id="details">
+                                <tr>
+                                    <th>Supplier:</th>
+                                    <td>ZB SUN VISOR RH BLACK</td>
+                                </tr>
+                                <tr>
+                                    <th>PMC:</th>
+                                    <td>Giftson</td>
+                                </tr>
+                            </table>
+                            <div class="row" style="margin-bottom: 0px;">
+                                <div class="col s3 m3 center-align edit" id="edit_area">
+                                    <i class="material-icons prefix">edit</i>
+                                </div>
+                                <div class="col s3 m3 center-align">
+                                    <i class="material-icons prefix">send</i>
+                                </div>
+                                <div class="col s3 m3 center-align">
+                                    <i class="material-icons prefix">message</i>
+                                </div>
+                                <div class="col s3 m3 center-align ">
+                                    <i class="material-icons prefix star" id="star_status">star</i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>            </div>
         </div>
     </div>
 
