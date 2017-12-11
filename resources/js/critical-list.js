@@ -396,7 +396,7 @@ $('#notify-btn').click(function(){
     formData.append('partid',body.partid);
     formData.append('userid',body.userid);
     console.log(body);
-    var urlpost='http://daimler-backend.herokuapp.com/api/comments/'
+    var urlpost='https://daimler-backend.herokuapp.com/api/comments/'
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', urlpost, true);
