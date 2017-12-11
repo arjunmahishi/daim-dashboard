@@ -456,4 +456,6 @@ xhr.send(JSON.stringify(obj));
 }
 
 
-
+//Object.entries(jsonPart).forEach(([key, value]) => {
+    //        tableHtml += `<tr><th>${key}</th><td>${value}</td></tr>`;
+    //    });

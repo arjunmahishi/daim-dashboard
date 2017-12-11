@@ -1,18 +1,16 @@
 var url = "https://daimler-backend.herokuapp.com/api/critical_list/critical_parts/";
-
 var data = [];
 var json;
-
-//global variable that holds a reference to the node that displays parts
-var tableRow;
-
 var token = sessionStorage.tokenid || "83cc351e4ec002a30f5fbe3e768cc4874263e9dd";
+var ctx = document.getElementById('myChart').getContext('2d');
+var autocomplete={};
 
+//variables for date
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth() + 1;
 var yyyy = today.getFullYear();
-
+var position=0;
 if (dd < 10) {
     dd = '0' + dd
 }
@@ -21,18 +19,11 @@ if (mm < 10) {
     mm = '0' + mm
 }
 
-date = yyyy + '-' + mm + '-' + dd;
+var date = yyyy + '-' + mm + '-' + dd;
 
-var ctx = document.getElementById('myChart').getContext('2d');
-
-
-
-
-
+//main function
 $(function () {
-
     getData();
-
     $('#mdt').click(function () {
         sessionStorage.selection = "Giftson";
         window.location.replace("/critical-list-detail.html");
@@ -60,397 +51,262 @@ $(function () {
     });
     $('#transmission').click(function () {
 
-                var cardTitle = "TRANSMISSION";
-                sessionStorage.selection = "Balaji";
-                console.log(cardTitle);
-                window.location.replace("/critical-list-detail.html");
+        var cardTitle = "TRANSMISSION";
+        sessionStorage.selection = "Balaji";
+        console.log(cardTitle);
+        window.location.replace("/critical-list-detail.html");
 
-            });
+    });
 
     $('.datepicker').pickadate({
-                selectMonths: true, // Creates a dropdown to control month
-                selectYears: 15, // Creates a dropdown of 15 years to control year,
-                today: 'Today',
-                clear: 'Clear',
-                close: 'Ok',
-                closeOnSelect: true // Close upon selecting a date,
-              });
-
-                //For storing a reference to the node that displays parts
-                  var tableContainer = document.getElementById('table');
-                  var childNodes = tableContainer.children;
-                  console.log(childNodes);
-
-                   tableRow = childNodes[1].childNodes[1];
-
-
-            //to select a date
-            $('#sort-selection').click(function(){
-
-              var sortsCard = document.getElementById('sort-choices');
-
-              if($('#sort-choices').css('display') == 'none') {
-                sortsCard.style.removeProperty('display');
-                  console.log(sortsCard.children);
-
-              }
-              else{
-                $('#sort-choices').css('display','none');
-
-              }
-
-              $('#apply-btn').click(function(){
-                  sortsCard.setAttribute('style','display: none;');
-
-                  var sortSelected = $('input[name=dates]:checked').next().text();
-                  console.log(sortSelected);
-
-                  var year = $('.datepicker').pickadate('picker').get('highlight', 'yyyy');
-                  var month = $('.datepicker').pickadate('picker').get('highlight', 'mm');
-                  var day = $('.datepicker').pickadate('picker').get('highlight', 'dd');
-                  date = year + '-' + month + '-' + day;
-                  sessionStorage.date = date;
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year,
+        today: 'Today',
+        clear: 'Clear',
+        close: 'Ok',
+        closeOnSelect: true // Close upon selecting a date,
+    });
 
 
 
-                  getData();
-              });
-            });
 
-            $('#next').click(function(e){
-              var d= $('#date').text();
-              dd= parseInt(d.substr(8,9));
-              dd++;
-              if(dd==31) dd=1;
-              date = yyyy + '-' + mm + '-' + dd;
+    //to select a date
+    $('#sort-selection').click(function () {
 
-              getData();
-              e.stopPropagation();
-            });
-            $('#prev').click(function(e){
-              var d= $('#date').text();
-              dd= parseInt(d.substr(8,9));
+        var sortsCard = document.getElementById('sort-choices');
 
-              dd--;
-              if(dd==0) dd=31;
-              date = yyyy + '-' + mm + '-' + dd;
-              getData();
-              e.stopPropagation();
-            });
+        if ($('#sort-choices').css('display') == 'none') {
+            sortsCard.style.removeProperty('display');
+            console.log(sortsCard.children);
+
+        } else {
+            $('#sort-choices').css('display', 'none');
+
+        }
+
+        $('#apply-btn').click(function () {
+            sortsCard.setAttribute('style', 'display: none;');
+
+            var sortSelected = $('input[name=dates]:checked').next().text();
+            console.log(sortSelected);
+
+            var year = $('.datepicker').pickadate('picker').get('highlight', 'yyyy');
+            var month = $('.datepicker').pickadate('picker').get('highlight', 'mm');
+            var day = $('.datepicker').pickadate('picker').get('highlight', 'dd');
+            date = year + '-' + month + '-' + day;
+            sessionStorage.date = date;
+
+
+
+            getData();
+        });
+    });
+
+    $('#next').click(function (e) {
+        var d = $('#date').text();
+        dd = parseInt(d.substr(8, 9));
+        dd++;
+        if (dd == 31) dd = 1;
+        date = yyyy + '-' + mm + '-' + dd;
+
+        getData();
+        e.stopPropagation();
+    });
+    $('#prev').click(function (e) {
+        var d = $('#date').text();
+        dd = parseInt(d.substr(8, 9));
+
+        dd--;
+        if (dd == 0) dd = 31;
+        date = yyyy + '-' + mm + '-' + dd;
+        getData();
+        e.stopPropagation();
+    });
 
 
 });
 
 function getData() {
-                fetch(url, {
-                    method: "get",
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'Authorization': 'Token ' + token
-                    }
-                }).then(function (response) {
-                    if (response.ok) {
-                        response.json().then(function (data) {
-                            
-                            json = data;
-                            alert(json);
-                            console.log(json);
-                            dataForChart(json);
-                            addItems(json);
-                            updateDisplay(json,date);
 
-                        });
-                    } else {
-                        console.log('Network request failed with response ' + response.status + ': ' + response.statusText);
-                    }
-                });
-            }
-
-            function dataForChart(json) {
-                var partnumber = [];
-                var quantityAvailable = [];
-                var plannedVehicleQuantity = [];
-                var dicv = [];
-
-                for (var i = 0; i < json.length; i++) {
-
-                    if (i == 4) break;
-
-                    for (var prop in json[i]) {
-                        if (prop == 'part_number')
-                            partnumber.push(json[i][prop]);
-
-                        else if (prop === 'quantity')
-                            quantityAvailable.push(json[i][prop]);
-
-                        else if (prop === 'eta_dicv')
-                            dicv.push(json[i][prop]);
-
-                        else if (prop === 'planned_vehicle_qty')
-                            plannedVehicleQuantity.push(json[i][prop]);
-
-
-                    }
-                    console.log(quantityAvailable);
-
-                }
-                var chart = new Chart(ctx, {
-                    // The type of chart we want to create
-                    type: 'bar',
-                    scaleFontColor: '#fffffff',
-
-                    // The data for our dataset
-                    data: {
-                        labels: partnumber,
-                        datasets: [{
-                            label: "Quantity Avl",
-                            backgroundColor: 'rgb(210, 48, 48)',
-                            borderColor: 'rgb(210, 48, 48)',
-                            data: quantityAvailable,
-                        },
-                                   {
-                                       label: "Planned Vehicle Qty",
-                                       backgroundColor: 'rgb(200, 200, 136)',
-                                       borderColor: 'rgb(200, 200, 136)',
-                                       data: plannedVehicleQuantity,
-                                   },
-                                  ],
-                    },
-
-                    // Configuration options go here
-                    options: {
-                        scaleFontColor: '#ffffff',
-                        responsive: "true",
-                        layout: {
-                            padding: {
-                                left: 20,
-                                right: 20,
-                                top: 10,
-                                bottom: 10
-                            }
-                        },
-                        legend: {
-                            labels: {
-                                fontColor: "#ffffff",
-                            }
-                        },
-
-                        scales: {
-                            xAxes: [{
-                                ticks: {
-                                    fontColor: "#ffffff",
-                                }
-                            }],
-                            yAxes: [{
-                                ticks: {
-                                    fontColor: "#ffffff",
-                                    beginAtZero: true
-                                }
-                            }]
-                        }
-                    }
-                });
-            }
-
-function updateDisplay(json, date) {
-
-    $('#date').text(date);
-
-    var container = document.getElementById('table');
-    var children = container.children;
-    var partContainer = children[1] //tbody
-    var partDetails = partContainer.children;
-    console.log(partDetails);
-
-    if (json.length > 0) {
-
-    for (var i = 0; i < json.length; i++) {
-        console.log(String(i) + ' ' + json.length)
-        var j = 0;
-        for (var prop in json[i]) {
-
-        if (prop === "url") continue;
-
-        var parts = json[i];
-
-        //traverse the DOM and get the td cell
-        var cells = partDetails[i].children;
-
-        if (prop === 'part_number') {
-            cells[0].innerText = parts[prop];
-        } else if (prop === 'starred') {
-
-            if (parts[prop] === true) {
-                cells[4].innerHTML =
-                    "<img src='resources/images/filled_star.png' id='image' onClick='editCell'>";
-            } else {
-                cells[4].innerHTML =
-                    "<img src='resources/images/star2.png' id='image' onClick='editCell'>";
-            }
-        }else if (prop ==='pmc'){
-          cells[3].innerText = parts[prop];
-        } else if (prop === 'supplier_name') {
-            cells[1].innerText = parts[prop];
-        } else if (prop === 'shop') {
-            cells[2].innerText = parts[prop];
-        } else if (prop === "status") {
-
-            if (parts[prop] === 3) {
-                partDetails[i].setAttribute('class', 'red lighten-2');
-            } else if (parts[prop] === 2) {
-                partDetails[i].setAttribute('class', 'yellow lighten-2');
-            } else {
-                partDetails[i].setAttribute('class', 'green lighten-2');
-            }
-
+    fetch(url, {
+        method: "get",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Token ' + token
         }
-        cells[5].innerHTML = "<i class='material-icons' href='modal_notify modal-trigger'>send</i>";
-    }
+    }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+
+                json = data;
+                console.log(json);
+                json.forEach(addItems);
+                $("#collection").remove();
+
+                $('.send').click(function(event){
+                    position=$(".send").index(this);
+                    var usersData=getUserList();
+
+                    $('#number_notify').text(json[json.length-position-1].part_number);
+                    event.target.setAttribute('class', 'modal-trigger material-icons prefix');
+                    event.target.setAttribute('href', '#modal_notify');
+
+                });
+                $('.edit').click(function(event){
+                    position=$(".edit").index(this);
+                    console.log(json[json.length-position-1].part_number);
+                    event.target.setAttribute('class', 'modal-trigger material-icons prefix');
+                    event.target.setAttribute('href', '#modal1');
+
+
+
+                    populateAndEditModal(json.length-position);
+
+                });
+                $('.star').click(function(event){
+                    var clickedPosition=$(".star").index(this);
+                    if($(this).text()=='star'){
+                        unStar($(this),clickedPosition);
+                    }
+                    else{
+                        star($(this),clickedPosition);
+                    }
+
+
+
+                });
+                dataForChart(json);
+                $('#date').text(date);
+
+
+            });
+        } else {
+            console.log('Network request failed with response ' + response.status + ': ' + response.statusText);
         }
+    });
+}
+
+function addItems(jsonPart) {
+    $("#part_number_re").text("" + jsonPart.part_number);
+    if (jsonPart.status == 3) {
+        $("#status").addClass("red");
+        $("#status").text("Critical");
+    } else if (jsonPart.status == 2) {
+        $("#status").addClass("orange");
+        $("#status").text("Warning");
+    } else {
+        $("#status").addClass("green");
+        $("#status").text("Normal");
     }
-}
+    console.log(jsonPart.shop);
+    $('#shop-text').text(jsonPart.shop);
 
-function addItems(list) {
 
-var tableContainer = document.getElementById('table');
-var childNodes = tableContainer.children;
-console.log(childNodes);
-
-var tableBody = childNodes[1];
-
-while (tableBody.firstChild) {
-    tableBody.removeChild(tableBody.firstChild);
-}
-console.log(list.length);
-if (list.length > 0) {
-    for (var i = 0; i < list.length; i++) {
-        var newRow = tableRow.cloneNode(true);
-        var cells = newRow.children;
-
-        for(var j=0; j<cells.length; j++){
-            cells[j].onclick = editCell;
-      }
-        tableBody.appendChild(newRow);
-    }
-} else {
-
-    var newRow = tableRow.cloneNode(true);
-    tableBody.appendChild(newRow);
-
- }
-}
-
-function editCell(event){
-
-    if(event.target.tagName === 'IMG'){
-
-        var cell = event.target.parentNode;
-      event.stopPropagation();
-      var rowIndex = event.target.parentNode.parentNode.rowIndex;
-      console.log(rowIndex);
-      rowIndex -= 1;
-      var imageSource = event.target.src;
-      var fileName = imageSource.substr(imageSource.lastIndexOf('/') + 1);
-      if(fileName === "star2.png"){
-      star(cell,rowIndex);
-      // event.target.src= "resources/images/filled_star.png";
-      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle-loader' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
+    //     Object.entries(jsonPart).forEach(([key, value]) => {
+    //        tableHtml += `<tr><th>${key}</th><td>${value}</td></tr>`;
+    //    });
+    $('#details').html("<tr><th>Supplier</th><td>" + jsonPart.supplier_name + "</td></tr>" +
+                       "<tr><th>PMC</th><td>" + jsonPart.pmc + "</td></tr>");
+    if(jsonPart.starred){
+        $('#star_status').text('star')
     }
     else{
-      unStar(cell,rowIndex);
-      // event.target.src = "resources/images/star2.png";
-      event.target.parentNode.innerHTML = "<svg class='spinner' width='20px' height='20px' viewBox='0 0 66 66' xmlns='http://www.w3.org/2000/svg'><circle class='circle-loader' fill='none' stroke-width='6' stroke-linecap='round' cx='33' cy='33' r='30'></circle></svg>";
+        $('#star_status').text('star_border')
     }
-  }
-  else {
-        event.target.setAttribute('class', 'modal-trigger');
-        event.target.setAttribute('href', '#modal1');
 
-        var rowIndex = event.target.parentNode.rowIndex;
-        var tableContainer = document.getElementById('table');
-        var childNodes = tableContainer.children;
-        var tableBody = childNodes[1];
-        var rows = tableBody.children;
-
-        console.log(rows);
-
-        populateAndEditModal(rowIndex);
-
-  }
-}
-
-function star(cell,rowIndex){
-  var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
-
-  var formData = new FormData();
-
-  partNumber = json[rowIndex]['part_number'];
-
-  formData.append('part_number', partNumber);
-
-  var xhr = new XMLHttpRequest();
-
-// Open the connection.
-xhr.open('PATCH', url, true);
-
-xhr.setRequestHeader('Authorization','Token '+token);
-
-// Set up a handler for when the request finishes.
-xhr.onload = function () {
-  console.log(xhr.status);
-  if (xhr.status === 200) {
-    //alert('successful');
-    cell.innerHTML = "<img src='resources/images/filled_star.png' id='image' onClick='editCell'>";
-  }
-  else {
-    alert('An error occurred!');
-  }
-};
-
-// Send the Data.
-xhr.send(formData);
-}
-
-function unStar(cell,rowIndex){
-
-  var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
-
-  var formData = new FormData();
-
-  partNumber = json[rowIndex]['part_number'];
-
-  formData.append('part_number', partNumber);
-
-  var xhr = new XMLHttpRequest();
-
-// Open the connection.
-xhr.open('DELETE', url, true);
-
-xhr.setRequestHeader('Authorization','Token '+token);
-
-// Set up a handler for when the request finishes.
-xhr.onload = function () {
-  console.log(xhr.status);
-  if (xhr.status === 200) {
-    //alert('successful');
-    cell.innerHTML = "<img src='resources/images/star2.png' id='image' onClick='editCell'>";
-
-  }
-  else {
-    alert('An error occurred!');
-  }
-};
-
-// Send the Data.
-xhr.send(formData);
+    $("#collection").clone(true, true).insertAfter("#collection");
 
 }
 
+function dataForChart(json) {
+    var partnumber = [];
+    var quantityAvailable = [];
+    var plannedVehicleQuantity = [];
+    var dicv = [];
+
+    for (var i = 0; i < json.length; i++) {
+
+        if (i == 4) break;
+
+        for (var prop in json[i]) {
+            if (prop == 'part_number')
+                partnumber.push(json[i][prop]);
+
+            else if (prop === 'quantity')
+                quantityAvailable.push(json[i][prop]);
+
+            else if (prop === 'eta_dicv')
+                dicv.push(json[i][prop]);
+
+            else if (prop === 'planned_vehicle_qty')
+                plannedVehicleQuantity.push(json[i][prop]);
+
+
+        }
+        console.log(quantityAvailable);
+
+    }
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+        scaleFontColor: '#fffffff',
+
+        // The data for our dataset
+        data: {
+            labels: partnumber,
+            datasets: [{
+                label: "Quantity Avl",
+                backgroundColor: 'rgb(210, 48, 48)',
+                borderColor: 'rgb(210, 48, 48)',
+                data: quantityAvailable,
+            },
+                       {
+                           label: "Planned Vehicle Qty",
+                           backgroundColor: 'rgb(200, 200, 136)',
+                           borderColor: 'rgb(200, 200, 136)',
+                           data: plannedVehicleQuantity,
+                       },
+                      ],
+        },
+
+        // Configuration options go here
+        options: {
+            scaleFontColor: '#ffffff',
+            responsive: "true",
+            layout: {
+                padding: {
+                    left: 20,
+                    right: 20,
+                    top: 10,
+                    bottom: 10
+                }
+            },
+            legend: {
+                labels: {
+                    fontColor: "#ffffff",
+                }
+            },
+
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontColor: "#ffffff",
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontColor: "#ffffff",
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
 function populateAndEditModal(rowIndex){
 
-// populate the input fields with values from the api response.
-    $('#part_name').text(json[rowIndex-1]['shop']);
-    $('#part_number').val(json[rowIndex-1]['part_number']);
+    // populate the input fields with values from the api response.
+    $('#part_name').text(json[rowIndex-1]['part_number']);
     $('#description').val(json[rowIndex-1]['description']);
     $('#supplier_name').val(json[rowIndex-1]['supplier_name']);
     $('#variants').val(json[rowIndex-1]['variants']);
@@ -476,7 +332,220 @@ function populateAndEditModal(rowIndex){
         $('#critical-radio-btn').attr('checked','checked');
     else if(json[rowIndex-1]['status'] === 2)
         $('#warning-radio-btn').attr('checked','checked');
-        else
-            $('#normal-radio-btn').attr('checked','checked');
+    else
+        $('#normal-radio-btn').attr('checked','checked');
 
 }
+
+$('#done-btn').click(function(){
+    var obj={};
+    obj['starred'] = $('#starred').val();
+    obj['description'] = $('#description').val();
+    obj['supplier_name'] = $('#supplier_name').val();
+    obj['variants'] = $('#variants').val();
+    obj['count'] = $('#count').val();
+    obj['reported_on'] = $('#reported_on').val();
+    obj['short_on'] = $('#short_on').val();
+    obj['pmc'] = $('#pmc').val();
+    obj['team'] = $('#team').val();
+    obj['backlog'] = $('#backlog').val();
+    obj['region'] = $('#region').val();
+    obj['unloading_point'] = $('#unloading_point').val();
+    obj['p_q'] = $('#p_q').val();
+    obj['quantity'] = $('#quantity').val();
+    obj['quantity_expected'] = $('#quantity_expected').val();
+    obj['planned_vehicle_qty'] = $('#planned_vehicle_qty').val();
+    obj['eta_dicv'] = $('#eta_dicv').val();
+    obj['truck_details'] = $('#truck_details').val();
+    obj['shortage_reason'] = $('#shortage_reason').val();
+    obj['shop'] = $('#shop').val();
+
+    // var warning = $('warning-radio-btn').isChecked();
+    // var critical = $('critical-radio-btn').isChecked();
+    // var normal = $('normal-radio-btn').isChecked();
+
+    // if(warning === true)
+    //     obj['status'] = 2;
+    // if(critical === true)
+    //     obj['status'] = 3;
+    // if(normal === true)
+    //     obj['status'] = 1;
+    var status = $('input[name=status]:checked').next().text();
+    if(status === "Warning")
+        obj['status'] = 2;
+    else if(status === 'Critical')
+        obj['status'] = 3;
+    else if(status === 'Normal')
+        obj['status'] = 1;
+
+
+
+    updateField(json.length-position, obj);
+});
+$('#notify-btn').click(function(){
+
+
+    var chipsData=$('.chips').material_chip('data');
+    var body={
+        content:$('#notify-content').val(),
+        partid:json[json.length-position-1].url,
+        userid:autocomplete[chipsData[0].tag],
+    }
+    var formData = new FormData();
+    formData.append('content',body.content);
+    formData.append('partid',body.partid);
+    formData.append('userid',body.userid);
+    console.log(body);
+    var urlpost='http://daimler-backend.herokuapp.com/api/comments/'
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', urlpost, true);
+    //xhr.setRequestHeader('Content-Type','multipart/form-data');
+    xhr.setRequestHeader('Authorization', 'Token ' + token);
+    xhr.onload = function () {
+        console.log(xhr.status);
+        if (xhr.status === 201) {
+            window.location.replace("#!");
+        } else {
+            alert('An error occurred!');
+        }
+    };
+    xhr.send(formData);
+})
+
+
+
+
+function updateField(rowIndex,obj){
+
+    console.log(JSON.stringify(obj));
+
+
+    partNumber = json[rowIndex-1]['part_number'];
+    console.log(partNumber);
+
+    var url = "https://daimler-backend.herokuapp.com/api/parts/" + partNumber + "/";
+
+    var xhr = new XMLHttpRequest();
+
+    // Open the connection.
+    xhr.open('PATCH', url, true);
+
+    xhr.setRequestHeader('Authorization','Token '+token);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    // Set up a handler for when the request finishes.
+    xhr.onload = function () {
+        console.log(xhr.status);
+        if (xhr.status === 200) {
+            //alert('successful');
+            location.reload(true);
+
+        }
+        else {
+            alert('An error occurred!');
+        }
+    };
+
+    // Send the Data.
+    xhr.send(JSON.stringify(obj));
+}
+function star(cell,rowIndex){
+    var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
+
+    var formData = new FormData();
+
+    formData.append('part_number', json[json.length-rowIndex-1].part_number);
+
+    var xhr = new XMLHttpRequest();
+
+    // Open the connection.
+    xhr.open('PATCH', url, true);
+
+    xhr.setRequestHeader('Authorization','Token '+token);
+
+    // Set up a handler for when the request finishes.
+    xhr.onload = function () {
+        console.log(xhr.status);
+        if (xhr.status === 200) {
+            //alert('successful');
+            cell.text('star');
+
+        }
+        else {
+            alert('An error occurred!');
+        }
+    };
+
+    // Send the Data.
+    xhr.send(formData);
+}
+function getUserList()
+{
+    var userurl='https://daimler-backend.herokuapp.com/api/users/'
+    fetch(userurl, {
+        method: "get",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Token ' + token
+        }
+    }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                console.log(data);
+                autocomplete={};
+                var autocompleteData={};
+                data.forEach(function(obj){
+                    autocomplete[obj.username]=obj.url;
+                    autocompleteData[obj.username]=null;
+                });
+                console.log(autocompleteData);
+                $('.chips-autocomplete').material_chip({
+                    autocompleteOptions: {
+                        data: autocompleteData,
+                        limit: Infinity,
+                        minLength: 1}
+
+                });
+                return autocomplete;
+
+            });
+        } else {
+            console.log('Network request failed with response ' + response.status + ': ' + response.statusText);
+        }
+    });
+
+}
+
+function unStar(cell,rowIndex){
+
+    var url = "https://daimler-backend.herokuapp.com/api/current_user/starred_parts/";
+
+    var formData = new FormData();
+
+    formData.append('part_number', json[json.length-rowIndex-1].part_number);
+
+    var xhr = new XMLHttpRequest();
+
+    // Open the connection.
+    xhr.open('DELETE', url, true);
+
+    xhr.setRequestHeader('Authorization','Token '+token);
+
+    // Set up a handler for when the request finishes.
+    xhr.onload = function () {
+        console.log(xhr.status);
+        if (xhr.status === 200) {
+            //alert('successful');
+            cell.text('star_border');
+        }
+        else {
+            alert('An error occurred!');
+        }
+    };
+
+    // Send the Data.
+    xhr.send(formData);
+
+}
+

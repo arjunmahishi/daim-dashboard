@@ -13,7 +13,9 @@ $(function(){
                 json = data;
                 console.log(json);
                 if (json.length != 0)
-                    addItems(json);
+                {addItems(json);
+                 $("#item").remove();
+                }
                 else {
                     var div = document.getElementById('item');
                     if (div)
@@ -31,10 +33,16 @@ $(function(){
      for(i=json.length-1;i!=0;i--)
      {
      	$("#content").text(json[i].content);
+     	$("#posted-by").text('Posted By: '+json[i].posted_by);
+     	$("#posted-on").text(jQuery.timeago(json[i].date));
      	$("#item").show();
-     	$("#item").clone(true,true).insertAfter("#content");
+     	$("#item").clone(true,true).insertAfter("#item");
      }
-     $("#item").show();
-     $("#content").text(json[i].content);
+      $("#content").text(json[i].content);
+     	$("#posted-by").text('Posted By: '+json[i].posted_by);
+     	$("#posted-on").text(jQuery.timeago(json[i].date));
+     	$("#item").show();
+     	$("#item").clone(true,true).insertAfter("#item");
+
   }
 })

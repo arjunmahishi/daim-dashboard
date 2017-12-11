@@ -1,267 +1,268 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <!--Import Google Icon Font-->
-    <link rel="stylesheet" href="resources/css/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <meta name="theme-color" content="#191818" />
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
+    <head>
+        <!--Import Google Icon Font-->
+        <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
-<body id="bod" style="background: url(resources/images/background.png);">
-    <!--Import jQuery before materialize.js-->
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="theme-color" content="#191818" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
 
-    <script src="resources/js/checktoken.js"></script>
+    <body id="bod" style="background: url(resources/images/background.png);">
+        <!--Import jQuery before materialize.js-->
 
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal modal-fixed-footer">
-        <div class="modal-content">
-            <form id="edit-form" method="post" action="">
-                <div style="text-align: center;">
-                    <h3 id="property_type">Edit Part Attribute</h3>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix" style="margin-top:10px; margin-left: 5px;">edit</i>
-                        <input id="field" type="text" name="username" class="validate"> </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="done-btn">Done</a>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
-        </div>
-    </div>
-    <ul id="slide-out" class="side-nav fixed">
-        <li>
-            <div class="user-view">
-                <div class="background" style="background-color: #424242; ">
-                </div>
-                <img class="circle" src="resources/images/user.png">
-                <a href="#!name"><span id= "uname" class="white-text name">Your Name</span></a>
-                <a href="#!email"><span id ="uemail" class="white-text email">default@yourdomain.com</span></a>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <p>Are you sure?</p>
             </div>
-        </li>
-        <li><a href="#!" id="sos-nav">SOS</a></li>
-        <li>
-            <div class="divider"></div>
-        </li>
-        <li><a class="subheader" href="#!" id="critical-list-nav">Critical List</a></li>
-        <li><a href="#!" id="mdt-nav">MDT</a></li>
-        <li><a href="#!" id="hdt-nav">HDT</a></li>
-        <li><a href="#!" id="axle-nav">Axel</a></li>
-        <li><a href="#!" id="casting-and-forging-nav">Casting and Forging</a></li>
-        <li><a href="#!" id="transmission-nav">Transmission</a></li>
-        <li>
-            <div class="divider"></div>
-        </li>
-        <li><a class="subheader">Account</a></li>
-        <li><a class="waves-effect" href="#!" id="logout-nav">Logout</a></li>
-    </ul>
-
-
-
-    <nav>
-        <div class="nav-wrapper" style="background-color: #00897b;">
-            <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
-            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-        </div>
-    </nav>
-
-
-    <div class="col s12 m6" id="sort-selection">
-        <div class="card teal lighten-2" style="cursor: pointer;">
-            <div class="card-content white-text">
-                <div>
-                    <span class="card-title" style="text-align: center;" id="shop_type">Shop Type</span>
-                </div>
-                <p style="text-align: center" id="date">10/19/2017</p>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="delete">Yes</a>
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
             </div>
         </div>
-    </div>
 
 
-    <div class="col s12 m6" style="display: none;" id="sort-choices">
-        <div class="card teal lighten-2">
-            <div class="card-content white-text">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">event</i>
-                    <input type="text" class="datepicker date-color">
-                    <label for="icon_prefix">Date</label>
+        <ul id="slide-out" class="side-nav fixed">
+            <li>
+                <div class="user-view">
+                    <div class="background" style="background-color: #c0c0c0;">
+                    </div>
+                    <img class="circle" src="resources/images/user.png">
+                    <a href="#!name"><span id= "uname" class="name">John Doe</span></a>
+                    <a href="#!email"><span id ="uemail" class="email">jdandturk@gmail.com</span></a>
+                </div>
+            </li>
+            <li><a href="#!" id="sos-nav">SOS</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a href="#!" id="critical-list-nav">Critical List</a></li>
+            <li><a href="#!" id="mdt-nav">MDT</a></li>
+            <li><a href="#!" id="hdt-nav">HDT</a></li>
+            <li><a href="#!" id="axle-nav">Axle</a></li>
+            <li><a href="#!" id="casting-and-forging-nav">Casting and forging</a></li>
+            <li><a href="#!" id="transmission-nav">Transmission</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Account</a></li>
+            <li><a class="waves-effect" href="#!" id="logout-nav">Logout</a></li>
+        </ul>
+        <!-- <script src="resources/js/checktoken.js"></script> -->
+        <nav>
+            <div class="nav-wrapper" style="background-color: #00677F;">
+                <a href="index.html" class="brand-logo" style="margin-left: 12px;">Daimler</a>
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right">
+                    <li><i class="material-icons dropdown-button" data-beloworigin="true" href='#' id="not" data-activates='dropdown1' style="margin-right: 15px;">notifications</i></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+
+            <div class="row" style="margin-bottom: 0px;">
+                <div class="col s12 m12">
+                    <div class="card" style="padding: 20px;">
+
+
+                        <div class="row" style="margin-bottom: 0px;">
+                            <div class="col s8 m8">
+                                <h5 id="part_number_re">A400810051</h5>
+                            </div>
+                            <div class="col s4 m4">
+                                <span id="status" class="badge s2 m2" style="color: white;margin-top: 4px;">Critical</span>
+                                <span id="shop-text" class="badge cyan darken-2 s2 m2" style="color: white;margin-top: 4px;">MDT</span>
+                            </div>
+                        </div>
+                        <table id="details">
+                            <tr>
+                                <th>Supplier:</th>
+                                <td>ZB SUN VISOR RH BLACK</td>
+                            </tr>
+                            <tr>
+                                <th>PMC:</th>
+                                <td>Giftson</td>
+                            </tr>
+                            <tr>
+                                <th>Supplier:</th>
+                                <td>ZB SUN VISOR RH BLACK</td>
+                            </tr>
+                            <tr>
+                                <th>PMC:</th>
+                                <td>Giftson</td>
+                            </tr>
+                            <tr>
+                                <th>Supplier:</th>
+                                <td>ZB SUN VISOR RH BLACK</td>
+                            </tr>
+                            <tr>
+                                <th>PMC:</th>
+                                <td>Giftson</td>
+                            </tr>
+                            <tr>
+                                <th>Supplier:</th>
+                                <td>ZB SUN VISOR RH BLACK</td>
+                            </tr>
+                            <tr>
+                                <th>PMC:</th>
+                                <td>Giftson</td>
+                            </tr>
+                            <tr>
+                                <th>Supplier:</th>
+                                <td>ZB SUN VISOR RH BLACK</td>
+                            </tr>
+                            <tr>
+                                <th>PMC:</th>
+                                <td>Giftson</td>
+                            </tr>
+                            <tr>
+                                <th>Supplier:</th>
+                                <td>ZB SUN VISOR RH BLACK</td>
+                            </tr>
+                            <tr>
+                                <th>PMC:</th>
+                                <td>Giftson</td>
+                            </tr>
+                            <tr>
+                                <th>Supplier:</th>
+                                <td>ZB SUN VISOR RH BLACK</td>
+                            </tr>
+                            <tr>
+                                <th>PMC:</th>
+                                <td>Giftson</td>
+                            </tr>
+                            <tr>
+                                <th>Supplier:</th>
+                                <td>ZB SUN VISOR RH BLACK</td>
+                            </tr>
+                            <tr>
+                                <th>PMC:</th>
+                                <td>Giftson</td>
+                            </tr>
+                            <tr>
+                                <th>Supplier:</th>
+                                <td>ZB SUN VISOR RH BLACK</td>
+                            </tr>
+                            <tr>
+                                <th>PMC:</th>
+                                <td>Giftson</td>
+                            </tr>
+                            <tr>
+                                <th>Supplier:</th>
+                                <td>ZB SUN VISOR RH BLACK</td>
+                            </tr>
+
+
+                        </table>
+                        <div class="row" style="margin-bottom: 0px; margin-top: 20px;">
+                            <div class="col s3 m3 center-align edit" id="edit_area">
+                                <i class="material-icons prefix">edit</i>
+                            </div>
+                            <div class="col s3 m3 center-align send" id="send_area">
+                                <i class="material-icons prefix">send</i>
+                            </div>
+                            <div class="col s3 m3 center-align">
+                                <i class="material-icons prefix">message</i>
+                            </div>
+                            <div class="col s3 m3 center-align ">
+                                <i class="material-icons prefix star" id="star_status">star</i>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div hidden class="row" id="messageContainer" style="min-width: 100px; margin-bottom: 0px;">
+                        <div class="col s12 m12">
+                            <div class="card blue-grey darken-1">
+                                <div class="card-content white-text">
+                                    <span class="card-title" id="user" style="color: aquamarine;">
+                                    </span>
+                                    <p id="message"></p>
+                                    <p id="time"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div hidden id="input" class="card">
+                        <div  class="row" style="margin-bottom: 0px position: fixed; bottom: 0px;">
+                            <form class="col s12" method="POST" id="message-form">
+                                <div class="input-field col s12">
+                                    <div class="row">
+                                        <div class="col s9 m10">
+                                            <i class="material-icons prefix" style="margin-top: 10px;">message</i>
+                                            <input hidden type="file" onchange="readURL(this);" id="file-select" name="media" multiple>
+                                            <input id="icon_prefix" type="text" class="validate">
+                                            <label for="icon_prefix">Your Message</label>
+                                        </div>
+                                        <div class="col s3 m2"></div>
+                                        <a class="btn-floating btn-large waves-effect waves-light teal darken-2" type="submit" id="send"><i class="material-icons">send</i></a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <button class="btn waves-effect waves-light" style="background-color: #00897b;" id="apply-btn">
-                    <a href="#" style="color: white;">Apply</a>
-                </button>
         </div>
-    </div>
-    <div>
-        <div id="chartDiv" class="card teal lighten-2" style="cursor: pointer;">
-            <canvas id="myChart"></canvas>
-        </div>
-    </div>
-
-
-    <h3 id="data-h" style="display: none;">No Data</h3>
-
-
-    <div class="container" id="card-cont">
-        <div class="col s12 m6">
-            <div class="card hoverable">
-                <table class="responsive-table centered" id="table">
-                    <thead>
-                        <tr>
-                            <th>Part Number</th>
-                            <th>Starred</th>
-                            <th>description</th>
-                            <th>Supplier Name</th>
-                            <th>Variants</th>
-                            <th>Count</th>
-                            <th>Reported on</th>
-                            <th>Short on</th>
-                            <th>Shop</th>
-                            <th>pmc</th>
-                            <th>team</th>
-                            <th>backlog</th>
-                            <th>region</th>
-                            <th>Unloading point</th>
-                            <th>pq</th>
-                            <th>quantity</th>
-                            <th>quantity expected</th>
-                            <th>planned vehicle quantity</th>
-                            <th>eta dicv</th>
-                            <th>truck details</th>
-                            <th>shortage reason</th>
-                            <th>status</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
 
 
 
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="resources/vendors/jquery/jquery.timeago.js" type="text/javascript"></script>
+        <script src="resources/js/sos-messages.js"></script>
+        <script src="/resources/js/navbar.js"></script>
 
-    <script type="text/javascript" src="resources/vendors/jquery/jquery-3.2.1.min.js"></script>
-    <script src="resources/js/parts-detail.js"></script>
-    <script src="/resources/js/navbar.js"></script>
-    <!-- <script>
-$(document).ready(function(){
-$('.collapsible').collapsible();
-});
-</script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'bar',
+        <script>
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
 
-            // The data for our dataset
-            data: {
-                labels: ["10-11-17", "11-11-17", "12-11-17", "13-11-17"],
-                datasets: [{
-                        label: "Count",
-                        backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(255, 99, 132)',
-                        data: [0, 10, 5, 2],
-                    },
-                    {
-                        label: "Quantity",
-                        backgroundColor: 'rgb(105, 108, 136)',
-                        borderColor: 'rgb(105, 108, 136)',
-                        data: [5, 3, 12, 14],
-                    },
-                    {
-                        label: "Quantity expected",
-                        backgroundColor: 'rgb(200, 200, 136)',
-                        borderColor: 'rgb(200, 200, 136)',
-                        data: [23, 15, 5, 6],
-                    }
-                ],
-            },
+                    reader.onload = function(e) {
+                        $('#blah')
+                            .attr('src', e.target.result);
+                    };
 
-            // Configuration options go here
-            options: {
-                responsive: "true",
-                layout: {
-                    padding: {
-                        left: 20,
-                        right: 20,
-                        top: 10,
-                        bottom: 10
-                    }
+                    reader.readAsDataURL(input.files[0]);
                 }
             }
-        });
 
-    </script>
-    <script>
-        $(document).ready(function() {
-            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-            $('.modal').modal();
-        });
+        </script>
 
-    </script>
-    <script>
-        $(document).ready(function() {
-            $(".button-collapse").sideNav();
-        });
-        $('.button-collapse').sideNav({
-            menuWidth: 230, // Default is 300
-            edge: 'left', // Choose the horizontal origin
-            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-            draggable: true, // Choose whether you can drag to open on touch screens,
 
-        });
-
-    </script>
-    <script>
-        $(document).ready(function() {
-            window.history.pushState('https://daimler-frontend.netlify.com/critical-list-detail.html', 'back page', 'https://daimler-frontend.netlify.com/critical-list-detail.html');
-            window.history.pushState('https://daimler-frontend.netlify.com/part-detail.html', 'back page', 'https://daimler-frontend.netlify.com/part-detail.html');
-            window.addEventListener("popstate", function(e) {
-                if (document.URL.indexOf("https://daimler-frontend.netlify.com/critical-list-detail.html") >= 0) {
-                    document.location.href = document.location
-                }
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $(".button-collapse").sideNav();
+                $('.modal').modal();
+            });
+            $('.button-collapse').sideNav({
+                menuWidth: 230, // Default is 300
+                edge: 'left', // Choose the horizontal origin
+                closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                draggable: true, // Choose whether you can drag to open on touch screens,
 
             });
-        });
 
-    </script>
-</body>
+        </script>
+        <script>
+            $(document).ready(function() {
+                window.history.pushState('https://daimler-frontend.netlify.com/sos-dashboard.html', 'back page', 'https://daimler-frontend.netlify.com/sos-dashboard.html');
+                window.history.pushState('https://daimler-frontend.netlify.com/sos-messages.html', 'back page', 'https://daimler-frontend.netlify.com/sos-messages.html');
+                window.addEventListener("popstate", function(e) {
+                    if (document.URL.indexOf("https://daimler-frontend.netlify.com/sos-dashboard.html") >= 0) {
+                        document.location.href = document.location
+                    }
+
+                });
+            });
+
+        </script>
+    </body>
 
 </html>

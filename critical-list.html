@@ -20,7 +20,7 @@
         <div class="modal-content">
             <form id="edit-form" method="post" action="">
                 <div style="text-align: center;">
-                    <h3 id="part_name">1234</h3>
+                    <h5 id="part_name">1234</h5>
                 </div>
                 <div class="row" style="margin-bottom: 0px;">
                     <div class="input-field col s12">
@@ -185,14 +185,14 @@
                 <div style="text-align: center;">
                     <h3 id="number_notify">1234</h3>
                 </div>
+                <div class="chips chips-autocomplete"></div>
                 <div class="row" style="margin-bottom: 0px;">
                     <div class="input-field col s12">
-                        <input placeholder="Placeholder" id="comment" type="text" name="message" class="validate">
+                        <input placeholder="Placeholder" id="notify-content" type="text" name="message" class="validate">
                         <label for="field">Message</label>
 
                     </div>
                 </div>
-                <div class="chips chips-autocomplete"></div>
             </form>
         </div>
         <div class="modal-footer">
@@ -347,7 +347,7 @@
                                 <div class="col s3 m3 center-align edit" id="edit_area">
                                     <i class="material-icons prefix">edit</i>
                                 </div>
-                                <div class="col s3 m3 center-align">
+                                <div class="col s3 m3 center-align send" id="send_area">
                                     <i class="material-icons prefix">send</i>
                                 </div>
                                 <div class="col s3 m3 center-align">
@@ -407,7 +407,7 @@
 
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="resources/js/critical-list-revamp.js"></script>
+    <script src="resources/js/critical-list.js"></script>
     <script src="resources/js/navbar.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -416,17 +416,7 @@
             // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
             $('.modal').modal();
             $('.chips').material_chip();
-            $('.chips-autocomplete').material_chip({
-                autocompleteOptions: {
-                    data: {
-                        'Apple': null,
-                        'Microsoft': null,
-                        'Google': null
-                    },
-                    limit: Infinity,
-                    minLength: 1
-                }
-            });
+ 
         });
 
     </script>
