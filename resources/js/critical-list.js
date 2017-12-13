@@ -1,7 +1,7 @@
 var url = "https://daimler-backend.herokuapp.com/api/critical_list/critical_parts/";
 var data = [];
 var json;
-var token = sessionStorage.tokenid || "83cc351e4ec002a30f5fbe3e768cc4874263e9dd";
+var token = sessionStorage.tokenid || "d453ba42af06ebabf88f0d966c5abfd8ed5d71c2";
 var ctx = document.getElementById('myChart').getContext('2d');
 var autocomplete={};
 
@@ -386,31 +386,36 @@ $('#notify-btn').click(function(){
 
 
     var chipsData=$('.chips').material_chip('data');
-    var body={
-        content:$('#notify-content').val(),
-        partid:json[json.length-position-1].url,
-        userid:autocomplete[chipsData[0].tag],
-    }
-    var formData = new FormData();
-    formData.append('content',body.content);
-    formData.append('partid',body.partid);
-    formData.append('userid',body.userid);
-    console.log(body);
-    var urlpost='https://daimler-backend.herokuapp.com/api/comments/'
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', urlpost, true);
-    //xhr.setRequestHeader('Content-Type','multipart/form-data');
-    xhr.setRequestHeader('Authorization', 'Token ' + token);
-    xhr.onload = function () {
-        console.log(xhr.status);
-        if (xhr.status === 201) {
-            window.location.replace("#!");
-        } else {
-            alert('An error occurred!');
+    chipsData.forEach(function(person){
+        var formData = new FormData();
+        var body={
+            content:$('#notify-content').val(),
+            partid:json[json.length-position-1].url,
+            userid:autocomplete[person.tag],
         }
-    };
-    xhr.send(formData);
+        formData.append('content',body.content);
+        formData.append('partid',body.partid);
+        formData.append('userid',body.userid);
+        formData.append('type',true);
+        console.log(body);
+        var urlpost='https://daimler-backend.herokuapp.com/api/comments/'
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', urlpost, true);
+        //xhr.setRequestHeader('Content-Type','multipart/form-data');
+        xhr.setRequestHeader('Authorization', 'Token ' + token);
+        xhr.onload = function () {
+            console.log(xhr.status);
+            if (xhr.status === 201) {
+                window.location.replace("#!");
+            } else {
+                alert('An error occurred!');
+            }
+        };
+        xhr.send(formData);
+    });
+
+
 })
 
 
