@@ -164,14 +164,28 @@ function getData() {
 
                 });
                 $('.star').click(function(event){
-                    var clickedPosition=$(".star").index(this);
+                    position=$(".star").index(this);
                     if($(this).text()=='star'){
-                        unStar($(this),clickedPosition);
+                        unStar($(this),position);
                     }
                     else{
-                        star($(this),clickedPosition);
+                        star($(this),position);
                     }
 
+
+
+                });
+                $('.col-item').click(function(event){
+                    position=$(".col-item").index(this);
+                    
+                    window.location.replace("/part-detail.html?partid="+json[json.length-position-1].part_number);
+
+
+                });
+                $('.discussion').click(function(event){
+                    position=$(".discussion").index(this);
+                    
+                    window.location.replace("/part-detail.html?partid="+json[json.length-position-1].part_number);
 
 
                 });
