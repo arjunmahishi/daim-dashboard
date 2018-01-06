@@ -20,7 +20,7 @@
 
 <body style="display: flex; min-height: 100vh; flex-direction: column; 
     background: url(resources/images/background.png); margin-top: 50px;">
-    <!--Import jQuery before materialize.js-->
+    <!-- Import jQuery before materialize.js-->
     <!-- Modal Structure -->
 
     <div id="modal1" class="modal modal-fixed-footer">
@@ -79,13 +79,13 @@
                         </div>
 
                         <div style="text-align:center;">
-                            <button class="btn waves-effect waves-light" style="background-color: #00677F" type="submit" name="action">Submit
+                            <button class="btn waves-effect waves-light" style="background-color: #D32F2F" type="submit" name="action">Submit
                                 <i class="material-icons right">cloud</i>
                             </button>
                         </div>
 
                         <div class="forgot" style="text-align:center; margin: 10px; padding-bottom: 10px;">
-                            <a class="modal-trigger" href="#modal1" style="color: #00677F;">
+                            <a class="modal-trigger" href="#modal1" style="color: #D32F2F;">
                                 <u>Forgot Password?</u>
                             </a>
                         </div>
@@ -101,12 +101,10 @@
                     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
                     $('.modal').modal();
                 });
-
-
+               
                 if(location.protocol == "http:" && location.href.split(":")[1] != "//localhost"){
                     location.protocol = "https:";
                 }
-                
             </script>
         </main>
     </div>
