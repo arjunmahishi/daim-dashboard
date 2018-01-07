@@ -32,14 +32,14 @@ $(function () {
                     }).then(function (response) {
                         if (response.ok) {
                             response.json().then(function (json) {
-                                
+
                                 sessionStorage.tokenid = token;
                                 sessionStorage.email=json.email;
                                 sessionStorage.username=json.username;
                                 sessionStorage.userid=json.id;
                                 console.log(sessionStorage.tokenid);
                                 $("#loader").hide();
-                                window.location.replace("/select.html");
+                                window.location.replace("/critical-list.html");
                             });
                         }
                     });
@@ -53,13 +53,13 @@ $(function () {
     });
 
     $("#done").click(function(event){
-        
+
         var formData= new FormData();
         var email= $("#field").val();
         formData.append("email",email);
         var xhr = new XMLHttpRequest();
         xhr.open('POST', url2, true);
-        
+
         xhr.onload=function(){
            if(xhr.status=200)
            alert("Password is sucessfully resetted. Check your mail");
@@ -70,4 +70,4 @@ $(function () {
 });
 
 
-   
+
