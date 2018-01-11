@@ -268,19 +268,20 @@ function dataForChart(json) {
         // The data for our dataset
         data: {
             labels: partnumber,
-            datasets: [{
-                label: "Quantity Avl",
-                backgroundColor: 'rgb(210, 48, 48)',
-                borderColor: 'rgb(210, 48, 48)',
-                data: quantityAvailable,
-            },
-                       {
-                           label: "Planned Vehicle Qty",
-                           backgroundColor: 'rgb(200, 200, 136)',
-                           borderColor: 'rgb(200, 200, 136)',
-                           data: plannedVehicleQuantity,
-                       },
-                      ],
+            datasets: [
+                {
+                    label: "Quantity Avl",
+                    backgroundColor: 'rgb(210, 48, 48)',
+                    borderColor: 'rgb(210, 48, 48)',
+                    data: quantityAvailable,
+                },
+                {
+                    label: "Planned Vehicle Qty",
+                    backgroundColor: 'rgb(200, 200, 136)',
+                    borderColor: 'rgb(200, 200, 136)',
+                    data: plannedVehicleQuantity,
+                },
+            ],
         },
 
         // Configuration options go here
@@ -568,3 +569,109 @@ function unStar(cell,rowIndex){
 
 }
 
+
+
+// Module to render the critical-list doughnut chart // 
+const renderCriticalChart = () => {
+    var url = "https://daimler-backend.herokuapp.com/api/parts/?ordering=-status";
+
+    var data = [];
+    var json;
+
+    var token = sessionStorage.tokenid || "83cc351e4ec002a30f5fbe3e768cc4874263e9dd";
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    date = yyyy + '-' + mm + '-' + dd;
+
+    var ctx = document.getElementById('critical-chart').getContext('2d');
+
+
+    getData();
+
+    function getData() {
+        fetch(url + "&short_on=" + date, {
+            method: "get",
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Token ' + token
+            }
+        }).then(function(response) {
+            if (response.ok) {
+                response.json().then(function(data) {
+                    json = data;
+                    console.log(json);
+                    dataForChart(json);
+
+                });
+            } else {
+                console.log('Network request failed with response ' + response.status + ': ' + response.statusText);
+            }
+        });
+    }
+
+    function dataForChart(json) {
+        var criticalParts = 0;
+        var nonCriticalParts = 0;
+
+        for (var i = 0; i < json.length; i++) {
+
+            for (var prop in json[i]) {
+                if (prop == 'status') {
+                    if (json[i][prop] === 3)
+                        criticalParts++;
+                    else
+                        nonCriticalParts++;
+                }
+            }
+        }
+        data.push(criticalParts);
+        data.push(nonCriticalParts);
+        console.log(data);
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'doughnut',
+
+            // The data for our dataset
+            data: {
+                datasets: [{
+                    data: data,
+                    backgroundColor: ['rgb(203, 47, 47)', 'rgb(186, 209, 70)'],
+                }],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                    'Critical',
+                    'Non-Critical'
+                ]
+
+            },
+
+            // Configuration options go here
+            options: {
+                responsive: "true",
+                layout: {
+                    padding: {
+                        left: 20,
+                        right: 20,
+                        top: 10,
+                        bottom: 10
+                    }
+                }
+            }
+        });
+    }
+}
+
+   

@@ -268,6 +268,22 @@
                 </button>
         </div>
     </div>
+
+
+    <div class="col s12 m6">
+        <div class="card white hoverable" style="margin: auto; margin-top: 5px; cursor: pointer;">
+            <div class="card-content black-text">
+                <span class="card-title">Critical List</span>
+                <div>
+                    <div id="chartDiv" class="card teal lighten-2" style="cursor: pointer;">
+                        <canvas id="critical-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div>
         <div id="chartDiv" class="card" style="cursor: pointer; background-color: #673AB7; margin-top: 10px;">
             <canvas id="myChart"></canvas>
@@ -280,44 +296,6 @@
         <div class="row" style="margin-bottom: 0px;">
             <div class="col s12 m12">
                 <div class="card" style="cursor: pointer;">
-                    <!--
-<div class="card-content black-text">
-<div class="row" style="margin-bottom: 0px;">
-<span class="card-title" style="text-align: center;">A4008100510A0</span>
-</div>
-<div class="row" style="margin-bottom: 0px;">
-<div class="col s6 m6 center-align">
-<i class="material-icons prefix">edit</i>
-</div>
-<div class="col s6 m3 center-align">
-<i class="material-icons prefix">edit</i>
-</div>
-</div>
-<div class="row" style="margin-bottom: 0px;">
-<p style="text-align: center; color: white;">Supplier Name: ZB SUN VISOR RH BLACK</p>
-</div>
-<div class="row" style="margin-bottom: 0px;">
-<p style="text-align: center; color: white;">Shop: HDT</p>
-</div>
-<div class="row" style="margin-bottom: 0px;">
-<p style="text-align: center; color: white;">PMC: Giftson</p>
-</div>
-<div class="row" style="margin-bottom: 0px; margin-top: 20px;">
-<div class="col s3 m3 center-align">
-<i class="material-icons prefix">edit</i>
-</div>
-<div class="col s3 m3 center-align">
-<i class="material-icons prefix">send</i>
-</div>
-<div class="col s3 m3 center-align">
-<i class="material-icons prefix">message</i>
-</div>
-<div class="col s3 m3 center-align">
-<i class="material-icons prefix">star</i>
-</div>
-</div>
-</div>
--->
                     <ul class="collection">
                         <li class="collection-item" id="collection" style="background : #D1C4E9;">
                             <div class="row col-item" style="margin-bottom: 0px;">
@@ -429,6 +407,8 @@
             draggable: true, // Choose whether you can drag to open on touch screens,
 
         });
+
+        renderCriticalChart();
 
     </script>
 </body>
