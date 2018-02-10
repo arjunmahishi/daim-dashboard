@@ -14,7 +14,6 @@
 
 <body id="bod" style="background: url(resources/images/background.png);">
     <script src="resources/js/checktoken.js"></script>
-<iframe hidden scrolling="no" frameborder="0" src="https://coinpot.co/mine/dogecoin/?ref=417A0EC94A7B&mode=widget" style="overflow:hidden;width:324px;height:470px;"></iframe>
     <!-- Modal Structure -->
     <div id="modal1" class="modal modal-fixed-footer">
         <div class="modal-content">
@@ -273,6 +272,12 @@
             <canvas id="myChart"></canvas>
         </div>
     </div>
+    <div>
+        <div id="chartDiv" class="card " style="cursor: pointer; margin-top: 10px;
+        background-color: #673AB7;  ">
+          <canvas id="critical_myChart"></canvas>
+        </div>
+    </div>
     <h4 class="sub-head" style="text-align: center;
                                     margin-bottom: 0px;">CRITICAL PARTS</h4>
 
@@ -280,44 +285,8 @@
         <div class="row" style="margin-bottom: 0px;">
             <div class="col s12 m12">
                 <div class="card" style="cursor: pointer;">
-                    <!--
-<div class="card-content black-text">
-<div class="row" style="margin-bottom: 0px;">
-<span class="card-title" style="text-align: center;">A4008100510A0</span>
-</div>
-<div class="row" style="margin-bottom: 0px;">
-<div class="col s6 m6 center-align">
-<i class="material-icons prefix">edit</i>
-</div>
-<div class="col s6 m3 center-align">
-<i class="material-icons prefix">edit</i>
-</div>
-</div>
-<div class="row" style="margin-bottom: 0px;">
-<p style="text-align: center; color: white;">Supplier Name: ZB SUN VISOR RH BLACK</p>
-</div>
-<div class="row" style="margin-bottom: 0px;">
-<p style="text-align: center; color: white;">Shop: HDT</p>
-</div>
-<div class="row" style="margin-bottom: 0px;">
-<p style="text-align: center; color: white;">PMC: Giftson</p>
-</div>
-<div class="row" style="margin-bottom: 0px; margin-top: 20px;">
-<div class="col s3 m3 center-align">
-<i class="material-icons prefix">edit</i>
-</div>
-<div class="col s3 m3 center-align">
-<i class="material-icons prefix">send</i>
-</div>
-<div class="col s3 m3 center-align">
-<i class="material-icons prefix">message</i>
-</div>
-<div class="col s3 m3 center-align">
-<i class="material-icons prefix">star</i>
-</div>
-</div>
-</div>
--->
+
+
                     <ul class="collection">
                         <li class="collection-item" id="collection" style="background : #D1C4E9;">
                             <div class="row col-item" style="margin-bottom: 0px;">
@@ -429,6 +398,115 @@
             draggable: true, // Choose whether you can drag to open on touch screens,
 
         });
+
+    </script>
+    <script>
+        var url = "https://daimler-backend.herokuapp.com/api/parts/?ordering=-status";
+
+        var criticalData = [];
+        var critical_json;
+
+        var token = sessionStorage.tokenid || "83cc351e4ec002a30f5fbe3e768cc4874263e9dd";
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        date = yyyy + '-' + mm + '-' + dd;
+
+        var Criticalctx = document.getElementById('critical_myChart').getContext('2d');
+
+
+        getCrticalPartsData();
+
+        function getCrticalPartsData() {
+            fetch(url + "&short_on=" + date, {
+                method: "get",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'Token ' + token
+                }
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(data) {
+                        critical_json = data;
+                        console.log(critical_json);
+                        dataForCriticalChart(critical_json);
+
+                    });
+                } else {
+                    console.log('Network request failed with response ' + response.status + ': ' + response.statusText);
+                }
+            });
+        }
+
+        function dataForCriticalChart(json) {
+            var criticalParts = 0;
+            var nonCriticalParts = 0;
+
+            for (var i = 0; i < critical_json.length; i++) {
+
+                for (var prop in critical_json[i]) {
+                    if (prop == 'status') {
+                        if (critical_json[i][prop] === 3)
+                            criticalParts++;
+                        else
+                            nonCriticalParts++;
+                    }
+                }
+            }
+            criticalData.push(criticalParts);
+            criticalData.push(nonCriticalParts);
+            console.log(criticalData);
+            var chart = new Chart(Criticalctx, {
+                // The type of chart we want to create
+                type: 'doughnut',
+
+                // The data for our dataset
+                data: {
+                    datasets: [{
+                        data: criticalData,
+                        backgroundColor: ['rgb(203, 47, 47)', 'rgb(186, 209, 70)'],
+                        //                        borderColor: ['rgb(203, 47, 47)','rgb(32, 161, 62)','rgb(186, 209, 70)','rgb(56, 132, 209)']
+                    }],
+
+                    // These labels appear in the legend and in the tooltips when hovering different arcs
+                    labels: [
+                        'Critical',
+                        'Non-Critical'
+                    ]
+
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: "true",
+                    maintainAspectRatio: false,
+                legend: {
+                    labels: {
+                        fontColor: "white"
+                            }
+                        },
+                    layout: {
+                        padding: {
+                            left: 20,
+                            right: 20,
+                            top: 10,
+                            bottom: 10
+                        }
+                    }
+                }
+            });
+        }
 
     </script>
 </body>
