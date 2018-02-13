@@ -30,11 +30,16 @@ $(function(){
                         
                         position=$("#item").index(this);
                         console.log(position);
+<<<<<<< HEAD
                         it = (json[json.length-position-1].partid).split("/");
                         console.log(json[json.length-position-1].partid);
                         console.log(it);
                         console.log(it[it.length-2]);
                         window.location.replace("/part-detail.html?partid="+it[it.length-2]);
+=======
+                        console.log(json.length-position-1].part_number);
+//                        window.location.replace("/part-detail.html?partid="+json[json.length-position-1].part_number);
+>>>>>>> 858422c86c46e44d19d259392cb837a89877bb50
                     });
             });
         } else {
