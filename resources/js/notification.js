@@ -5,6 +5,7 @@ let fcm_token = null;
 
 var token = sessionStorage.tokenid;
 
+
 var config = {
     apiKey: "AIzaSyB9t-wtDoOVgJpYS4Z0lCYHt-twsLBCVtk",
     authDomain: "daimler-notify.firebaseapp.com",
@@ -144,6 +145,8 @@ function sendFCMToken(){
                         console.log(xhr);
                     };
                     xhr.send(formData);
+                    
+                    
                 })
             });
         } else {

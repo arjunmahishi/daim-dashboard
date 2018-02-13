@@ -1,5 +1,7 @@
 var url = "https://daimler-backend.herokuapp.com/api/comments/?type=true&userid="+sessionStorage.userid;
 var token= sessionStorage.tokenid;
+var it;
+var json;
 $(function(){
 	fetch(url, {
 		method:"get",
@@ -23,6 +25,17 @@ $(function(){
                     $("#data-h").show();
 
                 }
+                $('#item').click(function(event)
+                    {
+                        
+                        position=$("#item").index(this);
+                        console.log(position);
+                        it = (json[json.length-position-1].partid).split("/");
+                        console.log(json[json.length-position-1].partid);
+                        console.log(it);
+                        console.log(it[it.length-2]);
+                        window.location.replace("/part-detail.html?partid="+it[it.length-2]);
+                    });
             });
         } else {
             console.log("Error")
@@ -35,14 +48,22 @@ $(function(){
      	$("#content").text(json[i].content);
      	$("#posted-by").text('Posted By: '+json[i].posted_by);
      	$("#posted-on").text(jQuery.timeago(json[i].date));
+        it = (json[i].partid).split("/");
+         console.log(it);
+     	$("#posted-title").text('Part No: ' + it[it.length-2]);
      	$("#item").show();
      	$("#item").clone(true,true).insertAfter("#item");
      }
       $("#content").text(json[i].content);
      	$("#posted-by").text('Posted By: '+json[i].posted_by);
      	$("#posted-on").text(jQuery.timeago(json[i].date));
-     	$("#item").show();
+            itt = (json[0].partid).split("/");
+      console.log(itt);
+     	$("#posted-title").text('Part N: ' + itt[itt.length-2]);
+
+        $("#item").show();
      	$("#item").clone(true,true).insertAfter("#item");
+      
 
   }
 })
