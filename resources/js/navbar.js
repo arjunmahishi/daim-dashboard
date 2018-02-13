@@ -60,6 +60,20 @@ $('#logout-nav').click(function(){
   xhr.send();
 });
 
+$('.brand-logo').click(function () {
+        console.log("log out here");
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', urlnav, true);
+        sessionStorage.choice="";
+        xhr.onload = function () {
+            if(xhr.status=200)
+                window.location.replace("/");
+            else
+                alert("Unable to log out");
+           }
+            xhr.send();
+    });
+
 
 function backBtn(){
     window.location.href = sessionStorage['goBackTo'];

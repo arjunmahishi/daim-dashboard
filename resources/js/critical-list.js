@@ -66,6 +66,10 @@ $(function () {
         close: 'Ok',
         closeOnSelect: true // Close upon selecting a date,
     });
+    
+
+
+    
 
 
 
@@ -140,7 +144,16 @@ function getData() {
 
                 json = data;
                 console.log(json);
-                json.forEach(addItems);
+                
+                for(item in json)
+                    {
+                        console.log("inside for loop");
+                        console.log(json[item].status);
+                        if (json[item].status == 3 || json[item].starred) {
+                            console.log("inside if statement");
+                           addItems(json[item]);
+                        }
+                    }
                 $("#collection").remove();
 
                 $('.send').click(function(event){
@@ -199,6 +212,8 @@ function getData() {
         }
     });
 }
+
+
 
 function addItems(jsonPart) {
     $("#part_number_re").text("" + jsonPart.part_number);
