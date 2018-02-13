@@ -23,6 +23,14 @@ $(function(){
                     $("#data-h").show();
 
                 }
+                $('#item').click(function(event)
+                    {
+                        
+                        position=$("#item").index(this);
+                        console.log(position);
+                        console.log(json.length-position-1].part_number);
+//                        window.location.replace("/part-detail.html?partid="+json[json.length-position-1].part_number);
+                    });
             });
         } else {
             console.log("Error")
