@@ -25,13 +25,13 @@ $(function(){
                     $("#data-h").show();
 
                 }
-                $('#item').click(function(event)
+                $('.item').click(function(event)
                     {
                         
-                        position=$("#item").index(this);
+                        position=$(".item").index(this);
                         console.log(position);
-                        it = (json[json.length-position-1].partid).split("/");
-                        console.log(json[json.length-position-1].partid);
+                        it = (json[position].partid).split("/");
+                        console.log(json[json.length-1].partid);
                         console.log(it);
                         console.log(it[it.length-2]);
                         window.location.replace("/part-detail.html?partid="+it[it.length-2]);
