@@ -35,8 +35,6 @@ $(function(){
                         console.log(it);
                         console.log(it[it.length-2]);
                         window.location.replace("/part-detail.html?partid="+it[it.length-2]);
-                        console.log(json.length-position-1].part_number);
-//                        window.location.replace("/part-detail.html?partid="+json[json.length-position-1].part_number);
 
                     });
             });
