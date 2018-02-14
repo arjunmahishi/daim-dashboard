@@ -1,4 +1,4 @@
-var url = "https://daimler-backend.herokuapp.com/api/parts/?ordering=short_on,-status&pmc=";
+var url = "https://daimler-backend.herokuapp.com/api/parts/?ordering=short_on,status&pmc=";
 
 var token = sessionStorage.tokenid || "83cc351e4ec002a30f5fbe3e768cc4874263e9dd";
 console.log(token);
@@ -73,7 +73,6 @@ $(function(){
     }
     else if(label[0].innerText === 'Critical'){
       getData();
-      updateDisplay(json,date);
     }
     else if(label[0].innerText === 'Starred'){
 //      getData();
@@ -180,6 +179,14 @@ function getData() {
     }).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
+
+          var tableContainer = document.getElementById('items-container');
+          if(tableContainer.children.length>1){
+          while (tableContainer.firstChild) {
+          tableContainer.removeChild(tableContainer.firstChild);
+           }
+        tableContainer.appendChild(tableRow);
+          }
 
                 json = data;
                 console.log(json);
