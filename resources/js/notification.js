@@ -1,4 +1,5 @@
 const applicationServerPublicKey = 'BJZy3aVYrxbEKeEEqRReRPs_239ZUxj5LCm_E-LRiMrz47IA51VmCyC8A4XpvuaoY5hjYhJ8TT5eA5dEq7F0BZ8';
+const applicationServerprivatekey= '5tOi9dKR77pqY0uQ5H2PqQbR6YMG1c75A2XgR7izOcA';
 let isSubscribed = false;
 let swRegistration = null;
 let fcm_token = null;
@@ -44,8 +45,7 @@ function subscribeUser() {
         .then(function (subscription) {
             console.log('User is subscribed.');
             console.log(subscription);
-
-            //            updateSubscriptionOnServer(subscription);
+            updateSubscriptionOnServer(subscription);
 
             isSubscribed = true;
 
@@ -96,7 +96,7 @@ function requestPermission(){
     messaging.requestPermission()
     .then(function() {
         console.log('Notification permission granted.');
-        sendFCMToken();
+        //sendFCMToken();
     })
     .catch(function(err) {
         console.log('Unable to get permission to notify.', err);
@@ -109,48 +109,48 @@ function getFCMToken(onsuccess){
     });
 }
 
-function sendFCMToken(){
-    const getEndpoint = "https://daimler-backend.herokuapp.com/api/current_user/";
-    const postEndpoint = "https://daimler-backend.herokuapp.com/api/device/gcm/";
-    let payload = {};
-
-    fetch(getEndpoint, {
-        method: "get",
-        headers: {
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Token ' + token
-        }
-    }).then((res)=>{
-        if (res.ok) {
-            res.json().then(function (data) {
-                // payload.userID = data.id;
-                // payload.username = data.username;
-                console.log("Getting FCM token...");
-                getFCMToken((FCM_token)=>{
-                    // payload.registration_id = FCM_token;
-
-                    var formData = new FormData();
-                    formData.append('registration_id', FCM_token);
-                    formData.append('userID', data.id);
-                    formData.append('name', data.username);
-                    formData.append('active', true);
-                    formData.append('cloud_message_type', 'FCM');
-
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('POST', postEndpoint, true);
-                    console.log(token);
-                    xhr.setRequestHeader('Authorization', 'Token ' + token);
-                    xhr.onload = function () {
-                        console.log(xhr);
-                    };
-                    xhr.send(formData);
-                })
-            });
-        } else {
-            console.log('Network request failed with res ' + res.status + ': ' + res.statusText);
-        }
-    });
-}
+// function sendFCMToken(){
+//     const getEndpoint = "https://daimler-backend.herokuapp.com/api/current_user/";
+//     const postEndpoint = "https://daimler-backend.herokuapp.com/api/device/gcm/";
+//     let payload = {};
+//
+//     fetch(getEndpoint, {
+//         method: "get",
+//         headers: {
+//             // 'Content-Type': 'application/x-www-form-urlencoded',
+//             'Authorization': 'Token ' + token
+//         }
+//     }).then((res)=>{
+//         if (res.ok) {
+//             res.json().then(function (data) {
+//                 // payload.userID = data.id;
+//                 // payload.username = data.username;
+//                 console.log("Getting FCM token...");
+//                 getFCMToken((FCM_token)=>{
+//                     // payload.registration_id = FCM_token;
+//
+//                     var formData = new FormData();
+//                     formData.append('registration_id', FCM_token);
+//                     formData.append('userID', data.id);
+//                     formData.append('name', data.username);
+//                     formData.append('active', true);
+//                     formData.append('cloud_message_type', 'FCM');
+//
+//                     var xhr = new XMLHttpRequest();
+//                     xhr.open('POST', postEndpoint, true);
+//                     console.log(token);
+//                     xhr.setRequestHeader('Authorization', 'Token ' + token);
+//                     xhr.onload = function () {
+//                         console.log(xhr);
+//                     };
+//                     xhr.send(formData);
+//                 })
+//             });
+//         } else {
+//             console.log('Network request failed with res ' + res.status + ': ' + res.statusText);
+//         }
+//     });
+// }
 
 
 
@@ -174,6 +174,18 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 } else {
     console.warn('Push messaging is not supported');
     pushButton.textContent = 'Push Not Supported';
+}
+function updateSubscriptionOnServer(subscription){
+    const url='https://daimler-backend.herokuapp.com/api/subscriptions/';
+    var formData= new FormData();
+    formData.append("subscription_id",subscription);
+    var xhr= new XMLHttpRequest();
+    xhr.open('GET',url,true);
+    xhr.setRequestHeader("Authorization",'Token ' + token);
+    xhr.onload=function () {
+        console.log(xhr.responseText);
+        }
+    xhr.send(formData);
 }
 //PUB:BJZy3aVYrxbEKeEEqRReRPs_239ZUxj5LCm_E-LRiMrz47IA51VmCyC8A4XpvuaoY5hjYhJ8TT5eA5dEq7F0BZ8
 //PRIV:5tOi9dKR77pqY0uQ5H2PqQbR6YMG1c75A2XgR7izOcA
