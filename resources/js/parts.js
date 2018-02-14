@@ -40,6 +40,7 @@ date = yyyy + '-' + mm + '-' + dd;
 // if(token==undefined) window.location="http://localhost:3000";
 $(function(){
 
+    tableRow = $("li#collection").get(0);
    //get response from api
   getData();
 
@@ -59,7 +60,8 @@ $(function(){
   });
 
   // select the radio button when list item is clicked.
-  $(".dropdown-content > li").click(function(){
+  $(".dropdown-content > li").click(function(event){
+    event.stopPropagation();
     $(".dropdown-content > li").find('input[type="radio"]').removeAttr('checked');
     $(this).find('input[type="radio"]').attr('checked','checked');
 
@@ -74,7 +76,7 @@ $(function(){
       updateDisplay(json,date);
     }
     else if(label[0].innerText === 'Starred'){
-      //getData();
+//      getData();
       starSort();
     }
 
@@ -85,8 +87,9 @@ $(function(){
     updateDisplay(json,date);
   });
 
-  $('#starred-radio-btn').click(function(){
-    getData();
+  $('#starred-radio-btn').click(function(event){
+    event.stopPropagation();
+  //  getData();
     starSort();
   });
 
@@ -222,23 +225,23 @@ function updateDisplay(jsonResponse, date){
   json = jsonResponse;
 $('#date').text(date);
 
-var container = document.getElementById('table');
-var children = container.children;
+// var container = document.getElementById('table');
+// var children = container.children;
 
-// var partType = children[0].childNodes[1].childNodes[1].childNodes[1]; //card title
-// partType.innerHTML = selection.replace(/%20/g," ");
-var partContainer = children[1] //tbody
-var partDetails = partContainer.children;
+// // var partType = children[0].childNodes[1].childNodes[1].childNodes[1]; //card title
+// // partType.innerHTML = selection.replace(/%20/g," ");
+// var partContainer = children[1] //tbody
+// var partDetails = partContainer.children;
 
-console.log(partDetails);
+// console.log(partDetails);
 
-var card_ref = document.getElementById('card-cont');
-var no_data = document.getElementById('data-h');
+// var card_ref = document.getElementById('card-cont');
+// var no_data = document.getElementById('data-h');
 
 if(json.length>0)
 {
-  no_data.setAttribute('style','display: none;');
-   card_ref.removeAttribute('style','display: none;');
+  // no_data.setAttribute('style','display: none;');
+  //  card_ref.removeAttribute('style','display: none;');
   for(var i=0; i<json.length; i++){
 
 
@@ -301,7 +304,8 @@ else
 }
 
 function addItems(jsonPart) {
-    $("#part_name").text("" + jsonPart.part_number);
+
+    $("#part_number_re").text("" + jsonPart.part_number);
     $("#status").removeClass("red");
     $("#status").removeClass("orange");
     $("#status").removeClass("green");
@@ -600,20 +604,26 @@ xhr.send(JSON.stringify(obj));
 
 function starSort(){
 
-      var tableContainer = document.getElementById('table');
-      var childNodes = tableContainer.children;
-      console.log(childNodes);
+      var tableContainer = document.getElementById('items-container');
+      var items = tableContainer.children;
+      console.log(items);
 
-      var tableBody = childNodes[1];
-      var rows = tableBody.children;
+      var rows = [];
+      for(var i=0; i<items.length; i++){
+         rows.push(items[i].children[2]);
+      }
+
+      // var tableBody = childNodes[1];
+      // var rows = childNodes[0].children[2]//["0"].children[2]
+      rows.reverse();
       console.log(rows);
 
       //converting HTML collection to array.
-      var rowsArray = Array.from(rows);
+      // var rowsArray = Array.from(rows);
 
       //extracting index and image file path for each element
-      var mapped = rowsArray.map(function(el, i) {
-    return { index: i, value: el.childNodes[7].childNodes[0].src };
+      var mapped = rows.map(function(el, i) {
+    return { index: i, value: el.children[3].innerText };//["0"].children[3].children.star_status
   });
 
 
@@ -636,10 +646,19 @@ function starSort(){
 
 // arranging the data according to the sorted values of HTMLcollection array.
       var jsonResponse = mapped.map(function(el){
+        //json.reverse();
         return json[el.index];
           });
         console.log(jsonResponse);
-        updateDisplay(jsonResponse,date);
+        // updateDisplay(jsonResponse,date);
+        while (tableContainer.firstChild) {
+          tableContainer.removeChild(tableContainer.firstChild);
+      }
+        tableContainer.appendChild(tableRow);
+        json = jsonResponse;
+        json.reverse();
+        json.forEach(addItems);
+        $("#collection").remove();
 
 }
 
